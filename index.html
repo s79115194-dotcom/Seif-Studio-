@@ -720,9 +720,10 @@
     (function () {
       'use strict';
 
-      const STORAGE_KEY = 'seif_studio_state_v2';
+      const STORAGE_KEY = 'seif_studio_state_v3';
       const ADMIN_PASSCODE = '26/1/2013';
       const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
+      const ALLOWED_ADDON_IDS = ['countdown', 'photos', 'song'];
 
       function detectDeviceLang() {
         const navLang = (navigator.language || (navigator.languages && navigator.languages[0]) || 'ar').toLowerCase();
@@ -1013,10 +1014,6 @@
       document.documentElement.dir = currentLang === 'en' ? 'ltr' : 'rtl';
       document.title = t.pageTitle;
 
-      const STORAGE_KEY = 'seif_studio_state_v2';
-      const ADMIN_PASSCODE = '26/1/2013';
-      const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
-
       const DEFAULT_STATE = {
         brandName: 'Seif Studio',
         brandTagline: t.defaultTagline,
@@ -1110,20 +1107,19 @@
         orders: []
       };
 
-      const ALLOWED_ADDON_IDS = ['countdown', 'photos', 'song'];
-
       function normalizeState(parsed) {
         const base = JSON.parse(JSON.stringify(DEFAULT_STATE));
         if (!parsed || typeof parsed !== 'object') return base;
 
         const rawAddons = Array.isArray(parsed.addons) ? parsed.addons : [];
         const mergedAddons = ALLOWED_ADDON_IDS.map((id, idx) => {
-          const found = rawAddons.find((a) => a && a.id === id) || rawAddons[idx] || {};
+          const found = rawAddons.find((a) => a && a.id === id);
+          const fallback = base.addons[idx];
           return {
             id,
-            name: (found && found.name) || base.addons[idx].name,
-            desc: (found && found.desc) || base.addons[idx].desc,
-            price: Number(found && found.price !== undefined ? found.price : base.addons[idx].price)
+            name: (found && found.name) || fallback.name,
+            desc: (found && found.desc) || fallback.desc,
+            price: Number(found && found.price !== undefined ? found.price : fallback.price)
           };
         });
 
@@ -1275,8 +1271,6 @@
         document.getElementById('addons-section-title').textContent = t.addonsTitle;
 
         document.getElementById('vip-badge-text').textContent = t.vipBadge;
-        document.getElementById('currency-vip-1').textContent = t.currency;
-        document.getElementById('currency-vip-2').textContent = t.currency;
         document.getElementById('apply-vip-btn').textContent = t.applyVipBtn;
         document.getElementById('vip-keep-note').textContent = t.vipKeepNote;
 
@@ -1352,7 +1346,6 @@
         document.getElementById('hero-vip-price').textContent = state.vipPrice;
         document.getElementById('hero-project-price').textContent = state.projectWebsitePrice;
 
-        document.getElementById('base-pkg-name-inline').textContent = state.basePackageName;
         document.getElementById('builder-subtitle').innerHTML =
           `${escapeHtml(t.builderSubtitlePrefix)}<strong id="base-pkg-name-inline" class="text-[#182230]">${escapeHtml(state.basePackageName)}</strong>${escapeHtml(t.builderSubtitleSuffix)}`;
 
@@ -1448,7 +1441,7 @@
           return {
             packageLabel: state.vipPackageName,
             addonsLabel: selectedAddons.length > 0
-              ? selectedAddons.map((a) => a.name).join(currentLang === 'en' ? ', ' : '، ')
+              ? selectedAddons.map((a) => (t.addonLabels[a.id]?.name || a.name)).join(currentLang === 'en' ? ', ' : '، ')
               : state.vipPackageName,
             totalPrice: Number(state.vipPrice) || 800,
             selectedAddons
@@ -1461,7 +1454,7 @@
         return {
           packageLabel: state.basePackageName,
           addonsLabel: selectedAddons.length > 0
-            ? selectedAddons.map((a) => a.name).join(currentLang === 'en' ? ', ' : '، ')
+            ? selectedAddons.map((a) => (t.addonLabels[a.id]?.name || a.name)).join(currentLang === 'en' ? ', ' : '، ')
             : t.noAddons,
           totalPrice,
           selectedAddons
@@ -1772,11 +1765,11 @@
         showToast(`${t.toastVipApplied} (${state.vipPrice} ${t.currency})`);
       });
 
-      document.querySelectorAll('.showcase-tab').forEach((tab) => {
-        tab.addEventListener('click', () => {
-          activeCategory = tab.getAttribute('data-category') || 'all';
-          document.querySelectorAll('.showcase-tab').forEach((t) => t.classList.remove('tab-active'));
-          tab.classList.add('tab-active');
+      document.querySelectorAll('.showcase-tab').forEach((tabBtn) => {
+        tabBtn.addEventListener('click', () => {
+          activeCategory = tabBtn.getAttribute('data-category') || 'all';
+          document.querySelectorAll('.showcase-tab').forEach((itemBtn) => itemBtn.classList.remove('tab-active'));
+          tabBtn.classList.add('tab-active');
           renderShowcase();
         });
       });
