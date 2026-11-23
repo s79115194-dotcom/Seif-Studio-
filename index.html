@@ -78,9 +78,10 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#f6f7f9] text-[#182230] selection:bg-[#2563eb] selection:text-white">
 
+  <!-- TOP NAVIGATION BAR -->
   <header class="sticky top-0 z-40 bg-white border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-3">
-      <a href="#top" class="flex items-center gap-2.5 shrink-0">
+      <a href="#top" id="brand-trigger-link" class="flex items-center gap-2.5 shrink-0 select-none">
         <span class="w-9 h-9 rounded-xl bg-[#2563eb] text-white flex items-center justify-center font-cinzel font-bold text-lg">
           S
         </span>
@@ -118,19 +119,11 @@
         >
           اطلب دلوقتي
         </button>
-
-        <button
-          type="button"
-          id="open-admin-btn"
-          class="cursor-pointer px-3 sm:px-3.5 py-2 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-bold transition-colors flex items-center gap-1"
-        >
-          <span>🔒</span>
-          <span id="admin-btn-label">أدمن</span>
-        </button>
       </div>
     </div>
   </header>
 
+  <!-- HERO SECTION -->
   <section id="top" class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-8 pb-8">
     <div class="rounded-3xl soft-card p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       <div class="lg:col-span-7 space-y-4">
@@ -177,6 +170,7 @@
         </div>
       </div>
 
+      <!-- Featured Sample Preview Card -->
       <div class="lg:col-span-5">
         <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-5 space-y-4">
           <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -207,6 +201,7 @@
     </div>
   </section>
 
+  <!-- DEDICATED SHOWCASE SECTIONS -->
   <section id="invitations-showcase" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
       <div>
@@ -254,6 +249,7 @@
     <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </section>
 
+  <!-- INTERACTIVE PACKAGE BUILDER -->
   <section id="package-builder" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
     <div class="rounded-3xl soft-card p-6 sm:p-8 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-200 pb-5">
@@ -364,6 +360,7 @@
     </div>
   </section>
 
+  <!-- PROJECT WEBSITES SECTION -->
   <section id="projects-website" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
     <div class="rounded-3xl soft-card p-6 sm:p-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
@@ -411,6 +408,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="mt-auto border-t border-slate-200 bg-white py-6 px-4 text-center">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#526071]">
       <div>
@@ -420,6 +418,7 @@
     </div>
   </footer>
 
+  <!-- ORDER FORM MODAL -->
   <div id="order-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="w-full max-w-lg bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 space-y-4 my-auto">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -532,6 +531,7 @@
     </div>
   </div>
 
+  <!-- ADMIN PASSCODE MODAL -->
   <div id="admin-auth-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="w-full max-w-sm bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 text-center space-y-4">
       <div>
@@ -569,6 +569,7 @@
     </div>
   </div>
 
+  <!-- ADMIN DASHBOARD -->
   <div id="admin-panel" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border border-slate-200 shadow-2xl p-5 sm:p-7 space-y-6 my-auto text-right">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3.5 sticky top-0 bg-white z-10">
@@ -708,6 +709,7 @@
     </div>
   </div>
 
+  <!-- Toast Notification -->
   <div id="toast-banner" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[10000] pointer-events-none opacity-0 transition-all duration-300 translate-y-2">
     <div id="toast-message" class="bg-[#182230] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full shadow-lg whitespace-nowrap"></div>
   </div>
@@ -731,7 +733,6 @@
           navBuilder: 'ظبط باقتك',
           navProjects: 'ويب سايت المشاريع',
           orderNow: 'اطلب دلوقتي',
-          adminBtn: 'أدمن',
           defaultBadge: 'شغالين أونلاين • تصميم راقٍ وبسيط',
           defaultHeroTitle: 'دعوات فرح، خطوبة، وكتب كتاب.. ومواقع مشاريع ترفع شغلك',
           defaultHeroSubtitle: 'اختار النموذج اللي يعجبك، ظبط الباقة والإضافات على مزاجك من الباقة الأساسية أو خد باقة VIP كاملة، واطلب في ثواني والطلب يوصلك على الموقع وعلى الواتساب على طول.',
@@ -863,7 +864,6 @@
           navBuilder: 'Build Package',
           navProjects: 'Project Websites',
           orderNow: 'Order Now',
-          adminBtn: 'Admin',
           defaultBadge: 'Online Now • Clean & Modern Design',
           defaultHeroTitle: 'Wedding, Engagement & Katb Kitab Invitations.. and Project Websites',
           defaultHeroSubtitle: 'Pick a style you like, customize your package from the Base Package or go full VIP, and order in seconds with instant WhatsApp & live updates.',
@@ -1239,7 +1239,6 @@
         document.getElementById('nav-builder-link').textContent = t.navBuilder;
         document.getElementById('nav-projects-link').textContent = t.navProjects;
         document.getElementById('nav-order-btn').textContent = t.orderNow;
-        document.getElementById('admin-btn-label').textContent = t.adminBtn;
 
         document.getElementById('hero-cta-builder').textContent = t.ctaBuilder;
         document.getElementById('hero-cta-samples').textContent = t.ctaSamples;
@@ -1753,6 +1752,45 @@
       const adminPasscodeInput = document.getElementById('admin-passcode-input');
       const adminAuthError = document.getElementById('admin-auth-error');
       const adminPanel = document.getElementById('admin-panel');
+      const brandTriggerLink = document.getElementById('brand-trigger-link');
+
+      function openAdminAuthPrompt() {
+        adminAuthError.classList.add('hidden');
+        adminPasscodeInput.value = '';
+        adminAuthModal.classList.remove('hidden');
+        setTimeout(() => adminPasscodeInput.focus(), 60);
+      }
+
+      if (brandTriggerLink) {
+        let longPressTimer = null;
+        let longPressTriggered = false;
+
+        const startLongPress = () => {
+          longPressTriggered = false;
+          clearTimeout(longPressTimer);
+          longPressTimer = setTimeout(() => {
+            longPressTriggered = true;
+            openAdminAuthPrompt();
+          }, 800);
+        };
+
+        const cancelLongPress = () => {
+          clearTimeout(longPressTimer);
+        };
+
+        brandTriggerLink.addEventListener('touchstart', startLongPress, { passive: true });
+        brandTriggerLink.addEventListener('touchend', cancelLongPress);
+        brandTriggerLink.addEventListener('touchcancel', cancelLongPress);
+        brandTriggerLink.addEventListener('mousedown', startLongPress);
+        brandTriggerLink.addEventListener('mouseup', cancelLongPress);
+        brandTriggerLink.addEventListener('mouseleave', cancelLongPress);
+        brandTriggerLink.addEventListener('click', (e) => {
+          if (longPressTriggered) {
+            e.preventDefault();
+            longPressTriggered = false;
+          }
+        });
+      }
 
       function fillAdminInputs() {
         document.getElementById('adm-brand-name').value = state.brandName;
@@ -1769,13 +1807,6 @@
         document.getElementById('adm-vip-price').value = state.vipPrice;
         document.getElementById('adm-project-price').value = state.projectWebsitePrice;
       }
-
-      document.getElementById('open-admin-btn').addEventListener('click', () => {
-        adminAuthError.classList.add('hidden');
-        adminPasscodeInput.value = '';
-        adminAuthModal.classList.remove('hidden');
-        setTimeout(() => adminPasscodeInput.focus(), 60);
-      });
 
       document.getElementById('admin-auth-cancel').addEventListener('click', () => {
         adminAuthModal.classList.add('hidden');
