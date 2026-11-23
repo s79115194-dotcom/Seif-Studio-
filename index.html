@@ -74,6 +74,13 @@
     .modal-backdrop.hidden {
       display: none !important;
     }
+
+    #brand-trigger-link {
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      touch-action: manipulation;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-[#f6f7f9] text-[#182230] selection:bg-[#2563eb] selection:text-white">
@@ -81,7 +88,7 @@
   <!-- TOP NAVIGATION BAR -->
   <header class="sticky top-0 z-40 bg-white border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-3">
-      <a href="#top" id="brand-trigger-link" class="flex items-center gap-2.5 shrink-0 select-none">
+      <div id="brand-trigger-link" role="button" tabindex="0" class="flex items-center gap-2.5 shrink-0 cursor-pointer select-none">
         <span class="w-9 h-9 rounded-xl bg-[#2563eb] text-white flex items-center justify-center font-cinzel font-bold text-lg">
           S
         </span>
@@ -89,7 +96,7 @@
           <div id="brand-name-display" class="font-extrabold text-base sm:text-lg text-[#182230]">Seif Studio</div>
           <div id="brand-tagline-display" class="text-[11px] font-medium text-[#526071]">دعوات ومواقع أونلاين</div>
         </div>
-      </a>
+      </div>
 
       <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-[#526071]" aria-label="التنقل الرئيسي">
         <a id="nav-invitations-link" href="#invitations-showcase" class="hover:text-[#2563eb] transition-colors">الدعوات</a>
@@ -1764,14 +1771,23 @@
       if (brandTriggerLink) {
         let longPressTimer = null;
         let longPressTriggered = false;
+        let quickTapCount = 0;
+        let quickTapTimer = null;
+
+        const triggerAdminAccess = () => {
+          clearTimeout(longPressTimer);
+          clearTimeout(quickTapTimer);
+          quickTapCount = 0;
+          openAdminAuthPrompt();
+        };
 
         const startLongPress = () => {
           longPressTriggered = false;
           clearTimeout(longPressTimer);
           longPressTimer = setTimeout(() => {
             longPressTriggered = true;
-            openAdminAuthPrompt();
-          }, 800);
+            triggerAdminAccess();
+          }, 650);
         };
 
         const cancelLongPress = () => {
@@ -1784,10 +1800,22 @@
         brandTriggerLink.addEventListener('mousedown', startLongPress);
         brandTriggerLink.addEventListener('mouseup', cancelLongPress);
         brandTriggerLink.addEventListener('mouseleave', cancelLongPress);
+
         brandTriggerLink.addEventListener('click', (e) => {
           if (longPressTriggered) {
             e.preventDefault();
             longPressTriggered = false;
+            return;
+          }
+
+          quickTapCount += 1;
+          clearTimeout(quickTapTimer);
+          if (quickTapCount >= 3) {
+            triggerAdminAccess();
+          } else {
+            quickTapTimer = setTimeout(() => {
+              quickTapCount = 0;
+            }, 900);
           }
         });
       }
