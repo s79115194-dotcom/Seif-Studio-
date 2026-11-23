@@ -78,7 +78,6 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#f6f7f9] text-[#182230] selection:bg-[#2563eb] selection:text-white">
 
-  <!-- TOP NAVIGATION BAR -->
   <header class="sticky top-0 z-40 bg-white border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-3">
       <a href="#top" class="flex items-center gap-2.5 shrink-0">
@@ -95,7 +94,6 @@
         <a id="nav-invitations-link" href="#invitations-showcase" class="hover:text-[#2563eb] transition-colors">الدعوات</a>
         <a id="nav-builder-link" href="#package-builder" class="hover:text-[#2563eb] transition-colors">ظبط باقتك</a>
         <a id="nav-projects-link" href="#projects-website" class="hover:text-[#2563eb] transition-colors">ويب سايت المشاريع</a>
-        <a id="nav-orders-link" href="#orders-board" class="hover:text-[#2563eb] transition-colors">الطلبات</a>
       </nav>
 
       <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
@@ -133,7 +131,6 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
   <section id="top" class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-8 pb-8">
     <div class="rounded-3xl soft-card p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       <div class="lg:col-span-7 space-y-4">
@@ -180,7 +177,6 @@
         </div>
       </div>
 
-      <!-- Featured Sample Preview Card -->
       <div class="lg:col-span-5">
         <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-5 space-y-4">
           <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -211,7 +207,6 @@
     </div>
   </section>
 
-  <!-- DEDICATED SHOWCASE SECTIONS -->
   <section id="invitations-showcase" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
       <div>
@@ -259,7 +254,6 @@
     <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </section>
 
-  <!-- INTERACTIVE PACKAGE BUILDER -->
   <section id="package-builder" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
     <div class="rounded-3xl soft-card p-6 sm:p-8 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-200 pb-5">
@@ -370,7 +364,6 @@
     </div>
   </section>
 
-  <!-- PROJECT WEBSITES SECTION -->
   <section id="projects-website" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
     <div class="rounded-3xl soft-card p-6 sm:p-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
@@ -418,25 +411,6 @@
     </div>
   </section>
 
-  <!-- LOGGED ORDERS ON WEBSITE -->
-  <section id="orders-board" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
-    <div class="rounded-3xl soft-card p-6 sm:p-8 space-y-5">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
-        <div>
-          <span id="orders-kicker" class="text-xs font-bold text-[#2563eb]">سجل الطلبات</span>
-          <h2 id="orders-heading" class="text-xl sm:text-2xl font-extrabold text-[#182230]">الطلبات المسجلة على الموقع</h2>
-          <p id="orders-subtitle" class="text-xs sm:text-sm text-[#526071] mt-0.5">أي طلب بيتبعت من نموذج الطلب بيظهر هنا وبيتسجل لحظياً على Firebase وكمان بيتفتح على الواتساب.</p>
-        </div>
-        <span id="orders-count-badge" class="self-start sm:self-auto px-3.5 py-1.5 rounded-full bg-[#f1f4f8] border border-slate-200 text-xs font-extrabold text-[#2563eb]">
-          0 طلبات
-        </span>
-      </div>
-
-      <div id="orders-list" class="space-y-3"></div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="mt-auto border-t border-slate-200 bg-white py-6 px-4 text-center">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#526071]">
       <div>
@@ -446,7 +420,6 @@
     </div>
   </footer>
 
-  <!-- ORDER FORM MODAL -->
   <div id="order-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="w-full max-w-lg bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 space-y-4 my-auto">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -559,7 +532,6 @@
     </div>
   </div>
 
-  <!-- ADMIN PASSCODE MODAL -->
   <div id="admin-auth-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="w-full max-w-sm bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 text-center space-y-4">
       <div>
@@ -597,7 +569,6 @@
     </div>
   </div>
 
-  <!-- ADMIN DASHBOARD -->
   <div id="admin-panel" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border border-slate-200 shadow-2xl p-5 sm:p-7 space-y-6 my-auto text-right">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3.5 sticky top-0 bg-white z-10">
@@ -614,7 +585,6 @@
         </button>
       </div>
 
-      <!-- 1. Site Texts & Hidden WhatsApp Target Number -->
       <div class="space-y-3">
         <h4 class="text-sm font-extrabold text-[#2563eb]">1. نصوص الموقع ورقم الواتساب المخفي</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -644,7 +614,6 @@
         </div>
       </div>
 
-      <!-- 2. Packages & Add-ons Pricing -->
       <div class="space-y-3 border-t border-slate-200 pt-4">
         <h4 class="text-sm font-extrabold text-[#2563eb]">2. أسعار الباقات والإضافات</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -685,7 +654,6 @@
         </div>
       </div>
 
-      <!-- 3. Add Showcase Item -->
       <div class="space-y-3 border-t border-slate-200 pt-4">
         <h4 class="text-sm font-extrabold text-[#2563eb]">3. إضافة نموذج جديد لقسم الدعوات</h4>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -706,10 +674,9 @@
         </button>
       </div>
 
-      <!-- 4. Logged Orders Management -->
       <div class="space-y-3 border-t border-slate-200 pt-4">
         <div class="flex items-center justify-between">
-          <h4 class="text-sm font-extrabold text-[#2563eb]">4. إدارة الطلبات المسجلة</h4>
+          <h4 id="adm-orders-heading" class="text-sm font-extrabold text-[#2563eb]">4. إدارة الطلبات المسجلة (للأدمن فقط)</h4>
           <button
             type="button"
             id="adm-clear-orders-btn"
@@ -721,7 +688,6 @@
         <div id="adm-orders-list" class="space-y-2"></div>
       </div>
 
-      <!-- Save & Reset Actions -->
       <div class="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-4">
         <button
           type="button"
@@ -742,7 +708,6 @@
     </div>
   </div>
 
-  <!-- Toast Notification -->
   <div id="toast-banner" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[10000] pointer-events-none opacity-0 transition-all duration-300 translate-y-2">
     <div id="toast-message" class="bg-[#182230] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full shadow-lg whitespace-nowrap"></div>
   </div>
@@ -751,7 +716,7 @@
     (function () {
       'use strict';
 
-      const STORAGE_KEY = 'seif_studio_state_v7';
+      const STORAGE_KEY = 'seif_studio_state_v8';
       const LANG_KEY = 'seif_studio_lang_v1';
       const ADMIN_PASSCODE = '26/1/2013';
       const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
@@ -765,7 +730,6 @@
           navInvitations: 'الدعوات',
           navBuilder: 'ظبط باقتك',
           navProjects: 'ويب سايت المشاريع',
-          navOrders: 'الطلبات',
           orderNow: 'اطلب دلوقتي',
           adminBtn: 'أدمن',
           defaultBadge: 'شغالين أونلاين • تصميم راقٍ وبسيط',
@@ -828,12 +792,6 @@
           projectPriceLabel: 'سعر الباقة الواحدة',
           projectSingleNote: 'باقة واحدة لويب سايت المشاريع',
           orderProjectBtn: 'اطلب ويب سايت المشاريع',
-          ordersKicker: 'سجل الطلبات',
-          ordersHeading: 'الطلبات المسجلة على الموقع',
-          ordersSubtitle: 'أي طلب بيتبعت من نموذج الطلب بيظهر هنا وبيتسجل لحظياً على Firebase وكمان بيتفتح على الواتساب.',
-          orderWordSingular: 'طلب',
-          orderWordPlural: 'طلبات',
-          noOrdersYet: 'لا توجد طلبات مسجلة حالياً.',
           orderPkgCaption: 'الباقة:',
           orderAddonsCaption: 'الإضافات:',
           orderPhoneCaption: 'التليفون:',
@@ -904,7 +862,6 @@
           navInvitations: 'Invitations',
           navBuilder: 'Build Package',
           navProjects: 'Project Websites',
-          navOrders: 'Orders',
           orderNow: 'Order Now',
           adminBtn: 'Admin',
           defaultBadge: 'Online Now • Clean & Modern Design',
@@ -967,12 +924,6 @@
           projectPriceLabel: 'Single Package Price',
           projectSingleNote: 'One complete package for project websites',
           orderProjectBtn: 'Order Project Website',
-          ordersKicker: 'Orders Log',
-          ordersHeading: 'Orders Logged on Site',
-          ordersSubtitle: 'Submitted orders appear here, sync live with Firebase, and open in WhatsApp.',
-          orderWordSingular: 'Order',
-          orderWordPlural: 'Orders',
-          noOrdersYet: 'No orders logged yet.',
           orderPkgCaption: 'Package:',
           orderAddonsCaption: 'Add-ons:',
           orderPhoneCaption: 'Phone:',
@@ -1050,9 +1001,7 @@
       function saveLang(lang) {
         try {
           localStorage.setItem(LANG_KEY, lang);
-        } catch (err) {
-          // Ignore storage errors
-        }
+        } catch (err) {}
       }
 
       let currentLang = loadSavedLang();
@@ -1221,9 +1170,7 @@
       function saveLocalState() {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-        } catch (err) {
-          // Ignore storage errors
-        }
+        } catch (err) {}
       }
 
       async function syncStateToFirebase() {
@@ -1234,9 +1181,7 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(state)
           });
-        } catch (err) {
-          // Ignore network errors
-        }
+        } catch (err) {}
       }
 
       async function fetchStateFromFirebase() {
@@ -1251,9 +1196,7 @@
             saveLocalState();
             renderAll();
           }
-        } catch (err) {
-          // Fallback to local state
-        }
+        } catch (err) {}
       }
 
       let state = loadState();
@@ -1295,7 +1238,6 @@
         document.getElementById('nav-invitations-link').textContent = t.navInvitations;
         document.getElementById('nav-builder-link').textContent = t.navBuilder;
         document.getElementById('nav-projects-link').textContent = t.navProjects;
-        document.getElementById('nav-orders-link').textContent = t.navOrders;
         document.getElementById('nav-order-btn').textContent = t.orderNow;
         document.getElementById('admin-btn-label').textContent = t.adminBtn;
 
@@ -1354,10 +1296,6 @@
         document.getElementById('currency-project').textContent = t.currency;
         document.getElementById('project-single-note').textContent = t.projectSingleNote;
         document.getElementById('order-project-website-btn').textContent = t.orderProjectBtn;
-
-        document.getElementById('orders-kicker').textContent = t.ordersKicker;
-        document.getElementById('orders-heading').textContent = t.ordersHeading;
-        document.getElementById('orders-subtitle').textContent = t.ordersSubtitle;
 
         document.getElementById('footer-tagline').textContent = t.footerTagline;
         document.getElementById('footer-revision').textContent = t.footerRevision;
@@ -1612,86 +1550,50 @@
         }
       }
 
-      function renderOrders() {
-        const listEl = document.getElementById('orders-list');
+      function renderAdminOrders() {
         const admListEl = document.getElementById('adm-orders-list');
-        const badgeEl = document.getElementById('orders-count-badge');
+        if (!admListEl) return;
 
-        if (badgeEl) {
-          badgeEl.textContent = `${state.orders.length} ${state.orders.length === 1 ? t.orderWordSingular : t.orderWordPlural}`;
+        if (state.orders.length === 0) {
+          admListEl.innerHTML = '<div class="text-xs text-[#526071] bg-[#f6f7f9] rounded-xl p-3 border border-slate-200">لا توجد طلبات حالياً.</div>';
+          return;
         }
 
-        if (listEl) {
-          if (state.orders.length === 0) {
-            listEl.innerHTML = `
-              <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-6 text-center text-xs sm:text-sm text-[#526071]">
-                ${escapeHtml(t.noOrdersYet)}
+        admListEl.innerHTML = state.orders.map((ord) => `
+          <div class="rounded-xl bg-[#f6f7f9] p-3.5 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="space-y-0.5">
+              <div>
+                <span class="font-extrabold text-[#182230]">${escapeHtml(ord.clientName)}</span>
+                <span class="text-[#526071]"> (${escapeHtml(ord.phone)}) • ${escapeHtml(ord.serviceType)}</span>
               </div>
-            `;
-          } else {
-            listEl.innerHTML = state.orders.map((ord) => `
-              <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div class="space-y-1">
-                  <div class="flex flex-wrap items-center gap-2">
-                    <span class="font-extrabold text-sm text-[#182230]">${escapeHtml(ord.clientName)}</span>
-                    <span class="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563eb] text-[11px] font-bold">
-                      ${escapeHtml(ord.serviceType)}
-                    </span>
-                    <span class="text-[11px] text-[#526071]">(${escapeHtml(ord.createdAt || t.nowLabel)})</span>
-                  </div>
-                  <div class="text-xs text-[#526071]">
-                    <strong class="text-[#182230]">${escapeHtml(t.orderPkgCaption)}</strong> ${escapeHtml(ord.packageLabel)} — <strong class="text-[#182230]">${escapeHtml(t.orderAddonsCaption)}</strong> ${escapeHtml(ord.addonsLabel)}
-                  </div>
-                  <div class="text-xs text-[#526071]">
-                    <strong class="text-[#182230]">${escapeHtml(t.orderPhoneCaption)}</strong> <span dir="ltr">${escapeHtml(ord.phone)}</span>
-                    ${ord.eventDate ? ` • <strong class="text-[#182230]">${escapeHtml(t.orderDateCaption)}</strong> ${escapeHtml(ord.eventDate)}` : ''}
-                  </div>
-                  ${ord.notes ? `<div class="text-xs text-[#526071]"><strong class="text-[#182230]">${escapeHtml(t.orderNotesCaption)}</strong> ${escapeHtml(ord.notes)}</div>` : ''}
-                </div>
-
-                <div class="shrink-0">
-                  <div class="text-lg font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} ${escapeHtml(t.currency)}</div>
-                </div>
+              <div class="text-[#526071]">
+                <strong class="text-[#182230]">${escapeHtml(t.orderPkgCaption)}</strong> ${escapeHtml(ord.packageLabel)} — <strong class="text-[#182230]">${escapeHtml(t.orderAddonsCaption)}</strong> ${escapeHtml(ord.addonsLabel)}
               </div>
-            `).join('');
-          }
-        }
+              ${ord.notes ? `<div class="text-[#526071]"><strong class="text-[#182230]">${escapeHtml(t.orderNotesCaption)}</strong> ${escapeHtml(ord.notes)}</div>` : ''}
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} ${escapeHtml(t.currency)}</span>
+              <button
+                type="button"
+                data-delete-order="${escapeHtml(ord.id)}"
+                class="delete-order-btn cursor-pointer px-2.5 py-1 rounded-lg bg-white hover:bg-rose-50 text-rose-600 border border-slate-200 font-bold"
+              >
+                حذف
+              </button>
+            </div>
+          </div>
+        `).join('');
 
-        if (admListEl) {
-          if (state.orders.length === 0) {
-            admListEl.innerHTML = '<div class="text-xs text-[#526071] bg-[#f6f7f9] rounded-xl p-3 border border-slate-200">لا توجد طلبات حالياً.</div>';
-          } else {
-            admListEl.innerHTML = state.orders.map((ord) => `
-              <div class="flex items-center justify-between gap-2 bg-[#f6f7f9] rounded-xl px-3.5 py-2.5 border border-slate-200 text-xs">
-                <div class="truncate">
-                  <span class="font-extrabold text-[#182230]">${escapeHtml(ord.clientName)}</span>
-                  <span class="text-[#526071]"> (${escapeHtml(ord.phone)}) • ${escapeHtml(ord.packageLabel)}</span>
-                </div>
-                <div class="flex items-center gap-2 shrink-0">
-                  <span class="font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} ${escapeHtml(t.currency)}</span>
-                  <button
-                    type="button"
-                    data-delete-order="${escapeHtml(ord.id)}"
-                    class="delete-order-btn cursor-pointer px-2 py-0.5 rounded-lg bg-white hover:bg-rose-50 text-rose-600 border border-slate-200 font-bold"
-                  >
-                    حذف
-                  </button>
-                </div>
-              </div>
-            `).join('');
-
-            admListEl.querySelectorAll('.delete-order-btn').forEach((btn) => {
-              btn.addEventListener('click', () => {
-                const orderId = btn.getAttribute('data-delete-order');
-                state.orders = state.orders.filter((o) => o.id !== orderId);
-                saveLocalState();
-                renderOrders();
-                syncStateToFirebase();
-                showToast(t.toastOrderDeleted);
-              });
-            });
-          }
-        }
+        admListEl.querySelectorAll('.delete-order-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const orderId = btn.getAttribute('data-delete-order');
+            state.orders = state.orders.filter((o) => o.id !== orderId);
+            saveLocalState();
+            renderAdminOrders();
+            syncStateToFirebase();
+            showToast(t.toastOrderDeleted);
+          });
+        });
       }
 
       document.getElementById('lang-toggle-btn').addEventListener('click', () => {
@@ -1804,7 +1706,7 @@
 
         state.orders.unshift(newOrder);
         saveLocalState();
-        renderOrders();
+        renderAdminOrders();
         syncStateToFirebase();
 
         const targetWa = (state.whatsappNumber || '').replace(/[^\d]/g, '');
@@ -1884,7 +1786,7 @@
         if (adminPasscodeInput.value.trim() === ADMIN_PASSCODE) {
           adminAuthModal.classList.add('hidden');
           fillAdminInputs();
-          renderOrders();
+          renderAdminOrders();
           adminPanel.classList.remove('hidden');
           showToast(t.toastAdminOpened);
         } else {
@@ -1951,7 +1853,7 @@
       document.getElementById('adm-clear-orders-btn').addEventListener('click', async () => {
         state.orders = [];
         saveLocalState();
-        renderOrders();
+        renderAdminOrders();
         await syncStateToFirebase();
         showToast(t.toastOrdersCleared);
       });
@@ -1972,7 +1874,7 @@
         renderStaticTexts();
         renderShowcase();
         renderBuilder();
-        renderOrders();
+        renderAdminOrders();
       }
 
       renderAll();
