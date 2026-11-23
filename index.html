@@ -1,0 +1,1472 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seif Studio — دعوات إلكترونية ومواقع مشاريع</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* Design tokens for calm, modern light UI */
+    :root {
+      --bg-page: #f6f7f9;
+      --bg-card: #ffffff;
+      --bg-subtle: #f1f4f8;
+      --ink-primary: #182230;
+      --ink-secondary: #526071;
+      --accent-blue: #2563eb;
+      --accent-blue-hover: #1d4ed8;
+      --border-soft: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--ink-primary);
+      overflow-x: hidden;
+    }
+
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+
+    .font-amiri {
+      font-family: 'Amiri', serif;
+    }
+
+    .soft-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 6px 24px -8px rgba(24, 34, 48, 0.06);
+    }
+
+    .tab-active {
+      background-color: var(--accent-blue) !important;
+      color: #ffffff !important;
+      border-color: var(--accent-blue) !important;
+      box-shadow: 0 4px 12px -3px rgba(37, 99, 235, 0.35);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#f6f7f9] text-[#182230] selection:bg-[#2563eb] selection:text-white">
+
+  <!-- ========================================================= -->
+  <!-- TOP NAVIGATION BAR                                        -->
+  <!-- ========================================================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-xs border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <a href="#top" class="flex items-center gap-2.5 shrink-0">
+        <span class="w-9 h-9 rounded-xl bg-[#2563eb] text-white flex items-center justify-center font-cinzel font-bold text-lg shadow-xs">
+          S
+        </span>
+        <div class="leading-tight">
+          <div id="brand-name-display" class="font-extrabold text-base sm:text-lg text-[#182230]">Seif Studio</div>
+          <div id="brand-tagline-display" class="text-[11px] font-medium text-[#526071]">دعوات ومواقع أونلاين</div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-[#526071]" aria-label="التنقل الرئيسي">
+        <a href="#invitations-showcase" class="hover:text-[#2563eb] transition-colors">الدعوات</a>
+        <a href="#package-builder" class="hover:text-[#2563eb] transition-colors">ظبط باقتك</a>
+        <a href="#projects-website" class="hover:text-[#2563eb] transition-colors">ويب سايت المشاريع</a>
+        <a href="#orders-board" class="hover:text-[#2563eb] transition-colors">الطلبات</a>
+      </nav>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <button
+          type="button"
+          id="nav-order-btn"
+          class="cursor-pointer px-4 py-2 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs sm:text-sm font-bold transition-colors active:scale-[0.99]"
+        >
+          اطلب دلوقتي
+        </button>
+        <button
+          type="button"
+          id="open-admin-btn"
+          class="cursor-pointer px-3.5 py-2 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-bold transition-colors flex items-center gap-1"
+        >
+          <span>🔒</span>
+          <span>أدمن</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- HERO SECTION                                              -->
+  <!-- ========================================================= -->
+  <section id="top" class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-8 pb-8">
+    <div class="rounded-3xl soft-card p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-4 text-right">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-[#2563eb]">
+          <span class="w-2 h-2 rounded-full bg-[#2563eb]"></span>
+          <span id="hero-badge-text">شغالين أونلاين • تصميم راقٍ وبسيط</span>
+        </span>
+
+        <h1 id="hero-title-text" class="text-3xl sm:text-5xl font-extrabold text-[#182230] leading-[1.25]">
+          دعوات فرح، خطوبة، وكتب كتاب.. ومواقع مشاريع ترفع شغلك
+        </h1>
+
+        <p id="hero-subtitle-text" class="text-sm sm:text-base text-[#526071] leading-relaxed max-w-2xl">
+          اختار النموذج اللي يعجبك، ظبط الباقة والإضافات على مزاجك من الباقة الأساسية أو خد باقة VIP كاملة، واطلب في ثواني والطلب يوصلك على الموقع وعلى الواتساب على طول.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <a
+            href="#package-builder"
+            class="px-6 py-3 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-bold transition-colors"
+          >
+            ظبط باقتك دلوقتي
+          </a>
+          <a
+            href="#invitations-showcase"
+            class="px-5 py-3 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-sm font-bold transition-colors"
+          >
+            شوف النماذج
+          </a>
+        </div>
+
+        <div class="pt-3 flex flex-wrap items-center gap-2.5 text-xs text-[#182230]">
+          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold">
+            الباقة الأساسية: <span id="hero-base-price" class="text-[#2563eb]">500</span> جنيه
+          </span>
+          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold">
+            باقة VIP: <span id="hero-vip-price" class="text-[#2563eb]">800</span> جنيه
+          </span>
+          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold">
+            ويب سايت المشاريع: <span id="hero-project-price" class="text-[#2563eb]">2000</span> جنيه
+          </span>
+        </div>
+      </div>
+
+      <!-- Featured Sample Preview Card -->
+      <div class="lg:col-span-5">
+        <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-5 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+            <span class="font-cinzel text-[11px] tracking-[0.2em] text-[#526071] uppercase">SAMPLE CARD</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563eb] text-xs font-bold">فرح</span>
+          </div>
+
+          <div class="rounded-2xl bg-white border border-slate-200 p-6 text-center space-y-2">
+            <p class="font-amiri text-lg text-[#182230] font-bold">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+            <p class="font-cinzel text-[10px] tracking-[0.25em] text-[#526071] uppercase">SAVE THE DATE</p>
+            <div class="font-amiri text-3xl text-[#182230] font-bold py-1">كريم &amp; سلمى</div>
+            <p class="text-xs font-bold text-[#2563eb]">الأحد • 20 ديسمبر 2026</p>
+            <p class="text-xs text-[#526071]">قاعة اللوتس — فندق الماسة</p>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-[#526071] bg-white rounded-xl px-3.5 py-2.5 border border-slate-200 gap-2">
+            <span id="hero-revision-short">أول تعديل ببلاش، وأي تعديل بعده بـ 50 جنيه</span>
+            <button
+              type="button"
+              id="hero-quick-order-btn"
+              class="cursor-pointer font-bold text-[#2563eb] hover:underline shrink-0"
+            >
+              اطلب زيها ←
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- DEDICATED SHOWCASE SECTIONS                               -->
+  <!-- ========================================================= -->
+  <section id="invitations-showcase" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div>
+        <span class="text-xs font-bold text-[#2563eb]">أقسام الدعوات</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#182230]">دعوات فرح، خطوبة، وكتب كتاب</h2>
+        <p class="text-sm text-[#526071] mt-1">كل قسم مستقل عشان تشوف الشكل المناسب لمناسبتك وتطلبه بسهولة.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2" role="tablist" aria-label="أقسام الدعوات">
+        <button
+          type="button"
+          data-category="all"
+          class="showcase-tab tab-active cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
+        >
+          الكل
+        </button>
+        <button
+          type="button"
+          data-category="wedding"
+          class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
+        >
+          دعوات فرح
+        </button>
+        <button
+          type="button"
+          data-category="engagement"
+          class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
+        >
+          دعوات خطوبة
+        </button>
+        <button
+          type="button"
+          data-category="katb-kitab"
+          class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
+        >
+          دعوات كتب كتاب
+        </button>
+      </div>
+    </div>
+
+    <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Populated dynamically via JavaScript -->
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- INTERACTIVE PACKAGE BUILDER                               -->
+  <!-- ========================================================= -->
+  <section id="package-builder" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
+    <div class="rounded-3xl soft-card p-6 sm:p-8 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-200 pb-5">
+        <div>
+          <span class="text-xs font-bold text-[#2563eb]">حاسبة الباقات والإضافات</span>
+          <h2 id="builder-heading" class="text-2xl sm:text-3xl font-extrabold text-[#182230]">ظبط باقتك على مزاجك</h2>
+          <p class="text-sm text-[#526071] mt-1">
+            اطلب <strong id="base-pkg-name-inline" class="text-[#182230]">الباقة الأساسية</strong> مباشرة أو اختار إضافة أو اتنين أو تلاتة، ولو اخترت الأربعة هيظهرلك التحويل لباقة VIP.
+          </p>
+        </div>
+        <div class="rounded-xl bg-[#f1f4f8] border border-slate-200 px-4 py-3 text-xs text-[#182230] font-bold">
+          <span>📌 التعديلات: </span>
+          <span id="revision-rule-text" class="text-[#2563eb]">أول تعديل ببلاش، وأي تعديل بعده بـ 50 جنيه</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+        <!-- Left Column: Base Package & Add-ons -->
+        <div class="lg:col-span-7 space-y-5">
+          <div class="rounded-2xl bg-[#f6f7f9] border border-blue-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563eb] text-[11px] font-bold">أساسية</span>
+                <h3 id="builder-base-title" class="font-extrabold text-base sm:text-lg text-[#182230]">الباقة الأساسية</h3>
+              </div>
+              <p id="builder-base-desc" class="text-xs sm:text-sm text-[#526071]">
+                الدعوة الأساسية جاهزة ومرتبة؛ تقدر تطلبها على طول أو تزود عليها الإضافات اللي تناسبك.
+              </p>
+            </div>
+            <div class="text-left shrink-0">
+              <div class="text-xl font-extrabold text-[#2563eb]"><span id="builder-base-price">500</span> جنيه</div>
+              <div class="text-[11px] text-[#526071]">الحد الأدنى للباقة</div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-extrabold text-sm sm:text-base text-[#182230]">الإضافات الفردية (اختار اللي تحتاجه):</h3>
+              <span id="selected-addons-count" class="text-xs font-bold text-[#2563eb]">0 إضافات مختارة</span>
+            </div>
+
+            <div id="addons-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <!-- Populated dynamically via JavaScript -->
+            </div>
+          </div>
+
+          <!-- Automatic VIP Prompt Banner (shown when all 4 add-ons are checked) -->
+          <div id="vip-suggestion-banner" class="hidden rounded-2xl bg-blue-50 border border-blue-300 p-4 sm:p-5 space-y-3">
+            <div class="space-y-1">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#2563eb] text-white text-xs font-bold">
+                <span>ترشيح تلقائي — باقة VIP</span>
+              </div>
+              <h4 class="font-extrabold text-base sm:text-lg text-[#182230] pt-1">
+                اخترت كل الإضافات الأربعة! الأفضل تاخد <span id="vip-banner-name" class="text-[#2563eb]">باقة VIP</span> بـ <span id="vip-banner-price" class="text-[#2563eb]">800</span> جنيه
+              </h4>
+              <p class="text-xs sm:text-sm text-[#526071] leading-relaxed">
+                <span id="vip-banner-name-2" class="font-bold text-[#182230]">باقة VIP</span> بتجمعلك كل الإضافات في باقة واحدة متكاملة بـ <span id="vip-banner-price-2" class="font-bold text-[#182230]">800</span> جنيه.
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2.5">
+              <button
+                type="button"
+                id="apply-vip-btn"
+                class="cursor-pointer px-4 py-2 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-extrabold transition-colors"
+              >
+                التحويل إلى باقة VIP
+              </button>
+              <span class="text-xs text-[#526071]">أو كمل بالاختيارات الحالية</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Live Package Summary -->
+        <div class="lg:col-span-5">
+          <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-5 space-y-4 lg:sticky lg:top-20">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+              <span class="font-extrabold text-base text-[#182230]">ملخص الباقة</span>
+              <span id="summary-badge" class="px-3 py-1 rounded-full bg-white border border-slate-200 text-[#2563eb] text-xs font-bold">
+                الباقة الأساسية
+              </span>
+            </div>
+
+            <div class="space-y-2 text-xs sm:text-sm">
+              <div class="flex items-center justify-between text-[#182230]">
+                <span id="summary-base-label">الباقة الأساسية</span>
+                <span class="font-bold"><span id="summary-base-amount">500</span> جنيه</span>
+              </div>
+              <div id="summary-addons-breakdown" class="space-y-1.5 text-[#526071]">
+                <!-- Selected add-ons breakdown -->
+              </div>
+            </div>
+
+            <div class="border-t border-slate-200 pt-3.5 flex items-baseline justify-between">
+              <span class="font-extrabold text-sm text-[#182230]">الإجمالي:</span>
+              <div class="text-left">
+                <span id="summary-total-price" class="text-2xl sm:text-3xl font-extrabold text-[#2563eb]">500</span>
+                <span class="text-xs font-bold text-[#526071] mr-1">جنيه</span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              id="builder-order-btn"
+              class="cursor-pointer w-full py-3.5 px-5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-extrabold transition-colors"
+            >
+              اطلب دلوقتي
+            </button>
+
+            <p class="text-[11px] text-[#526071] text-center leading-relaxed">
+              لما تدوس "اطلب دلوقتي" هتكتب بياناتك وتفاصيل الطلب، والطلب هيتسجل على الموقع ويفتحلك واتساب جاهز بكل التفاصيل.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- PROJECT WEBSITES SECTION (2000 EGP SINGLE PACKAGE)        -->
+  <!-- ========================================================= -->
+  <section id="projects-website" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
+    <div class="rounded-3xl soft-card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#2563eb] text-xs font-bold">ويب سايت المشاريع</span>
+            <span class="px-3 py-1 rounded-full bg-[#f1f4f8] border border-slate-200 text-[#526071] text-xs font-bold">
+              باقة واحدة شاملة
+            </span>
+          </div>
+
+          <h2 id="project-pkg-title" class="text-2xl sm:text-3xl font-extrabold text-[#182230]">
+            ويب سايت المشاريع المتكامل
+          </h2>
+
+          <p id="project-pkg-desc" class="text-sm sm:text-base text-[#526071] leading-relaxed">
+            تصميم وتنفيذ موقع لعرض مشاريعك أو شغلك أو براندك بشكل منظم وواضح على الموبايل والكمبيوتر، في باقة واحدة واضحة بدون أي تعقيد.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-[#182230]">
+            <div class="rounded-xl bg-[#f6f7f9] border border-slate-200 p-3 font-medium">✓ واجهة عرض منظمة للمشاريع والأعمال</div>
+            <div class="rounded-xl bg-[#f6f7f9] border border-slate-200 p-3 font-medium">✓ تصميم متجاوب على الموبايل والتابلت والكمبيوتر</div>
+            <div class="rounded-xl bg-[#f6f7f9] border border-slate-200 p-3 font-medium">✓ نموذج طلب وتواصل مباشر للواتساب</div>
+            <div class="rounded-xl bg-[#f6f7f9] border border-slate-200 p-3 font-medium">✓ أول تعديل ببلاش وأي تعديل بعده بـ 50 جنيه</div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-6 text-center space-y-4">
+            <span class="text-xs font-bold text-[#526071]">سعر الباقة الواحدة</span>
+            <div class="text-4xl font-extrabold text-[#2563eb]">
+              <span id="project-pkg-price">2000</span> <span class="text-base font-bold text-[#182230]">جنيه</span>
+            </div>
+            <p class="text-xs text-[#526071]">باقة واحدة لويب سايت المشاريع</p>
+            <button
+              type="button"
+              id="order-project-website-btn"
+              class="cursor-pointer w-full py-3.5 px-5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-extrabold transition-colors"
+            >
+              اطلب ويب سايت المشاريع
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- LOGGED ORDERS ON WEBSITE                                  -->
+  <!-- ========================================================= -->
+  <section id="orders-board" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
+    <div class="rounded-3xl soft-card p-6 sm:p-8 space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
+        <div>
+          <span class="text-xs font-bold text-[#2563eb]">سجل الطلبات</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-[#182230]">الطلبات المسجلة على الموقع</h2>
+          <p class="text-xs sm:text-sm text-[#526071] mt-0.5">أي طلب بيتبعت من نموذج الطلب بيظهر هنا وكمان بيتفتح على الواتساب.</p>
+        </div>
+        <span id="orders-count-badge" class="self-start sm:self-auto px-3.5 py-1.5 rounded-full bg-[#f1f4f8] border border-slate-200 text-xs font-extrabold text-[#2563eb]">
+          0 طلبات
+        </span>
+      </div>
+
+      <div id="orders-list" class="space-y-3">
+        <!-- Populated dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- FOOTER                                                    -->
+  <!-- ========================================================= -->
+  <footer class="mt-auto border-t border-slate-200 bg-white py-6 px-4 text-center">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#526071]">
+      <div>
+        <span class="font-extrabold text-[#182230]">Seif Studio</span> — دعوات إلكترونية ومواقع مشاريع
+      </div>
+      <div>أول تعديل ببلاش • أي تعديل بعده بـ 50 جنيه</div>
+    </div>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- ORDER FORM MODAL                                          -->
+  <!-- ========================================================= -->
+  <div id="order-modal" class="hidden fixed inset-0 z-50 bg-slate-900/45 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-lg bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 space-y-4 my-auto">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div>
+          <h3 class="text-lg font-extrabold text-[#182230]">تأكيد طلبك من Seif Studio</h3>
+          <p class="text-xs text-[#526071]">اكتب بياناتك لتسجيل الطلب على الموقع وفتح واتساب بالتفاصيل</p>
+        </div>
+        <button
+          type="button"
+          id="close-order-modal-btn"
+          class="cursor-pointer px-3 py-1 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-xs font-bold text-[#182230]"
+        >
+          إغلاق ✕
+        </button>
+      </div>
+
+      <form id="client-order-form" class="space-y-3.5 text-right">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="order-client-name" class="block text-xs font-bold text-[#182230] mb-1">الاسم بالكامل *</label>
+            <input
+              type="text"
+              id="order-client-name"
+              required
+              placeholder="مثال: محمود حسن"
+              class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
+            />
+          </div>
+
+          <div>
+            <label for="order-client-phone" class="block text-xs font-bold text-[#182230] mb-1">رقم التليفون *</label>
+            <input
+              type="tel"
+              id="order-client-phone"
+              required
+              placeholder="مثال: 010xxxxxxxx"
+              dir="ltr"
+              class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] text-right focus:outline-none focus:border-[#2563eb]"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="order-service-type" class="block text-xs font-bold text-[#182230] mb-1">نوع المناسبة / المشروع</label>
+            <select
+              id="order-service-type"
+              class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
+            >
+              <option value="دعوة فرح">دعوة فرح</option>
+              <option value="دعوة خطوبة">دعوة خطوبة</option>
+              <option value="دعوة كتب كتاب">دعوة كتب كتاب</option>
+              <option value="ويب سايت مشاريع">ويب سايت مشاريع</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="order-event-date" class="block text-xs font-bold text-[#182230] mb-1">تاريخ المناسبة / الموعد</label>
+            <input
+              type="text"
+              id="order-event-date"
+              placeholder="مثال: 20 ديسمبر 2026"
+              class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="order-notes" class="block text-xs font-bold text-[#182230] mb-1">تفاصيل إضافية أو ملاحظات</label>
+          <textarea
+            id="order-notes"
+            rows="2"
+            placeholder="الأسماء، المكان أو القاعة، أو أي تفاصيل إضافية..."
+            class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb] resize-none"
+          ></textarea>
+        </div>
+
+        <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-3.5 space-y-1 text-xs">
+          <div class="flex justify-between">
+            <span class="text-[#526071]">الباقة المختارة:</span>
+            <span id="modal-package-label" class="font-extrabold text-[#182230]">الباقة الأساسية</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-[#526071]">الإضافات:</span>
+            <span id="modal-addons-label" class="font-bold text-[#182230]">بدون إضافات</span>
+          </div>
+          <div class="flex justify-between pt-1.5 border-t border-slate-200 text-sm">
+            <span class="font-extrabold text-[#182230]">الإجمالي:</span>
+            <span id="modal-total-price" class="font-extrabold text-[#2563eb]">500 جنيه</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+          <button
+            type="submit"
+            class="cursor-pointer py-3 px-4 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs sm:text-sm font-extrabold transition-colors"
+          >
+            إرسال الطلب وفتح واتساب
+          </button>
+          <button
+            type="button"
+            id="cancel-order-modal-btn"
+            class="cursor-pointer py-3 px-4 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs sm:text-sm font-bold transition-colors"
+          >
+            إلغاء
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- ADMIN PASSCODE MODAL ("26/1/2013")                        -->
+  <!-- ========================================================= -->
+  <div id="admin-auth-modal" class="hidden fixed inset-0 z-50 bg-slate-900/45 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 text-center space-y-4">
+      <div>
+        <h3 class="text-lg font-extrabold text-[#182230]">دخول الأدمن</h3>
+        <p class="text-xs text-[#526071] mt-1">اكتب الرقم السري لفتح لوحة التحكم</p>
+      </div>
+
+      <form id="admin-auth-form" class="space-y-3">
+        <input
+          type="password"
+          id="admin-passcode-input"
+          placeholder="الرقم السري"
+          dir="ltr"
+          class="w-full text-center tracking-[0.2em] rounded-xl bg-[#f6f7f9] border border-slate-200 px-4 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
+        />
+        <p id="admin-auth-error" class="hidden text-xs font-bold text-rose-600">الرقم السري غلط، جرب تاني.</p>
+
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <button
+            type="submit"
+            class="cursor-pointer py-2.5 px-4 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-extrabold transition-colors"
+          >
+            دخول
+          </button>
+          <button
+            type="button"
+            id="admin-auth-cancel"
+            class="cursor-pointer py-2.5 px-4 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-bold transition-colors"
+          >
+            إلغاء
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- ADMIN DASHBOARD                                           -->
+  <!-- ========================================================= -->
+  <div id="admin-panel" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border border-slate-200 shadow-2xl p-5 sm:p-7 space-y-6 my-auto text-right">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3.5 sticky top-0 bg-white z-10">
+        <div>
+          <h3 class="text-lg sm:text-xl font-extrabold text-[#182230]">لوحة تحكم Seif Studio</h3>
+          <p class="text-xs text-[#526071]">تعديل النصوص والأسعار ورقم الواتساب المخفي وإدارة الطلبات</p>
+        </div>
+        <button
+          type="button"
+          id="close-admin-panel-btn"
+          class="cursor-pointer px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-xs font-bold text-[#182230]"
+        >
+          إغلاق ✕
+        </button>
+      </div>
+
+      <!-- 1. Site Texts & Hidden WhatsApp Target Number -->
+      <div class="space-y-3">
+        <h4 class="text-sm font-extrabold text-[#2563eb]">1. نصوص الموقع ورقم الواتساب المخفي</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">اسم البراند</label>
+            <input type="text" id="adm-brand-name" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">رقم الواتساب المستقبل للطلبات (مخفي عن الزوار)</label>
+            <input type="text" id="adm-whatsapp-number" dir="ltr" placeholder="2010xxxxxxxx" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] text-right focus:outline-none focus:border-[#2563eb]" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-[#182230] mb-1">العنوان الرئيسي</label>
+          <input type="text" id="adm-hero-title" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-[#182230] mb-1">الوصف الرئيسي</label>
+          <textarea id="adm-hero-subtitle" rows="2" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] resize-none focus:outline-none focus:border-[#2563eb]"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-[#182230] mb-1">نص سياسة التعديلات</label>
+          <input type="text" id="adm-revision-rule" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+        </div>
+      </div>
+
+      <!-- 2. Packages & Add-ons Pricing -->
+      <div class="space-y-3 border-t border-slate-200 pt-4">
+        <h4 class="text-sm font-extrabold text-[#2563eb]">2. أسعار الباقات والإضافات</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">اسم الباقة الأساسية</label>
+            <input type="text" id="adm-base-name" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">سعر الباقة الأساسية (جنيه)</label>
+            <input type="number" id="adm-base-price" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">عداد الوقت</label>
+            <input type="number" id="adm-addon-countdown" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">الصور</label>
+            <input type="number" id="adm-addon-photos" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">الأغنية</label>
+            <input type="number" id="adm-addon-song" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">صفحة الأدمن</label>
+            <input type="number" id="adm-addon-admin" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">سعر باقة VIP (جنيه)</label>
+            <input type="number" id="adm-vip-price" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">سعر ويب سايت المشاريع (جنيه)</label>
+            <input type="number" id="adm-project-price" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Add Showcase Item -->
+      <div class="space-y-3 border-t border-slate-200 pt-4">
+        <h4 class="text-sm font-extrabold text-[#2563eb]">3. إضافة نموذج جديد لقسم الدعوات</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <select id="adm-new-item-category" class="rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]">
+            <option value="wedding">دعوات فرح</option>
+            <option value="engagement">دعوات خطوبة</option>
+            <option value="katb-kitab">دعوات كتب كتاب</option>
+          </select>
+          <input type="text" id="adm-new-item-title" placeholder="اسم النموذج (مثال: كلاسيك هادي)" class="rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          <input type="text" id="adm-new-item-couple" placeholder="الأسماء (مثال: عمر &amp; ندى)" class="rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+        </div>
+        <button
+          type="button"
+          id="adm-add-showcase-btn"
+          class="cursor-pointer px-4 py-2 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-extrabold transition-colors"
+        >
+          + إضافة النموذج
+        </button>
+      </div>
+
+      <!-- 4. Logged Orders Management -->
+      <div class="space-y-3 border-t border-slate-200 pt-4">
+        <div class="flex items-center justify-between">
+          <h4 class="text-sm font-extrabold text-[#2563eb]">4. إدارة الطلبات المسجلة</h4>
+          <button
+            type="button"
+            id="adm-clear-orders-btn"
+            class="cursor-pointer px-3 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold transition-colors"
+          >
+            مسح كل الطلبات
+          </button>
+        </div>
+        <div id="adm-orders-list" class="space-y-2">
+          <!-- Populated dynamically via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Save & Reset Actions -->
+      <div class="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-4">
+        <button
+          type="button"
+          id="adm-reset-defaults-btn"
+          class="cursor-pointer px-4 py-2.5 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-bold transition-colors"
+        >
+          رجوع للوضع الافتراضي
+        </button>
+
+        <button
+          type="button"
+          id="adm-save-btn"
+          class="cursor-pointer px-5 py-2.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-extrabold transition-colors"
+        >
+          حفظ التعديلات
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-banner" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-2">
+    <div id="toast-message" class="bg-[#182230] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full shadow-lg whitespace-nowrap"></div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'seif_studio_state_v2';
+      const ADMIN_PASSCODE = '26/1/2013';
+
+      // Default application state including hidden WhatsApp target number
+      const DEFAULT_STATE = {
+        brandName: 'Seif Studio',
+        brandTagline: 'دعوات ومواقع أونلاين',
+        heroBadge: 'شغالين أونلاين • تصميم راقٍ وبسيط',
+        heroTitle: 'دعوات فرح، خطوبة، وكتب كتاب.. ومواقع مشاريع ترفع شغلك',
+        heroSubtitle: 'اختار النموذج اللي يعجبك، ظبط الباقة والإضافات على مزاجك من الباقة الأساسية أو خد باقة VIP كاملة، واطلب في ثواني والطلب يوصلك على الموقع وعلى الواتساب على طول.',
+        revisionRule: 'أول تعديل ببلاش، وأي تعديل بعده بـ 50 جنيه',
+        whatsappNumber: '201000000000',
+        basePackageName: 'الباقة الأساسية',
+        basePrice: 500,
+        vipPackageName: 'باقة VIP',
+        vipPrice: 800,
+        projectWebsiteTitle: 'ويب سايت المشاريع المتكامل',
+        projectWebsitePrice: 2000,
+        addons: [
+          { id: 'countdown', name: 'عداد الوقت', desc: 'عداد تنازلي لموعد المناسبة', price: 50 },
+          { id: 'photos', name: 'الصور', desc: 'معرض صور منسق للمناسبة', price: 50 },
+          { id: 'song', name: 'الأغنية', desc: 'موسيقى أو أغنية خلفية قابلة للتشغيل', price: 50 },
+          { id: 'admin', name: 'صفحة الأدمن', desc: 'لوحة تحكم وتعديل برقم سري', price: 150 }
+        ],
+        showcaseItems: [
+          {
+            id: 'w-1',
+            category: 'wedding',
+            categoryLabel: 'دعوات فرح',
+            title: 'كلاسيك هادي',
+            couple: 'كريم & سلمى',
+            date: 'الأحد • 20 ديسمبر 2026',
+            venue: 'قاعة اللوتس — فندق الماسة'
+          },
+          {
+            id: 'w-2',
+            category: 'wedding',
+            categoryLabel: 'دعوات فرح',
+            title: 'تصميم عصري نظيف',
+            couple: 'آدم & ليلى',
+            date: 'الخميس • 14 يناير 2027',
+            venue: 'قاعة النيل — الزمالك'
+          },
+          {
+            id: 'e-1',
+            category: 'engagement',
+            categoryLabel: 'دعوات خطوبة',
+            title: 'بداية حلوة',
+            couple: 'يوسف & مريم',
+            date: 'الجمعة • 5 فبراير 2027',
+            venue: 'فيلا الياسمين — الشيخ زايد'
+          },
+          {
+            id: 'e-2',
+            category: 'engagement',
+            categoryLabel: 'دعوات خطوبة',
+            title: 'ستايل مودرن',
+            couple: 'طارق & هنا',
+            date: 'السبت • 20 فبراير 2027',
+            venue: 'جاردن هول — التجمع الخامس'
+          },
+          {
+            id: 'k-1',
+            category: 'katb-kitab',
+            categoryLabel: 'دعوات كتب كتاب',
+            title: 'على بركة الله',
+            couple: 'إبراهيم & فرح',
+            date: 'الجمعة • 12 مارس 2027',
+            venue: 'مسجد الرحمن — مدينة نصر'
+          },
+          {
+            id: 'k-2',
+            category: 'katb-kitab',
+            categoryLabel: 'دعوات كتب كتاب',
+            title: 'عقد قران راقٍ',
+            couple: 'مصطفى & جنى',
+            date: 'السبت • 27 مارس 2027',
+            venue: 'قاعة الهدى — مصر الجديدة'
+          }
+        ],
+        orders: []
+      };
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
+          const parsed = JSON.parse(raw);
+          return {
+            ...JSON.parse(JSON.stringify(DEFAULT_STATE)),
+            ...parsed,
+            addons: Array.isArray(parsed.addons) && parsed.addons.length === 4
+              ? parsed.addons
+              : JSON.parse(JSON.stringify(DEFAULT_STATE.addons)),
+            showcaseItems: Array.isArray(parsed.showcaseItems) && parsed.showcaseItems.length > 0
+              ? parsed.showcaseItems
+              : JSON.parse(JSON.stringify(DEFAULT_STATE.showcaseItems)),
+            orders: Array.isArray(parsed.orders) ? parsed.orders : []
+          };
+        } catch (err) {
+          return JSON.parse(JSON.stringify(DEFAULT_STATE));
+        }
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (err) {
+          // Ignore storage quota/restriction errors safely
+        }
+      }
+
+      let state = loadState();
+      let activeCategory = 'all';
+      let selectedAddonIds = [];
+      let isVipMode = false;
+
+      let draftOrder = {
+        serviceType: 'دعوة فرح',
+        packageLabel: state.basePackageName,
+        addonsLabel: 'بدون إضافات',
+        totalPrice: state.basePrice,
+        notes: ''
+      };
+
+      let toastTimer = null;
+      function showToast(msg) {
+        const banner = document.getElementById('toast-banner');
+        const label = document.getElementById('toast-message');
+        if (!banner || !label) return;
+        label.textContent = msg;
+        banner.classList.remove('opacity-0', 'translate-y-2');
+        banner.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          banner.classList.remove('opacity-100', 'translate-y-0');
+          banner.classList.add('opacity-0', 'translate-y-2');
+        }, 2500);
+      }
+
+      function escapeHtml(value) {
+        const div = document.createElement('div');
+        div.textContent = String(value || '');
+        return div.innerHTML;
+      }
+
+      function renderStaticTexts() {
+        document.getElementById('brand-name-display').textContent = state.brandName;
+        document.getElementById('brand-tagline-display').textContent = state.brandTagline;
+        document.getElementById('hero-badge-text').textContent = state.heroBadge;
+        document.getElementById('hero-title-text').textContent = state.heroTitle;
+        document.getElementById('hero-subtitle-text').textContent = state.heroSubtitle;
+        document.getElementById('revision-rule-text').textContent = state.revisionRule;
+        document.getElementById('hero-revision-short').textContent = state.revisionRule;
+
+        document.getElementById('hero-base-price').textContent = state.basePrice;
+        document.getElementById('hero-vip-price').textContent = state.vipPrice;
+        document.getElementById('hero-project-price').textContent = state.projectWebsitePrice;
+
+        document.getElementById('base-pkg-name-inline').textContent = state.basePackageName;
+        document.getElementById('builder-base-title').textContent = state.basePackageName;
+        document.getElementById('builder-base-price').textContent = state.basePrice;
+        document.getElementById('summary-base-label').textContent = state.basePackageName;
+        document.getElementById('summary-base-amount').textContent = state.basePrice;
+
+        document.getElementById('vip-banner-name').textContent = state.vipPackageName;
+        document.getElementById('vip-banner-name-2').textContent = state.vipPackageName;
+        document.getElementById('vip-banner-price').textContent = state.vipPrice;
+        document.getElementById('vip-banner-price-2').textContent = state.vipPrice;
+
+        document.getElementById('project-pkg-title').textContent = state.projectWebsiteTitle;
+        document.getElementById('project-pkg-price').textContent = state.projectWebsitePrice;
+      }
+
+      function renderShowcase() {
+        const grid = document.getElementById('showcase-grid');
+        if (!grid) return;
+
+        const filtered = activeCategory === 'all'
+          ? state.showcaseItems
+          : state.showcaseItems.filter((item) => item.category === activeCategory);
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '<div class="col-span-full text-center py-8 text-sm text-[#526071]">لا توجد نماذج في هذا القسم حالياً.</div>';
+          return;
+        }
+
+        grid.innerHTML = filtered.map((item) => {
+          const serviceMap = {
+            wedding: 'دعوة فرح',
+            engagement: 'دعوة خطوبة',
+            'katb-kitab': 'دعوة كتب كتاب'
+          };
+          const serviceType = serviceMap[item.category] || 'دعوة فرح';
+
+          return `
+            <article class="rounded-2xl soft-card p-5 flex flex-col justify-between space-y-4">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#2563eb] text-xs font-bold">
+                    ${escapeHtml(item.categoryLabel)}
+                  </span>
+                  <span class="font-cinzel text-[10px] tracking-[0.2em] text-[#526071] uppercase">DEMO</span>
+                </div>
+
+                <div class="rounded-xl bg-[#f6f7f9] border border-slate-200 p-4 text-center space-y-1">
+                  <p class="text-[11px] font-bold text-[#526071]">${escapeHtml(item.title)}</p>
+                  <div class="font-amiri text-2xl font-bold text-[#182230]">${escapeHtml(item.couple)}</div>
+                  <div class="text-xs font-bold text-[#2563eb]">${escapeHtml(item.date)}</div>
+                  <div class="text-xs text-[#526071]">${escapeHtml(item.venue)}</div>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                data-order-item-id="${escapeHtml(item.id)}"
+                data-order-service-type="${escapeHtml(serviceType)}"
+                class="order-showcase-btn cursor-pointer w-full py-2.5 px-4 rounded-xl bg-[#f1f4f8] hover:bg-[#2563eb] text-[#182230] hover:text-white border border-slate-200 hover:border-[#2563eb] text-xs font-extrabold transition-colors"
+              >
+                اطلب نموذج "${escapeHtml(item.title)}"
+              </button>
+            </article>
+          `;
+        }).join('');
+
+        grid.querySelectorAll('.order-showcase-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-order-item-id') || '';
+            const found = state.showcaseItems.find((x) => x.id === id);
+            const sType = btn.getAttribute('data-order-service-type') || 'دعوة فرح';
+            const calc = getCurrentBuilderCalculation();
+
+            openOrderModal({
+              serviceType: sType,
+              packageLabel: calc.packageLabel,
+              addonsLabel: calc.addonsLabel,
+              totalPrice: calc.totalPrice,
+              notes: found ? `نموذج مختار: ${found.title} (${found.couple})` : ''
+            });
+          });
+        });
+      }
+
+      function getCurrentBuilderCalculation() {
+        const selectedAddons = state.addons.filter((a) => selectedAddonIds.includes(a.id));
+
+        if (isVipMode) {
+          return {
+            packageLabel: state.vipPackageName,
+            addonsLabel: 'كل الإضافات في باقة VIP',
+            totalPrice: Number(state.vipPrice) || 800,
+            selectedAddons
+          };
+        }
+
+        const addonsSum = selectedAddons.reduce((acc, item) => acc + (Number(item.price) || 0), 0);
+        const totalPrice = (Number(state.basePrice) || 500) + addonsSum;
+
+        return {
+          packageLabel: state.basePackageName,
+          addonsLabel: selectedAddons.length > 0
+            ? selectedAddons.map((a) => a.name).join('، ')
+            : 'بدون إضافات',
+          totalPrice,
+          selectedAddons
+        };
+      }
+
+      function renderBuilder() {
+        const addonsContainer = document.getElementById('addons-list');
+        const countEl = document.getElementById('selected-addons-count');
+        const vipBanner = document.getElementById('vip-suggestion-banner');
+        const summaryBadge = document.getElementById('summary-badge');
+        const breakdownEl = document.getElementById('summary-addons-breakdown');
+        const totalEl = document.getElementById('summary-total-price');
+
+        if (addonsContainer) {
+          addonsContainer.innerHTML = state.addons.map((addon) => {
+            const checked = selectedAddonIds.includes(addon.id);
+            return `
+              <label class="cursor-pointer rounded-2xl border ${checked ? 'border-[#2563eb] bg-blue-50/50' : 'border-slate-200 bg-[#f6f7f9]'} p-3.5 flex items-start justify-between gap-2.5 transition-colors select-none">
+                <div class="flex items-start gap-2.5">
+                  <input
+                    type="checkbox"
+                    data-addon-id="${escapeHtml(addon.id)}"
+                    ${checked ? 'checked' : ''}
+                    class="addon-checkbox mt-1 accent-[#2563eb] w-4 h-4 cursor-pointer"
+                  />
+                  <div>
+                    <div class="text-xs sm:text-sm font-extrabold text-[#182230]">${escapeHtml(addon.name)}</div>
+                    <div class="text-[11px] text-[#526071] mt-0.5">${escapeHtml(addon.desc)}</div>
+                  </div>
+                </div>
+                <span class="text-xs font-extrabold text-[#2563eb] shrink-0">+${escapeHtml(addon.price)} ج</span>
+              </label>
+            `;
+          }).join('');
+
+          addonsContainer.querySelectorAll('.addon-checkbox').forEach((cb) => {
+            cb.addEventListener('change', (e) => {
+              const id = e.target.getAttribute('data-addon-id');
+              if (!id) return;
+
+              if (e.target.checked) {
+                if (!selectedAddonIds.includes(id)) selectedAddonIds.push(id);
+              } else {
+                selectedAddonIds = selectedAddonIds.filter((x) => x !== id);
+                if (isVipMode && selectedAddonIds.length < state.addons.length) {
+                  isVipMode = false;
+                }
+              }
+              renderBuilder();
+            });
+          });
+        }
+
+        if (countEl) {
+          countEl.textContent = `${selectedAddonIds.length} إضافات مختارة`;
+        }
+
+        // Automatically show VIP upgrade prompt when all 4 add-ons are selected
+        const allFourSelected = selectedAddonIds.length === state.addons.length;
+        if (vipBanner) {
+          vipBanner.classList.toggle('hidden', !allFourSelected);
+        }
+
+        const calc = getCurrentBuilderCalculation();
+
+        if (summaryBadge) {
+          summaryBadge.textContent = calc.packageLabel;
+        }
+
+        if (breakdownEl) {
+          if (isVipMode) {
+            breakdownEl.innerHTML = `
+              <div class="rounded-xl bg-blue-50 border border-blue-200 text-[#2563eb] px-3 py-2 text-xs font-bold">
+                تشمل عداد الوقت + الصور + الأغنية + صفحة الأدمن
+              </div>
+            `;
+          } else if (calc.selectedAddons.length === 0) {
+            breakdownEl.innerHTML = `<div class="text-xs text-[#526071]">بدون إضافات (الباقة الأساسية فقط)</div>`;
+          } else {
+            breakdownEl.innerHTML = calc.selectedAddons.map((a) => `
+              <div class="flex items-center justify-between text-xs text-[#526071]">
+                <span>+ ${escapeHtml(a.name)}</span>
+                <span class="font-bold text-[#182230]">${escapeHtml(a.price)} جنيه</span>
+              </div>
+            `).join('');
+          }
+        }
+
+        if (totalEl) {
+          totalEl.textContent = String(calc.totalPrice);
+        }
+      }
+
+      function renderOrders() {
+        const listEl = document.getElementById('orders-list');
+        const admListEl = document.getElementById('adm-orders-list');
+        const badgeEl = document.getElementById('orders-count-badge');
+
+        if (badgeEl) {
+          badgeEl.textContent = `${state.orders.length} ${state.orders.length === 1 ? 'طلب' : 'طلبات'}`;
+        }
+
+        if (listEl) {
+          if (state.orders.length === 0) {
+            listEl.innerHTML = `
+              <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-6 text-center text-xs sm:text-sm text-[#526071]">
+                لا توجد طلبات مسجلة حالياً.
+              </div>
+            `;
+          } else {
+            listEl.innerHTML = state.orders.map((ord) => `
+              <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="space-y-1">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="font-extrabold text-sm text-[#182230]">${escapeHtml(ord.clientName)}</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563eb] text-[11px] font-bold">
+                      ${escapeHtml(ord.serviceType)}
+                    </span>
+                    <span class="text-[11px] text-[#526071]">(${escapeHtml(ord.createdAt || 'الآن')})</span>
+                  </div>
+                  <div class="text-xs text-[#526071]">
+                    <strong class="text-[#182230]">الباقة:</strong> ${escapeHtml(ord.packageLabel)} — <strong class="text-[#182230]">الإضافات:</strong> ${escapeHtml(ord.addonsLabel)}
+                  </div>
+                  <div class="text-xs text-[#526071]">
+                    <strong class="text-[#182230]">التليفون:</strong> <span dir="ltr">${escapeHtml(ord.phone)}</span>
+                    ${ord.eventDate ? ` • <strong class="text-[#182230]">الموعد:</strong> ${escapeHtml(ord.eventDate)}` : ''}
+                  </div>
+                  ${ord.notes ? `<div class="text-xs text-[#526071]"><strong class="text-[#182230]">ملاحظات:</strong> ${escapeHtml(ord.notes)}</div>` : ''}
+                </div>
+
+                <div class="text-left shrink-0">
+                  <div class="text-lg font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} جنيه</div>
+                </div>
+              </div>
+            `).join('');
+          }
+        }
+
+        if (admListEl) {
+          if (state.orders.length === 0) {
+            admListEl.innerHTML = '<div class="text-xs text-[#526071] bg-[#f6f7f9] rounded-xl p-3 border border-slate-200">لا توجد طلبات حالياً.</div>';
+          } else {
+            admListEl.innerHTML = state.orders.map((ord) => `
+              <div class="flex items-center justify-between gap-2 bg-[#f6f7f9] rounded-xl px-3.5 py-2.5 border border-slate-200 text-xs">
+                <div class="truncate">
+                  <span class="font-extrabold text-[#182230]">${escapeHtml(ord.clientName)}</span>
+                  <span class="text-[#526071]"> (${escapeHtml(ord.phone)}) • ${escapeHtml(ord.packageLabel)}</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                  <span class="font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} ج</span>
+                  <button
+                    type="button"
+                    data-delete-order="${escapeHtml(ord.id)}"
+                    class="delete-order-btn cursor-pointer px-2 py-0.5 rounded-lg bg-white hover:bg-rose-50 text-rose-600 border border-slate-200 font-bold"
+                  >
+                    حذف
+                  </button>
+                </div>
+              </div>
+            `).join('');
+
+            admListEl.querySelectorAll('.delete-order-btn').forEach((btn) => {
+              btn.addEventListener('click', () => {
+                const orderId = btn.getAttribute('data-delete-order');
+                state.orders = state.orders.filter((o) => o.id !== orderId);
+                saveState();
+                renderOrders();
+                showToast('تم حذف الطلب');
+              });
+            });
+          }
+        }
+      }
+
+      // Order modal logic
+      const orderModal = document.getElementById('order-modal');
+      const orderForm = document.getElementById('client-order-form');
+      const orderServiceSelect = document.getElementById('order-service-type');
+      const orderNotesInput = document.getElementById('order-notes');
+
+      function openOrderModal(payload) {
+        draftOrder = {
+          serviceType: payload.serviceType || 'دعوة فرح',
+          packageLabel: payload.packageLabel || state.basePackageName,
+          addonsLabel: payload.addonsLabel || 'بدون إضافات',
+          totalPrice: Number(payload.totalPrice) || state.basePrice,
+          notes: payload.notes || ''
+        };
+
+        if (orderServiceSelect) orderServiceSelect.value = draftOrder.serviceType;
+        if (orderNotesInput) orderNotesInput.value = draftOrder.notes;
+
+        document.getElementById('modal-package-label').textContent = draftOrder.packageLabel;
+        document.getElementById('modal-addons-label').textContent = draftOrder.addonsLabel;
+        document.getElementById('modal-total-price').textContent = `${draftOrder.totalPrice} جنيه`;
+
+        orderModal.classList.remove('hidden');
+      }
+
+      function closeOrderModal() {
+        orderModal.classList.add('hidden');
+      }
+
+      document.getElementById('nav-order-btn').addEventListener('click', () => {
+        const calc = getCurrentBuilderCalculation();
+        openOrderModal({
+          serviceType: 'دعوة فرح',
+          packageLabel: calc.packageLabel,
+          addonsLabel: calc.addonsLabel,
+          totalPrice: calc.totalPrice
+        });
+      });
+
+      document.getElementById('hero-quick-order-btn').addEventListener('click', () => {
+        const calc = getCurrentBuilderCalculation();
+        openOrderModal({
+          serviceType: 'دعوة فرح',
+          packageLabel: calc.packageLabel,
+          addonsLabel: calc.addonsLabel,
+          totalPrice: calc.totalPrice
+        });
+      });
+
+      document.getElementById('builder-order-btn').addEventListener('click', () => {
+        const calc = getCurrentBuilderCalculation();
+        openOrderModal({
+          serviceType: 'دعوة فرح',
+          packageLabel: calc.packageLabel,
+          addonsLabel: calc.addonsLabel,
+          totalPrice: calc.totalPrice
+        });
+      });
+
+      document.getElementById('order-project-website-btn').addEventListener('click', () => {
+        openOrderModal({
+          serviceType: 'ويب سايت مشاريع',
+          packageLabel: state.projectWebsiteTitle,
+          addonsLabel: 'باقة واحدة شاملة',
+          totalPrice: Number(state.projectWebsitePrice) || 2000,
+          notes: ''
+        });
+      });
+
+      document.getElementById('close-order-modal-btn').addEventListener('click', closeOrderModal);
+      document.getElementById('cancel-order-modal-btn').addEventListener('click', closeOrderModal);
+
+      orderForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const clientName = document.getElementById('order-client-name').value.trim();
+        const phone = document.getElementById('order-client-phone').value.trim();
+        const serviceType = orderServiceSelect ? orderServiceSelect.value : draftOrder.serviceType;
+        const eventDate = document.getElementById('order-event-date').value.trim();
+        const notes = orderNotesInput ? orderNotesInput.value.trim() : '';
+
+        if (!clientName || !phone) {
+          showToast('اكتب الاسم ورقم التليفون الأول');
+          return;
+        }
+
+        const newOrder = {
+          id: 'ORD-' + Date.now().toString().slice(-4),
+          clientName,
+          phone,
+          serviceType,
+          eventDate,
+          packageLabel: draftOrder.packageLabel,
+          addonsLabel: draftOrder.addonsLabel,
+          totalPrice: draftOrder.totalPrice,
+          notes,
+          createdAt: 'الآن'
+        };
+
+        state.orders.unshift(newOrder);
+        saveState();
+        renderOrders();
+
+        // Hidden WhatsApp target number used strictly for WhatsApp URL dispatch
+        const targetWa = (state.whatsappNumber || '').replace(/[^\d]/g, '');
+        const messageLines = [
+          `طلب جديد من ${state.brandName}:`,
+          `• الاسم: ${clientName}`,
+          `• التليفون: ${phone}`,
+          `• النوع: ${serviceType}`,
+          `• الباقة: ${draftOrder.packageLabel}`,
+          `• الإضافات: ${draftOrder.addonsLabel}`,
+          `• الإجمالي: ${draftOrder.totalPrice} جنيه`
+        ];
+        if (eventDate) messageLines.push(`• الموعد: ${eventDate}`);
+        if (notes) messageLines.push(`• ملاحظات: ${notes}`);
+
+        const waUrl = targetWa
+          ? `https://wa.me/${targetWa}?text=${encodeURIComponent(messageLines.join('\n'))}`
+          : `https://wa.me/?text=${encodeURIComponent(messageLines.join('\n'))}`;
+
+        orderForm.reset();
+        closeOrderModal();
+        showToast('تم تسجيل الطلب وفتح واتساب');
+
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      });
+
+      document.getElementById('apply-vip-btn').addEventListener('click', () => {
+        isVipMode = true;
+        renderBuilder();
+        showToast(`تم التحويل إلى ${state.vipPackageName} (${state.vipPrice} جنيه)`);
+      });
+
+      document.querySelectorAll('.showcase-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          activeCategory = tab.getAttribute('data-category') || 'all';
+          document.querySelectorAll('.showcase-tab').forEach((t) => t.classList.remove('tab-active'));
+          tab.classList.add('tab-active');
+          renderShowcase();
+        });
+      });
+
+      // Admin authentication ("26/1/2013") and dashboard logic
+      const adminAuthModal = document.getElementById('admin-auth-modal');
+      const adminAuthForm = document.getElementById('admin-auth-form');
+      const adminPasscodeInput = document.getElementById('admin-passcode-input');
+      const adminAuthError = document.getElementById('admin-auth-error');
+      const adminPanel = document.getElementById('admin-panel');
+
+      function fillAdminInputs() {
+        document.getElementById('adm-brand-name').value = state.brandName;
+        document.getElementById('adm-whatsapp-number').value = state.whatsappNumber;
+        document.getElementById('adm-hero-title').value = state.heroTitle;
+        document.getElementById('adm-hero-subtitle').value = state.heroSubtitle;
+        document.getElementById('adm-revision-rule').value = state.revisionRule;
+
+        document.getElementById('adm-base-name').value = state.basePackageName;
+        document.getElementById('adm-base-price').value = state.basePrice;
+        document.getElementById('adm-addon-countdown').value = state.addons[0]?.price ?? 50;
+        document.getElementById('adm-addon-photos').value = state.addons[1]?.price ?? 50;
+        document.getElementById('adm-addon-song').value = state.addons[2]?.price ?? 50;
+        document.getElementById('adm-addon-admin').value = state.addons[3]?.price ?? 150;
+        document.getElementById('adm-vip-price').value = state.vipPrice;
+        document.getElementById('adm-project-price').value = state.projectWebsitePrice;
+      }
+
+      document.getElementById('open-admin-btn').addEventListener('click', () => {
+        adminAuthError.classList.add('hidden');
+        adminPasscodeInput.value = '';
+        adminAuthModal.classList.remove('hidden');
+        setTimeout(() => adminPasscodeInput.focus(), 60);
+      });
+
+      document.getElementById('admin-auth-cancel').addEventListener('click', () => {
+        adminAuthModal.classList.add('hidden');
+      });
+
+      adminAuthForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (adminPasscodeInput.value.trim() === ADMIN_PASSCODE) {
+          adminAuthModal.classList.add('hidden');
+          fillAdminInputs();
+          renderOrders();
+          adminPanel.classList.remove('hidden');
+          showToast('تم فتح لوحة الأدمن');
+        } else {
+          adminAuthError.classList.remove('hidden');
+        }
+      });
+
+      document.getElementById('close-admin-panel-btn').addEventListener('click', () => {
+        adminPanel.classList.add('hidden');
+      });
+
+      document.getElementById('adm-save-btn').addEventListener('click', () => {
+        state.brandName = document.getElementById('adm-brand-name').value.trim() || DEFAULT_STATE.brandName;
+        state.whatsappNumber = document.getElementById('adm-whatsapp-number').value.trim();
+        state.heroTitle = document.getElementById('adm-hero-title').value.trim() || DEFAULT_STATE.heroTitle;
+        state.heroSubtitle = document.getElementById('adm-hero-subtitle').value.trim() || DEFAULT_STATE.heroSubtitle;
+        state.revisionRule = document.getElementById('adm-revision-rule').value.trim() || DEFAULT_STATE.revisionRule;
+
+        state.basePackageName = document.getElementById('adm-base-name').value.trim() || DEFAULT_STATE.basePackageName;
+        state.basePrice = Math.max(0, parseInt(document.getElementById('adm-base-price').value, 10) || 0);
+
+        if (state.addons[0]) state.addons[0].price = Math.max(0, parseInt(document.getElementById('adm-addon-countdown').value, 10) || 0);
+        if (state.addons[1]) state.addons[1].price = Math.max(0, parseInt(document.getElementById('adm-addon-photos').value, 10) || 0);
+        if (state.addons[2]) state.addons[2].price = Math.max(0, parseInt(document.getElementById('adm-addon-song').value, 10) || 0);
+        if (state.addons[3]) state.addons[3].price = Math.max(0, parseInt(document.getElementById('adm-addon-admin').value, 10) || 0);
+
+        state.vipPrice = Math.max(0, parseInt(document.getElementById('adm-vip-price').value, 10) || 0);
+        state.projectWebsitePrice = Math.max(0, parseInt(document.getElementById('adm-project-price').value, 10) || 0);
+
+        saveState();
+        renderAll();
+        adminPanel.classList.add('hidden');
+        showToast('تم حفظ التعديلات');
+      });
+
+      document.getElementById('adm-add-showcase-btn').addEventListener('click', () => {
+        const cat = document.getElementById('adm-new-item-category').value;
+        const title = document.getElementById('adm-new-item-title').value.trim();
+        const couple = document.getElementById('adm-new-item-couple').value.trim();
+
+        if (!title || !couple) {
+          showToast('اكتب اسم النموذج والأسماء الأول');
+          return;
+        }
+
+        const catLabelMap = {
+          wedding: 'دعوات فرح',
+          engagement: 'دعوات خطوبة',
+          'katb-kitab': 'دعوات كتب كتاب'
+        };
+
+        state.showcaseItems.unshift({
+          id: 'custom-' + Date.now(),
+          category: cat,
+          categoryLabel: catLabelMap[cat] || 'دعوات فرح',
+          title,
+          couple,
+          date: 'موعد حسب الطلب',
+          venue: 'مكان حسب الطلب'
+        });
+
+        saveState();
+        renderShowcase();
+        document.getElementById('adm-new-item-title').value = '';
+        document.getElementById('adm-new-item-couple').value = '';
+        showToast('تمت إضافة النموذج');
+      });
+
+      document.getElementById('adm-clear-orders-btn').addEventListener('click', () => {
+        state.orders = [];
+        saveState();
+        renderOrders();
+        showToast('تم مسح كل الطلبات');
+      });
+
+      document.getElementById('adm-reset-defaults-btn').addEventListener('click', () => {
+        state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+        selectedAddonIds = [];
+        isVipMode = false;
+        saveState();
+        fillAdminInputs();
+        renderAll();
+        showToast('تم الرجوع للوضع الافتراضي');
+      });
+
+      function renderAll() {
+        renderStaticTexts();
+        renderShowcase();
+        renderBuilder();
+        renderOrders();
+      }
+
+      renderAll();
+    })();
+  </script>
+</body>
+</html>
+```
