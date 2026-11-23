@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -10,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* Design tokens for calm, modern light UI */
     :root {
       --bg-page: #f6f7f9;
       --bg-card: #ffffff;
@@ -64,9 +62,7 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#f6f7f9] text-[#182230] selection:bg-[#2563eb] selection:text-white">
 
-  <!-- ========================================================= -->
-  <!-- TOP NAVIGATION BAR                                        -->
-  <!-- ========================================================= -->
+  <!-- TOP NAVIGATION BAR -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-xs border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
       <a href="#top" class="flex items-center gap-2.5 shrink-0">
@@ -106,9 +102,7 @@
     </div>
   </header>
 
-  <!-- ========================================================= -->
-  <!-- HERO SECTION                                              -->
-  <!-- ========================================================= -->
+  <!-- HERO SECTION -->
   <section id="top" class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-8 pb-8">
     <div class="rounded-3xl soft-card p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       <div class="lg:col-span-7 space-y-4 text-right">
@@ -184,9 +178,7 @@
     </div>
   </section>
 
-  <!-- ========================================================= -->
-  <!-- DEDICATED SHOWCASE SECTIONS                               -->
-  <!-- ========================================================= -->
+  <!-- DEDICATED SHOWCASE SECTIONS -->
   <section id="invitations-showcase" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
       <div>
@@ -227,14 +219,10 @@
       </div>
     </div>
 
-    <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <!-- Populated dynamically via JavaScript -->
-    </div>
+    <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </section>
 
-  <!-- ========================================================= -->
-  <!-- INTERACTIVE PACKAGE BUILDER                               -->
-  <!-- ========================================================= -->
+  <!-- INTERACTIVE PACKAGE BUILDER -->
   <section id="package-builder" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
     <div class="rounded-3xl soft-card p-6 sm:p-8 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-200 pb-5">
@@ -252,7 +240,6 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
-        <!-- Left Column: Base Package & Add-ons -->
         <div class="lg:col-span-7 space-y-5">
           <div class="rounded-2xl bg-[#f6f7f9] border border-blue-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div class="space-y-1">
@@ -276,12 +263,9 @@
               <span id="selected-addons-count" class="text-xs font-bold text-[#2563eb]">0 إضافات مختارة</span>
             </div>
 
-            <div id="addons-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <!-- Populated dynamically via JavaScript -->
-            </div>
+            <div id="addons-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
           </div>
 
-          <!-- Automatic VIP Prompt Banner (shown when all 4 add-ons are checked) -->
           <div id="vip-suggestion-banner" class="hidden rounded-2xl bg-blue-50 border border-blue-300 p-4 sm:p-5 space-y-3">
             <div class="space-y-1">
               <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#2563eb] text-white text-xs font-bold">
@@ -307,7 +291,6 @@
           </div>
         </div>
 
-        <!-- Right Column: Live Package Summary -->
         <div class="lg:col-span-5">
           <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-5 space-y-4 lg:sticky lg:top-20">
             <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -322,9 +305,7 @@
                 <span id="summary-base-label">الباقة الأساسية</span>
                 <span class="font-bold"><span id="summary-base-amount">500</span> جنيه</span>
               </div>
-              <div id="summary-addons-breakdown" class="space-y-1.5 text-[#526071]">
-                <!-- Selected add-ons breakdown -->
-              </div>
+              <div id="summary-addons-breakdown" class="space-y-1.5 text-[#526071]"></div>
             </div>
 
             <div class="border-t border-slate-200 pt-3.5 flex items-baseline justify-between">
@@ -344,7 +325,7 @@
             </button>
 
             <p class="text-[11px] text-[#526071] text-center leading-relaxed">
-              لما تدوس "اطلب دلوقتي" هتكتب بياناتك وتفاصيل الطلب، والطلب هيتسجل على الموقع ويفتحلك واتساب جاهز بكل التفاصيل.
+              لما تدوس "اطلب دلوقتي" هتكتب بياناتك وتفاصيل الطلب، والطلب هيتسجل على الموقع وعلى قاعدة البيانات ويفتحلك واتساب جاهز بكل التفاصيل.
             </p>
           </div>
         </div>
@@ -352,9 +333,7 @@
     </div>
   </section>
 
-  <!-- ========================================================= -->
-  <!-- PROJECT WEBSITES SECTION (2000 EGP SINGLE PACKAGE)        -->
-  <!-- ========================================================= -->
+  <!-- PROJECT WEBSITES SECTION -->
   <section id="projects-website" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
     <div class="rounded-3xl soft-card p-6 sm:p-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
@@ -402,31 +381,25 @@
     </div>
   </section>
 
-  <!-- ========================================================= -->
-  <!-- LOGGED ORDERS ON WEBSITE                                  -->
-  <!-- ========================================================= -->
+  <!-- LOGGED ORDERS ON WEBSITE -->
   <section id="orders-board" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
     <div class="rounded-3xl soft-card p-6 sm:p-8 space-y-5">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
         <div>
           <span class="text-xs font-bold text-[#2563eb]">سجل الطلبات</span>
           <h2 class="text-xl sm:text-2xl font-extrabold text-[#182230]">الطلبات المسجلة على الموقع</h2>
-          <p class="text-xs sm:text-sm text-[#526071] mt-0.5">أي طلب بيتبعت من نموذج الطلب بيظهر هنا وكمان بيتفتح على الواتساب.</p>
+          <p class="text-xs sm:text-sm text-[#526071] mt-0.5">أي طلب بيتبعت من نموذج الطلب بيظهر هنا وبيتسجل لحظياً على Firebase وكمان بيتفتح على الواتساب.</p>
         </div>
         <span id="orders-count-badge" class="self-start sm:self-auto px-3.5 py-1.5 rounded-full bg-[#f1f4f8] border border-slate-200 text-xs font-extrabold text-[#2563eb]">
           0 طلبات
         </span>
       </div>
 
-      <div id="orders-list" class="space-y-3">
-        <!-- Populated dynamically via JavaScript -->
-      </div>
+      <div id="orders-list" class="space-y-3"></div>
     </div>
   </section>
 
-  <!-- ========================================================= -->
-  <!-- FOOTER                                                    -->
-  <!-- ========================================================= -->
+  <!-- FOOTER -->
   <footer class="mt-auto border-t border-slate-200 bg-white py-6 px-4 text-center">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#526071]">
       <div>
@@ -436,9 +409,7 @@
     </div>
   </footer>
 
-  <!-- ========================================================= -->
-  <!-- ORDER FORM MODAL                                          -->
-  <!-- ========================================================= -->
+  <!-- ORDER FORM MODAL -->
   <div id="order-modal" class="hidden fixed inset-0 z-50 bg-slate-900/45 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
     <div class="w-full max-w-lg bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 space-y-4 my-auto">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -550,9 +521,7 @@
     </div>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- ADMIN PASSCODE MODAL ("26/1/2013")                        -->
-  <!-- ========================================================= -->
+  <!-- ADMIN PASSCODE MODAL -->
   <div id="admin-auth-modal" class="hidden fixed inset-0 z-50 bg-slate-900/45 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="w-full max-w-sm bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 text-center space-y-4">
       <div>
@@ -589,15 +558,13 @@
     </div>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- ADMIN DASHBOARD                                           -->
-  <!-- ========================================================= -->
+  <!-- ADMIN DASHBOARD -->
   <div id="admin-panel" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
     <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border border-slate-200 shadow-2xl p-5 sm:p-7 space-y-6 my-auto text-right">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3.5 sticky top-0 bg-white z-10">
         <div>
           <h3 class="text-lg sm:text-xl font-extrabold text-[#182230]">لوحة تحكم Seif Studio</h3>
-          <p class="text-xs text-[#526071]">تعديل النصوص والأسعار ورقم الواتساب المخفي وإدارة الطلبات</p>
+          <p class="text-xs text-[#526071]">تعديل النصوص والأسعار ورقم الواتساب وإدارة الطلبات (مربوطة بـ Firebase)</p>
         </div>
         <button
           type="button"
@@ -716,9 +683,7 @@
             مسح كل الطلبات
           </button>
         </div>
-        <div id="adm-orders-list" class="space-y-2">
-          <!-- Populated dynamically via JavaScript -->
-        </div>
+        <div id="adm-orders-list" class="space-y-2"></div>
       </div>
 
       <!-- Save & Reset Actions -->
@@ -753,8 +718,8 @@
 
       const STORAGE_KEY = 'seif_studio_state_v2';
       const ADMIN_PASSCODE = '26/1/2013';
+      const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
 
-      // Default application state including hidden WhatsApp target number
       const DEFAULT_STATE = {
         brandName: 'Seif Studio',
         brandTagline: 'دعوات ومواقع أونلاين',
@@ -834,32 +799,86 @@
         orders: []
       };
 
+      function normalizeState(parsed) {
+        const base = JSON.parse(JSON.stringify(DEFAULT_STATE));
+        if (!parsed || typeof parsed !== 'object') return base;
+
+        const mergedAddons = Array.isArray(parsed.addons) && parsed.addons.length === 4
+          ? parsed.addons.map((item, idx) => ({
+              ...base.addons[idx],
+              ...item,
+              price: Number(item && item.price !== undefined ? item.price : base.addons[idx].price)
+            }))
+          : base.addons;
+
+        const mergedShowcase = Array.isArray(parsed.showcaseItems) && parsed.showcaseItems.length > 0
+          ? parsed.showcaseItems
+          : base.showcaseItems;
+
+        const mergedOrders = Array.isArray(parsed.orders)
+          ? parsed.orders
+          : (parsed.orders && typeof parsed.orders === 'object'
+              ? Object.values(parsed.orders).reverse()
+              : []);
+
+        return {
+          ...base,
+          ...parsed,
+          basePrice: Number(parsed.basePrice !== undefined ? parsed.basePrice : base.basePrice),
+          vipPrice: Number(parsed.vipPrice !== undefined ? parsed.vipPrice : base.vipPrice),
+          projectWebsitePrice: Number(
+            parsed.projectWebsitePrice !== undefined ? parsed.projectWebsitePrice : base.projectWebsitePrice
+          ),
+          addons: mergedAddons,
+          showcaseItems: mergedShowcase,
+          orders: mergedOrders
+        };
+      }
+
       function loadState() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
           if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
-          const parsed = JSON.parse(raw);
-          return {
-            ...JSON.parse(JSON.stringify(DEFAULT_STATE)),
-            ...parsed,
-            addons: Array.isArray(parsed.addons) && parsed.addons.length === 4
-              ? parsed.addons
-              : JSON.parse(JSON.stringify(DEFAULT_STATE.addons)),
-            showcaseItems: Array.isArray(parsed.showcaseItems) && parsed.showcaseItems.length > 0
-              ? parsed.showcaseItems
-              : JSON.parse(JSON.stringify(DEFAULT_STATE.showcaseItems)),
-            orders: Array.isArray(parsed.orders) ? parsed.orders : []
-          };
+          return normalizeState(JSON.parse(raw));
         } catch (err) {
           return JSON.parse(JSON.stringify(DEFAULT_STATE));
         }
       }
 
-      function saveState() {
+      function saveLocalState() {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         } catch (err) {
-          // Ignore storage quota/restriction errors safely
+          // Ignore storage errors
+        }
+      }
+
+      async function syncStateToFirebase() {
+        try {
+          const endpoint = `${FIREBASE_DB_URL}/studioState.json?t=${Date.now()}`;
+          await fetch(endpoint, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(state)
+          });
+        } catch (err) {
+          // Keep local state working even if offline
+        }
+      }
+
+      async function fetchStateFromFirebase() {
+        try {
+          const endpoint = `${FIREBASE_DB_URL}/studioState.json?t=${Date.now()}`;
+          const res = await fetch(endpoint, { cache: 'no-store' });
+          if (!res.ok) return;
+          const remoteData = await res.json();
+          if (remoteData && typeof remoteData === 'object') {
+            state = normalizeState(remoteData);
+            saveLocalState();
+            renderAll();
+          }
+        } catch (err) {
+          // Fallback to local state
         }
       }
 
@@ -1071,7 +1090,6 @@
           countEl.textContent = `${selectedAddonIds.length} إضافات مختارة`;
         }
 
-        // Automatically show VIP upgrade prompt when all 4 add-ons are selected
         const allFourSelected = selectedAddonIds.length === state.addons.length;
         if (vipBanner) {
           vipBanner.classList.toggle('hidden', !allFourSelected);
@@ -1179,8 +1197,9 @@
               btn.addEventListener('click', () => {
                 const orderId = btn.getAttribute('data-delete-order');
                 state.orders = state.orders.filter((o) => o.id !== orderId);
-                saveState();
+                saveLocalState();
                 renderOrders();
+                syncStateToFirebase();
                 showToast('تم حذف الطلب');
               });
             });
@@ -1188,7 +1207,6 @@
         }
       }
 
-      // Order modal logic
       const orderModal = document.getElementById('order-modal');
       const orderForm = document.getElementById('client-order-form');
       const orderServiceSelect = document.getElementById('order-service-type');
@@ -1288,10 +1306,10 @@
         };
 
         state.orders.unshift(newOrder);
-        saveState();
+        saveLocalState();
         renderOrders();
+        syncStateToFirebase();
 
-        // Hidden WhatsApp target number used strictly for WhatsApp URL dispatch
         const targetWa = (state.whatsappNumber || '').replace(/[^\d]/g, '');
         const messageLines = [
           `طلب جديد من ${state.brandName}:`,
@@ -1331,7 +1349,6 @@
         });
       });
 
-      // Admin authentication ("26/1/2013") and dashboard logic
       const adminAuthModal = document.getElementById('admin-auth-modal');
       const adminAuthForm = document.getElementById('admin-auth-form');
       const adminPasscodeInput = document.getElementById('admin-passcode-input');
@@ -1383,7 +1400,7 @@
         adminPanel.classList.add('hidden');
       });
 
-      document.getElementById('adm-save-btn').addEventListener('click', () => {
+      document.getElementById('adm-save-btn').addEventListener('click', async () => {
         state.brandName = document.getElementById('adm-brand-name').value.trim() || DEFAULT_STATE.brandName;
         state.whatsappNumber = document.getElementById('adm-whatsapp-number').value.trim();
         state.heroTitle = document.getElementById('adm-hero-title').value.trim() || DEFAULT_STATE.heroTitle;
@@ -1401,13 +1418,14 @@
         state.vipPrice = Math.max(0, parseInt(document.getElementById('adm-vip-price').value, 10) || 0);
         state.projectWebsitePrice = Math.max(0, parseInt(document.getElementById('adm-project-price').value, 10) || 0);
 
-        saveState();
+        saveLocalState();
         renderAll();
+        await syncStateToFirebase();
         adminPanel.classList.add('hidden');
-        showToast('تم حفظ التعديلات');
+        showToast('تم حفظ التعديلات على الموقع و Firebase');
       });
 
-      document.getElementById('adm-add-showcase-btn').addEventListener('click', () => {
+      document.getElementById('adm-add-showcase-btn').addEventListener('click', async () => {
         const cat = document.getElementById('adm-new-item-category').value;
         const title = document.getElementById('adm-new-item-title').value.trim();
         const couple = document.getElementById('adm-new-item-couple').value.trim();
@@ -1433,27 +1451,30 @@
           venue: 'مكان حسب الطلب'
         });
 
-        saveState();
+        saveLocalState();
         renderShowcase();
+        await syncStateToFirebase();
         document.getElementById('adm-new-item-title').value = '';
         document.getElementById('adm-new-item-couple').value = '';
-        showToast('تمت إضافة النموذج');
+        showToast('تمت إضافة النموذج وحفظه');
       });
 
-      document.getElementById('adm-clear-orders-btn').addEventListener('click', () => {
+      document.getElementById('adm-clear-orders-btn').addEventListener('click', async () => {
         state.orders = [];
-        saveState();
+        saveLocalState();
         renderOrders();
+        await syncStateToFirebase();
         showToast('تم مسح كل الطلبات');
       });
 
-      document.getElementById('adm-reset-defaults-btn').addEventListener('click', () => {
+      document.getElementById('adm-reset-defaults-btn').addEventListener('click', async () => {
         state = JSON.parse(JSON.stringify(DEFAULT_STATE));
         selectedAddonIds = [];
         isVipMode = false;
-        saveState();
+        saveLocalState();
         fillAdminInputs();
         renderAll();
+        await syncStateToFirebase();
         showToast('تم الرجوع للوضع الافتراضي');
       });
 
@@ -1465,8 +1486,8 @@
       }
 
       renderAll();
+      fetchStateFromFirebase();
     })();
   </script>
 </body>
 </html>
-```
