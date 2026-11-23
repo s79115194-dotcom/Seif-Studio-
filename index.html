@@ -736,7 +736,7 @@
     (function () {
       'use strict';
 
-      const STORAGE_KEY = 'seif_studio_state_v4';
+      const STORAGE_KEY = 'seif_studio_state_v5';
       const ADMIN_PASSCODE = '26/1/2013';
       const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
       const ALLOWED_ADDON_IDS = ['countdown', 'photos', 'song'];
@@ -788,6 +788,7 @@
           revisionPrefix: '📌 التعديلات: ',
           basePill: 'أساسية',
           defaultBaseName: 'الباقة الأساسية',
+          defaultVipName: 'باقة VIP',
           baseDesc: 'الدعوة الأساسية جاهزة ومرتبة؛ تقدر تطلبها على طول أو تزود عليها الإضافات اللي تناسبك.',
           baseMinNote: 'الحد الأدنى للباقة',
           addonsTitle: 'الإضافات الفردية (اختار اللي تحتاجه):',
@@ -925,6 +926,7 @@
           revisionPrefix: '📌 Revisions: ',
           basePill: 'Base',
           defaultBaseName: 'Base Package',
+          defaultVipName: 'VIP Package',
           baseDesc: 'Clean and ready-to-use base invitation; order it as is or add extra features.',
           baseMinNote: 'Minimum package price',
           addonsTitle: 'Individual Add-ons (choose what you need):',
@@ -1040,7 +1042,7 @@
         whatsappNumber: '201000000000',
         basePackageName: t.defaultBaseName,
         basePrice: 500,
-        vipPackageName: currentLang === 'en' ? 'VIP Package' : 'باقة VIP',
+        vipPackageName: t.defaultVipName,
         vipPrice: 800,
         projectWebsiteTitle: t.defaultProjectTitle,
         projectWebsitePrice: 2000,
@@ -1108,6 +1110,40 @@
         orders: []
       };
 
+      const ARABIC_DEFAULTS_SET = new Set([
+        UI_COPY.ar.defaultTagline,
+        UI_COPY.ar.defaultBadge,
+        UI_COPY.ar.defaultHeroTitle,
+        UI_COPY.ar.defaultHeroSubtitle,
+        UI_COPY.ar.defaultRevision,
+        UI_COPY.ar.defaultBaseName,
+        UI_COPY.ar.defaultVipName,
+        UI_COPY.ar.defaultProjectTitle
+      ]);
+
+      const ENGLISH_DEFAULTS_SET = new Set([
+        UI_COPY.en.defaultTagline,
+        UI_COPY.en.defaultBadge,
+        UI_COPY.en.defaultHeroTitle,
+        UI_COPY.en.defaultHeroSubtitle,
+        UI_COPY.en.defaultRevision,
+        UI_COPY.en.defaultBaseName,
+        UI_COPY.en.defaultVipName,
+        UI_COPY.en.defaultProjectTitle
+      ]);
+
+      function localizeTextField(value, fallbackLocalized) {
+        const clean = typeof value === 'string' ? value.trim() : '';
+        if (!clean) return fallbackLocalized;
+        if (currentLang === 'en' && ARABIC_DEFAULTS_SET.has(clean)) {
+          return fallbackLocalized;
+        }
+        if (currentLang === 'ar' && ENGLISH_DEFAULTS_SET.has(clean)) {
+          return fallbackLocalized;
+        }
+        return clean;
+      }
+
       function normalizeState(parsed) {
         const base = JSON.parse(JSON.stringify(DEFAULT_STATE));
         if (!parsed || typeof parsed !== 'object') return base;
@@ -1118,14 +1154,25 @@
           const fallback = base.addons[idx];
           return {
             id,
-            name: (found && found.name) || fallback.name,
-            desc: (found && found.desc) || fallback.desc,
+            name: fallback.name,
+            desc: fallback.desc,
             price: Number(found && found.price !== undefined ? found.price : fallback.price)
           };
         });
 
         const mergedShowcase = Array.isArray(parsed.showcaseItems) && parsed.showcaseItems.length > 0
-          ? parsed.showcaseItems
+          ? parsed.showcaseItems.map((item, idx) => {
+              const defItem = base.showcaseItems[idx];
+              const isDefaultId = defItem && item && item.id === defItem.id;
+              return {
+                ...item,
+                categoryLabel: t.catLabels[item.category] || item.categoryLabel,
+                title: isDefaultId ? defItem.title : item.title,
+                couple: isDefaultId ? defItem.couple : item.couple,
+                date: isDefaultId ? defItem.date : item.date,
+                venue: isDefaultId ? defItem.venue : item.venue
+              };
+            })
           : base.showcaseItems;
 
         const mergedOrders = Array.isArray(parsed.orders)
@@ -1137,6 +1184,15 @@
         return {
           ...base,
           ...parsed,
+          brandName: (typeof parsed.brandName === 'string' && parsed.brandName.trim()) ? parsed.brandName.trim() : base.brandName,
+          brandTagline: localizeTextField(parsed.brandTagline, base.brandTagline),
+          heroBadge: localizeTextField(parsed.heroBadge, base.heroBadge),
+          heroTitle: localizeTextField(parsed.heroTitle, base.heroTitle),
+          heroSubtitle: localizeTextField(parsed.heroSubtitle, base.heroSubtitle),
+          revisionRule: localizeTextField(parsed.revisionRule, base.revisionRule),
+          basePackageName: localizeTextField(parsed.basePackageName, base.basePackageName),
+          vipPackageName: localizeTextField(parsed.vipPackageName, base.vipPackageName),
+          projectWebsiteTitle: localizeTextField(parsed.projectWebsiteTitle, base.projectWebsiteTitle),
           basePrice: Number(parsed.basePrice !== undefined ? parsed.basePrice : base.basePrice),
           vipPrice: Number(parsed.vipPrice !== undefined ? parsed.vipPrice : base.vipPrice),
           projectWebsitePrice: Number(
