@@ -80,7 +80,7 @@
 
   <!-- TOP NAVIGATION BAR -->
   <header class="sticky top-0 z-40 bg-white border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-3">
       <a href="#top" class="flex items-center gap-2.5 shrink-0">
         <span class="w-9 h-9 rounded-xl bg-[#2563eb] text-white flex items-center justify-center font-cinzel font-bold text-lg">
           S
@@ -98,18 +98,33 @@
         <a id="nav-orders-link" href="#orders-board" class="hover:text-[#2563eb] transition-colors">الطلبات</a>
       </nav>
 
-      <div class="flex items-center gap-2 shrink-0">
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <button
+          type="button"
+          id="lang-toggle-btn"
+          aria-label="تبديل اللغة"
+          class="cursor-pointer px-2.5 py-2 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 border border-slate-200 transition-colors flex items-center justify-center"
+        >
+          <span
+            id="lang-toggle-box"
+            class="inline-flex items-center justify-center min-w-[28px] h-5 px-1.5 rounded-md bg-white border border-slate-300 text-[11px] font-extrabold text-[#182230] leading-none"
+          >
+            EG
+          </span>
+        </button>
+
         <button
           type="button"
           id="nav-order-btn"
-          class="cursor-pointer px-4 py-2 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs sm:text-sm font-bold transition-colors"
+          class="cursor-pointer px-3.5 sm:px-4 py-2 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs sm:text-sm font-bold transition-colors"
         >
           اطلب دلوقتي
         </button>
+
         <button
           type="button"
           id="open-admin-btn"
-          class="cursor-pointer px-3.5 py-2 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-bold transition-colors flex items-center gap-1"
+          class="cursor-pointer px-3 sm:px-3.5 py-2 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-bold transition-colors flex items-center gap-1"
         >
           <span>🔒</span>
           <span id="admin-btn-label">أدمن</span>
@@ -736,19 +751,16 @@
     (function () {
       'use strict';
 
-      const STORAGE_KEY = 'seif_studio_state_v5';
+      const STORAGE_KEY = 'seif_studio_state_v7';
+      const LANG_KEY = 'seif_studio_lang_v1';
       const ADMIN_PASSCODE = '26/1/2013';
       const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
       const ALLOWED_ADDON_IDS = ['countdown', 'photos', 'song'];
 
-      function detectDeviceLang() {
-        const navLang = (navigator.language || (navigator.languages && navigator.languages[0]) || 'ar').toLowerCase();
-        return navLang.startsWith('en') ? 'en' : 'ar';
-      }
-
       const UI_COPY = {
         ar: {
           pageTitle: 'Seif Studio — دعوات إلكترونية ومواقع مشاريع',
+          toggleBoxText: 'EG',
           defaultTagline: 'دعوات ومواقع أونلاين',
           navInvitations: 'الدعوات',
           navBuilder: 'ظبط باقتك',
@@ -887,6 +899,7 @@
         },
         en: {
           pageTitle: 'Seif Studio — Digital Invitations & Project Websites',
+          toggleBoxText: 'عربي',
           defaultTagline: 'Invitations & Web Studio',
           navInvitations: 'Invitations',
           navBuilder: 'Build Package',
@@ -1025,127 +1038,118 @@
         }
       };
 
-      const currentLang = detectDeviceLang();
-      const t = UI_COPY[currentLang] || UI_COPY.ar;
-
-      document.documentElement.lang = currentLang;
-      document.documentElement.dir = currentLang === 'en' ? 'ltr' : 'rtl';
-      document.title = t.pageTitle;
-
-      const DEFAULT_STATE = {
-        brandName: 'Seif Studio',
-        brandTagline: t.defaultTagline,
-        heroBadge: t.defaultBadge,
-        heroTitle: t.defaultHeroTitle,
-        heroSubtitle: t.defaultHeroSubtitle,
-        revisionRule: t.defaultRevision,
-        whatsappNumber: '201000000000',
-        basePackageName: t.defaultBaseName,
-        basePrice: 500,
-        vipPackageName: t.defaultVipName,
-        vipPrice: 800,
-        projectWebsiteTitle: t.defaultProjectTitle,
-        projectWebsitePrice: 2000,
-        addons: [
-          { id: 'countdown', name: t.addonLabels.countdown.name, desc: t.addonLabels.countdown.desc, price: 50 },
-          { id: 'photos', name: t.addonLabels.photos.name, desc: t.addonLabels.photos.desc, price: 50 },
-          { id: 'song', name: t.addonLabels.song.name, desc: t.addonLabels.song.desc, price: 50 }
-        ],
-        showcaseItems: [
-          {
-            id: 'w-1',
-            category: 'wedding',
-            categoryLabel: t.catLabels.wedding,
-            title: currentLang === 'en' ? 'Calm Classic' : 'كلاسيك هادي',
-            couple: currentLang === 'en' ? 'Karim & Salma' : 'كريم & سلمى',
-            date: currentLang === 'en' ? 'Sunday • Dec 20, 2026' : 'الأحد • 20 ديسمبر 2026',
-            venue: currentLang === 'en' ? 'Lotus Hall — Al Massa Hotel' : 'قاعة اللوتس — فندق الماسة'
-          },
-          {
-            id: 'w-2',
-            category: 'wedding',
-            categoryLabel: t.catLabels.wedding,
-            title: currentLang === 'en' ? 'Clean Modern' : 'تصميم عصري نظيف',
-            couple: currentLang === 'en' ? 'Adam & Layla' : 'آدم & ليلى',
-            date: currentLang === 'en' ? 'Thursday • Jan 14, 2027' : 'الخميس • 14 يناير 2027',
-            venue: currentLang === 'en' ? 'Nile Hall — Zamalek' : 'قاعة النيل — الزمالك'
-          },
-          {
-            id: 'e-1',
-            category: 'engagement',
-            categoryLabel: t.catLabels.engagement,
-            title: currentLang === 'en' ? 'Sweet Beginning' : 'بداية حلوة',
-            couple: currentLang === 'en' ? 'Youssef & Mariam' : 'يوسف & مريم',
-            date: currentLang === 'en' ? 'Friday • Feb 5, 2027' : 'الجمعة • 5 فبراير 2027',
-            venue: currentLang === 'en' ? 'Jasmine Villa — Sheikh Zayed' : 'فيلا الياسمين — الشيخ زايد'
-          },
-          {
-            id: 'e-2',
-            category: 'engagement',
-            categoryLabel: t.catLabels.engagement,
-            title: currentLang === 'en' ? 'Modern Style' : 'ستايل مودرن',
-            couple: currentLang === 'en' ? 'Tarek & Hana' : 'طارق & هنا',
-            date: currentLang === 'en' ? 'Saturday • Feb 20, 2027' : 'السبت • 20 فبراير 2027',
-            venue: currentLang === 'en' ? 'Garden Hall — New Cairo' : 'جاردن هول — التجمع الخامس'
-          },
-          {
-            id: 'k-1',
-            category: 'katb-kitab',
-            categoryLabel: t.catLabels['katb-kitab'],
-            title: currentLang === 'en' ? 'Blessed Start' : 'على بركة الله',
-            couple: currentLang === 'en' ? 'Ibrahim & Farah' : 'إبراهيم & فرح',
-            date: currentLang === 'en' ? 'Friday • Mar 12, 2027' : 'الجمعة • 12 مارس 2027',
-            venue: currentLang === 'en' ? 'Al-Rahman Mosque — Nasr City' : 'مسجد الرحمن — مدينة نصر'
-          },
-          {
-            id: 'k-2',
-            category: 'katb-kitab',
-            categoryLabel: t.catLabels['katb-kitab'],
-            title: currentLang === 'en' ? 'Elegant Contract' : 'عقد قران راقٍ',
-            couple: currentLang === 'en' ? 'Mostafa & Jana' : 'مصطفى & جنى',
-            date: currentLang === 'en' ? 'Saturday • Mar 27, 2027' : 'السبت • 27 مارس 2027',
-            venue: currentLang === 'en' ? 'Al-Hoda Hall — Heliopolis' : 'قاعة الهدى — مصر الجديدة'
-          }
-        ],
-        orders: []
-      };
-
-      const ARABIC_DEFAULTS_SET = new Set([
-        UI_COPY.ar.defaultTagline,
-        UI_COPY.ar.defaultBadge,
-        UI_COPY.ar.defaultHeroTitle,
-        UI_COPY.ar.defaultHeroSubtitle,
-        UI_COPY.ar.defaultRevision,
-        UI_COPY.ar.defaultBaseName,
-        UI_COPY.ar.defaultVipName,
-        UI_COPY.ar.defaultProjectTitle
-      ]);
-
-      const ENGLISH_DEFAULTS_SET = new Set([
-        UI_COPY.en.defaultTagline,
-        UI_COPY.en.defaultBadge,
-        UI_COPY.en.defaultHeroTitle,
-        UI_COPY.en.defaultHeroSubtitle,
-        UI_COPY.en.defaultRevision,
-        UI_COPY.en.defaultBaseName,
-        UI_COPY.en.defaultVipName,
-        UI_COPY.en.defaultProjectTitle
-      ]);
-
-      function localizeTextField(value, fallbackLocalized) {
-        const clean = typeof value === 'string' ? value.trim() : '';
-        if (!clean) return fallbackLocalized;
-        if (currentLang === 'en' && ARABIC_DEFAULTS_SET.has(clean)) {
-          return fallbackLocalized;
+      function loadSavedLang() {
+        try {
+          const saved = localStorage.getItem(LANG_KEY);
+          return saved === 'en' ? 'en' : 'ar';
+        } catch (err) {
+          return 'ar';
         }
-        if (currentLang === 'ar' && ENGLISH_DEFAULTS_SET.has(clean)) {
-          return fallbackLocalized;
-        }
-        return clean;
       }
 
+      function saveLang(lang) {
+        try {
+          localStorage.setItem(LANG_KEY, lang);
+        } catch (err) {
+          // Ignore storage errors
+        }
+      }
+
+      let currentLang = loadSavedLang();
+      let t = UI_COPY[currentLang] || UI_COPY.ar;
+
+      function applyDocumentDirection() {
+        t = UI_COPY[currentLang] || UI_COPY.ar;
+        document.documentElement.lang = currentLang;
+        document.documentElement.dir = currentLang === 'en' ? 'ltr' : 'rtl';
+        document.title = t.pageTitle;
+      }
+
+      function buildDefaultState() {
+        return {
+          brandName: 'Seif Studio',
+          brandTagline: t.defaultTagline,
+          heroBadge: t.defaultBadge,
+          heroTitle: t.defaultHeroTitle,
+          heroSubtitle: t.defaultHeroSubtitle,
+          revisionRule: t.defaultRevision,
+          whatsappNumber: '201000000000',
+          basePackageName: t.defaultBaseName,
+          basePrice: 500,
+          vipPackageName: t.defaultVipName,
+          vipPrice: 800,
+          projectWebsiteTitle: t.defaultProjectTitle,
+          projectWebsitePrice: 2000,
+          addons: [
+            { id: 'countdown', name: t.addonLabels.countdown.name, desc: t.addonLabels.countdown.desc, price: 50 },
+            { id: 'photos', name: t.addonLabels.photos.name, desc: t.addonLabels.photos.desc, price: 50 },
+            { id: 'song', name: t.addonLabels.song.name, desc: t.addonLabels.song.desc, price: 50 }
+          ],
+          showcaseItems: [
+            {
+              id: 'w-1',
+              category: 'wedding',
+              categoryLabel: t.catLabels.wedding,
+              title: currentLang === 'en' ? 'Calm Classic' : 'كلاسيك هادي',
+              couple: currentLang === 'en' ? 'Karim & Salma' : 'كريم & سلمى',
+              date: currentLang === 'en' ? 'Sunday • Dec 20, 2026' : 'الأحد • 20 ديسمبر 2026',
+              venue: currentLang === 'en' ? 'Lotus Hall — Al Massa Hotel' : 'قاعة اللوتس — فندق الماسة'
+            },
+            {
+              id: 'w-2',
+              category: 'wedding',
+              categoryLabel: t.catLabels.wedding,
+              title: currentLang === 'en' ? 'Clean Modern' : 'تصميم عصري نظيف',
+              couple: currentLang === 'en' ? 'Adam & Layla' : 'آدم & ليلى',
+              date: currentLang === 'en' ? 'Thursday • Jan 14, 2027' : 'الخميس • 14 يناير 2027',
+              venue: currentLang === 'en' ? 'Nile Hall — Zamalek' : 'قاعة النيل — الزمالك'
+            },
+            {
+              id: 'e-1',
+              category: 'engagement',
+              categoryLabel: t.catLabels.engagement,
+              title: currentLang === 'en' ? 'Sweet Beginning' : 'بداية حلوة',
+              couple: currentLang === 'en' ? 'Youssef & Mariam' : 'يوسف & مريم',
+              date: currentLang === 'en' ? 'Friday • Feb 5, 2027' : 'الجمعة • 5 فبراير 2027',
+              venue: currentLang === 'en' ? 'Jasmine Villa — Sheikh Zayed' : 'فيلا الياسمين — الشيخ زايد'
+            },
+            {
+              id: 'e-2',
+              category: 'engagement',
+              categoryLabel: t.catLabels.engagement,
+              title: currentLang === 'en' ? 'Modern Style' : 'ستايل مودرن',
+              couple: currentLang === 'en' ? 'Tarek & Hana' : 'طارق & هنا',
+              date: currentLang === 'en' ? 'Saturday • Feb 20, 2027' : 'السبت • 20 فبراير 2027',
+              venue: currentLang === 'en' ? 'Garden Hall — New Cairo' : 'جاردن هول — التجمع الخامس'
+            },
+            {
+              id: 'k-1',
+              category: 'katb-kitab',
+              categoryLabel: t.catLabels['katb-kitab'],
+              title: currentLang === 'en' ? 'Blessed Start' : 'على بركة الله',
+              couple: currentLang === 'en' ? 'Ibrahim & Farah' : 'إبراهيم & فرح',
+              date: currentLang === 'en' ? 'Friday • Mar 12, 2027' : 'الجمعة • 12 مارس 2027',
+              venue: currentLang === 'en' ? 'Al-Rahman Mosque — Nasr City' : 'مسجد الرحمن — مدينة نصر'
+            },
+            {
+              id: 'k-2',
+              category: 'katb-kitab',
+              categoryLabel: t.catLabels['katb-kitab'],
+              title: currentLang === 'en' ? 'Elegant Contract' : 'عقد قران راقٍ',
+              couple: currentLang === 'en' ? 'Mostafa & Jana' : 'مصطفى & جنى',
+              date: currentLang === 'en' ? 'Saturday • Mar 27, 2027' : 'السبت • 27 مارس 2027',
+              venue: currentLang === 'en' ? 'Al-Hoda Hall — Heliopolis' : 'قاعة الهدى — مصر الجديدة'
+            }
+          ],
+          orders: []
+        };
+      }
+
+      applyDocumentDirection();
+      let DEFAULT_STATE = buildDefaultState();
+
       function normalizeState(parsed) {
-        const base = JSON.parse(JSON.stringify(DEFAULT_STATE));
+        const base = buildDefaultState();
         if (!parsed || typeof parsed !== 'object') return base;
 
         const rawAddons = Array.isArray(parsed.addons) ? parsed.addons : [];
@@ -1185,14 +1189,14 @@
           ...base,
           ...parsed,
           brandName: (typeof parsed.brandName === 'string' && parsed.brandName.trim()) ? parsed.brandName.trim() : base.brandName,
-          brandTagline: localizeTextField(parsed.brandTagline, base.brandTagline),
-          heroBadge: localizeTextField(parsed.heroBadge, base.heroBadge),
-          heroTitle: localizeTextField(parsed.heroTitle, base.heroTitle),
-          heroSubtitle: localizeTextField(parsed.heroSubtitle, base.heroSubtitle),
-          revisionRule: localizeTextField(parsed.revisionRule, base.revisionRule),
-          basePackageName: localizeTextField(parsed.basePackageName, base.basePackageName),
-          vipPackageName: localizeTextField(parsed.vipPackageName, base.vipPackageName),
-          projectWebsiteTitle: localizeTextField(parsed.projectWebsiteTitle, base.projectWebsiteTitle),
+          brandTagline: base.brandTagline,
+          heroBadge: base.heroBadge,
+          heroTitle: base.heroTitle,
+          heroSubtitle: base.heroSubtitle,
+          revisionRule: base.revisionRule,
+          basePackageName: base.basePackageName,
+          vipPackageName: base.vipPackageName,
+          projectWebsiteTitle: base.projectWebsiteTitle,
           basePrice: Number(parsed.basePrice !== undefined ? parsed.basePrice : base.basePrice),
           vipPrice: Number(parsed.vipPrice !== undefined ? parsed.vipPrice : base.vipPrice),
           projectWebsitePrice: Number(
@@ -1207,10 +1211,10 @@
       function loadState() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
+          if (!raw) return buildDefaultState();
           return normalizeState(JSON.parse(raw));
         } catch (err) {
-          return JSON.parse(JSON.stringify(DEFAULT_STATE));
+          return buildDefaultState();
         }
       }
 
@@ -1287,6 +1291,7 @@
       }
 
       function applyLocalizedChrome() {
+        document.getElementById('lang-toggle-box').textContent = t.toggleBoxText;
         document.getElementById('nav-invitations-link').textContent = t.navInvitations;
         document.getElementById('nav-builder-link').textContent = t.navBuilder;
         document.getElementById('nav-projects-link').textContent = t.navProjects;
@@ -1689,6 +1694,16 @@
         }
       }
 
+      document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        saveLang(currentLang);
+        applyDocumentDirection();
+        DEFAULT_STATE = buildDefaultState();
+        state = normalizeState(state);
+        saveLocalState();
+        renderAll();
+      });
+
       const orderModal = document.getElementById('order-modal');
       const orderForm = document.getElementById('client-order-form');
       const orderServiceSelect = document.getElementById('order-service-type');
@@ -1942,7 +1957,7 @@
       });
 
       document.getElementById('adm-reset-defaults-btn').addEventListener('click', async () => {
-        state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+        state = buildDefaultState();
         selectedAddonIds = [];
         isVipMode = false;
         saveLocalState();
