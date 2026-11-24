@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seif Studio — دعوات لكل المناسبات ومواقع مشاريع</title>
+  <title>Seif Studio — دعوات لكل المناسبات ومواقع مشاريع وبرامج</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -94,14 +94,15 @@
         </span>
         <div class="leading-tight">
           <div id="brand-name-display" class="font-extrabold text-base sm:text-lg text-[#182230]">Seif Studio</div>
-          <div id="brand-tagline-display" class="text-[11px] font-medium text-[#526071]">دعوات لكل المناسبات ومواقع أونلاين</div>
+          <div id="brand-tagline-display" class="text-[11px] font-medium text-[#526071]">دعوات لكل المناسبات ومواقع أونلاين وبرامج</div>
         </div>
       </div>
 
-      <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-[#526071]" aria-label="التنقل الرئيسي">
+      <nav class="hidden md:flex items-center gap-5 text-sm font-bold text-[#526071]" aria-label="التنقل الرئيسي">
         <a id="nav-invitations-link" href="#invitations-showcase" class="hover:text-[#2563eb] transition-colors">الدعوات</a>
         <a id="nav-builder-link" href="#package-builder" class="hover:text-[#2563eb] transition-colors">ظبط باقتك</a>
         <a id="nav-projects-link" href="#projects-website" class="hover:text-[#2563eb] transition-colors">ويب سايت المشاريع</a>
+        <a id="nav-apps-link" href="#apps-service" class="hover:text-[#2563eb] transition-colors">عمل برنامج</a>
       </nav>
 
       <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
@@ -136,11 +137,11 @@
       <div class="lg:col-span-7 space-y-4">
         <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-[#2563eb]">
           <span class="w-2 h-2 rounded-full bg-[#2563eb]"></span>
-          <span id="hero-badge-text">شغالين أونلاين • تصميم لكل المناسبات</span>
+          <span id="hero-badge-text">شغالين أونلاين • تصميم لكل المناسبات ومواقع وبرامج</span>
         </span>
 
         <h1 id="hero-title-text" class="text-3xl sm:text-5xl font-extrabold text-[#182230] leading-[1.25]">
-          دعوات فرح، خطوبة، كتب كتاب، أعياد ميلاد، سبوع طفل وكل المناسبات.. ومواقع مشاريع
+          دعوات فرح، خطوبة، كتب كتاب، أعياد ميلاد، سبوع طفل وكل المناسبات.. ومواقع مشاريع وبرامج
         </h1>
 
         <p id="hero-subtitle-text" class="text-sm sm:text-base text-[#526071] leading-relaxed max-w-2xl">
@@ -173,6 +174,9 @@
           </span>
           <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold">
             <span id="hero-project-label">ويب سايت المشاريع</span>: <span id="hero-project-price" class="text-[#2563eb]">2000</span> <span id="currency-hero-3">جنيه</span>
+          </span>
+          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold">
+            <span id="hero-app-label">عمل برنامج</span>: <span id="hero-app-price" class="text-[#2563eb]">3500</span> <span id="currency-hero-4">جنيه</span>
           </span>
         </div>
       </div>
@@ -218,62 +222,13 @@
       </div>
 
       <div class="flex flex-wrap gap-2" role="tablist" aria-label="أقسام الدعوات">
-        <button
-          type="button"
-          data-category="all"
-          id="tab-all-btn"
-          class="showcase-tab tab-active cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
-        >
-          الكل
-        </button>
-        <button
-          type="button"
-          data-category="wedding"
-          id="tab-wedding-btn"
-          class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
-        >
-          فرح
-        </button>
-        <button
-          type="button"
-          data-category="engagement"
-          id="tab-engagement-btn"
-          class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
-        >
-          خطوبة
-        </button>
-        <button
-          type="button"
-          data-category="katb-kitab"
-          id="tab-katb-btn"
-          class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
-        >
-          كتب كتاب
-        </button>
-        <button
-          type="button"
-          data-category="birthday"
-          id="tab-birthday-btn"
-          class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
-        >
-          عيد ميلاد
-        </button>
-        <button
-          type="button"
-          data-category="baby-shower"
-          id="tab-baby-btn"
-          class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
-        >
-          سبوع طفل
-        </button>
-        <button
-          type="button"
-          data-category="other-events"
-          id="tab-other-btn"
-          class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors"
-        >
-          مناسبات تانية
-        </button>
+        <button type="button" data-category="all" id="tab-all-btn" class="showcase-tab tab-active cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors">الكل</button>
+        <button type="button" data-category="wedding" id="tab-wedding-btn" class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors">فرح</button>
+        <button type="button" data-category="engagement" id="tab-engagement-btn" class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors">خطوبة</button>
+        <button type="button" data-category="katb-kitab" id="tab-katb-btn" class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors">كتب كتاب</button>
+        <button type="button" data-category="birthday" id="tab-birthday-btn" class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors">عيد ميلاد</button>
+        <button type="button" data-category="baby-shower" id="tab-baby-btn" class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors">سبوع طفل</button>
+        <button type="button" data-category="other-events" id="tab-other-btn" class="showcase-tab cursor-pointer px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-white text-[#182230] transition-colors">مناسبات تانية</button>
       </div>
     </div>
 
@@ -391,8 +346,8 @@
     </div>
   </section>
 
-  <!-- PROJECT WEBSITES SECTION -->
-  <section id="projects-website" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
+  <!-- PROJECT WEBSITES SECTION (مستقل لوحده) -->
+  <section id="projects-website" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-6">
     <div class="rounded-3xl soft-card p-6 sm:p-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
         <div class="lg:col-span-7 space-y-4">
@@ -439,11 +394,59 @@
     </div>
   </section>
 
+  <!-- APPS / PROGRAMS SECTION (مستقل لوحده وسعره 3500 جنيه) -->
+  <section id="apps-service" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 pb-10">
+    <div class="rounded-3xl soft-card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="app-badge-1" class="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#2563eb] text-xs font-bold">عمل برنامج</span>
+            <span id="app-badge-2" class="px-3 py-1 rounded-full bg-[#f1f4f8] border border-slate-200 text-[#526071] text-xs font-bold">
+              قسم مستقل للبرمجيات
+            </span>
+          </div>
+
+          <h2 id="app-pkg-title" class="text-2xl sm:text-3xl font-extrabold text-[#182230]">
+            عمل برنامج خاص
+          </h2>
+
+          <p id="app-pkg-desc" class="text-sm sm:text-base text-[#526071] leading-relaxed">
+            تنفيذ وبرمجة برنامج مخصص لفكرتك أو شغلك بشكل مستقل عن المواقع، بواجهة مرتبة وأداء سلس وتواصل مباشر على الواتساب.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-[#182230]">
+            <div id="app-feat-1" class="rounded-xl bg-[#f6f7f9] border border-slate-200 p-3 font-medium">✓ برمجة مخصصة حسب فكرة واحتياج البرنامج</div>
+            <div id="app-feat-2" class="rounded-xl bg-[#f6f7f9] border border-slate-200 p-3 font-medium">✓ واجهة استخدام سهلة وواضحة</div>
+            <div id="app-feat-3" class="rounded-xl bg-[#f6f7f9] border border-slate-200 p-3 font-medium">✓ تسليم ومتابعة مباشرة عبر الواتساب</div>
+            <div id="app-feat-4" class="rounded-xl bg-[#f6f7f9] border border-slate-200 p-3 font-medium">✓ أول تعديل ببلاش وأي تعديل بعده بـ 50 جنيه</div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-6 text-center space-y-4">
+            <span id="app-price-label" class="text-xs font-bold text-[#526071]">سعر عمل البرنامج</span>
+            <div class="text-4xl font-extrabold text-[#2563eb]">
+              <span id="app-pkg-price">3500</span> <span id="currency-app" class="text-base font-bold text-[#182230]">جنيه</span>
+            </div>
+            <p id="app-single-note" class="text-xs text-[#526071]">باقة مستقلة لعمل برنامج</p>
+            <button
+              type="button"
+              id="order-app-btn"
+              class="cursor-pointer w-full py-3.5 px-5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-extrabold transition-colors"
+            >
+              اطلب عمل برنامج
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="mt-auto border-t border-slate-200 bg-white py-6 px-4 text-center">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#526071]">
       <div>
-        <span class="font-extrabold text-[#182230]">Seif Studio</span> — <span id="footer-tagline">دعوات لكل المناسبات ومواقع مشاريع</span>
+        <span class="font-extrabold text-[#182230]">Seif Studio</span> — <span id="footer-tagline">دعوات لكل المناسبات ومواقع مشاريع وبرامج</span>
       </div>
       <div id="footer-revision">أول تعديل ببلاش • أي تعديل بعده بـ 50 جنيه</div>
     </div>
@@ -494,7 +497,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label for="order-service-type" id="label-service-type" class="block text-xs font-bold text-[#182230] mb-1">نوع المناسبة / المشروع</label>
+            <label for="order-service-type" id="label-service-type" class="block text-xs font-bold text-[#182230] mb-1">نوع المناسبة / الخدمة</label>
             <select
               id="order-service-type"
               class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
@@ -506,6 +509,7 @@
               <option value="دعوة سبوع طفل" id="opt-baby">دعوة سبوع طفل</option>
               <option value="دعوة مناسبة أخرى" id="opt-other">دعوة مناسبة أخرى</option>
               <option value="ويب سايت مشاريع" id="opt-projects">ويب سايت مشاريع</option>
+              <option value="عمل برنامج" id="opt-app">عمل برنامج</option>
             </select>
           </div>
 
@@ -525,14 +529,14 @@
           <textarea
             id="order-notes"
             rows="2"
-            placeholder="الأسماء، نوع المناسبة، المكان أو القاعة، أو أي تفاصيل إضافية..."
+            placeholder="الأسماء، نوع المناسبة أو البرنامج، المكان، أو أي تفاصيل إضافية..."
             class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb] resize-none"
           ></textarea>
         </div>
 
         <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-3.5 space-y-1 text-xs">
           <div class="flex justify-between">
-            <span id="modal-pkg-caption" class="text-[#526071]">الباقة المختارة:</span>
+            <span id="modal-pkg-caption" class="text-[#526071]">الباقة / الخدمة المختارة:</span>
             <span id="modal-package-label" class="font-extrabold text-[#182230]">الباقة الأساسية</span>
           </div>
           <div class="flex justify-between">
@@ -621,14 +625,14 @@
       </div>
 
       <div class="space-y-3">
-        <h4 class="text-sm font-extrabold text-[#2563eb]">1. نصوص الموقع ورقم الواتساب المخفي</h4>
+        <h4 class="text-sm font-extrabold text-[#2563eb]">1. نصوص الموقع ورقم الواتساب</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-bold text-[#182230] mb-1">اسم البراند</label>
             <input type="text" id="adm-brand-name" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
           </div>
           <div>
-            <label class="block text-xs font-bold text-[#182230] mb-1">رقم الواتساب المستقبل للطلبات (مخفي عن الزوار)</label>
+            <label class="block text-xs font-bold text-[#182230] mb-1">رقم الواتساب المستقبل للطلبات</label>
             <input type="text" id="adm-whatsapp-number" dir="ltr" placeholder="2010xxxxxxxx" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] text-right focus:outline-none focus:border-[#2563eb]" />
           </div>
         </div>
@@ -650,7 +654,7 @@
       </div>
 
       <div class="space-y-3 border-t border-slate-200 pt-4">
-        <h4 class="text-sm font-extrabold text-[#2563eb]">2. أسعار الباقات والإضافات</h4>
+        <h4 class="text-sm font-extrabold text-[#2563eb]">2. أسعار الباقات والإضافات والمواقع والبرامج</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-bold text-[#182230] mb-1">اسم الباقة الأساسية</label>
@@ -677,7 +681,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
             <label class="block text-xs font-bold text-[#182230] mb-1">سعر باقة VIP (جنيه)</label>
             <input type="number" id="adm-vip-price" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
@@ -685,6 +689,10 @@
           <div>
             <label class="block text-xs font-bold text-[#182230] mb-1">سعر ويب سايت المشاريع (جنيه)</label>
             <input type="number" id="adm-project-price" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#182230] mb-1">سعر عمل برنامج (جنيه)</label>
+            <input type="number" id="adm-app-price" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
           </div>
         </div>
       </div>
@@ -755,7 +763,7 @@
     (function () {
       'use strict';
 
-      const STORAGE_KEY = 'seif_studio_state_v10';
+      const STORAGE_KEY = 'seif_studio_state_v11';
       const LANG_KEY = 'seif_studio_lang_v1';
       const ADMIN_PASSCODE = '26/1/2013';
       const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
@@ -764,21 +772,23 @@
 
       const UI_COPY = {
         ar: {
-          pageTitle: 'Seif Studio — دعوات لكل المناسبات ومواقع مشاريع',
+          pageTitle: 'Seif Studio — دعوات لكل المناسبات ومواقع مشاريع وبرامج',
           toggleBoxText: 'EG',
-          defaultTagline: 'دعوات لكل المناسبات ومواقع أونلاين',
+          defaultTagline: 'دعوات لكل المناسبات ومواقع أونلاين وبرامج',
           navInvitations: 'الدعوات',
           navBuilder: 'ظبط باقتك',
           navProjects: 'ويب سايت المشاريع',
+          navApps: 'عمل برنامج',
           orderNow: 'اطلب دلوقتي',
-          defaultBadge: 'شغالين أونلاين • تصميم لكل المناسبات',
-          defaultHeroTitle: 'دعوات فرح، خطوبة، كتب كتاب، أعياد ميلاد، سبوع طفل وكل المناسبات.. ومواقع مشاريع',
+          defaultBadge: 'شغالين أونلاين • تصميم لكل المناسبات ومواقع وبرامج',
+          defaultHeroTitle: 'دعوات فرح، خطوبة، كتب كتاب، أعياد ميلاد، سبوع طفل وكل المناسبات.. ومواقع مشاريع وبرامج',
           defaultHeroSubtitle: 'اختار النموذج اللي يعجبك لأي مناسبة، ظبط الباقة والإضافات على مزاجك من الباقة الأساسية أو خد باقة VIP كاملة، واطلب في ثواني والطلب يوصلك على الموقع وعلى الواتساب على طول.',
           ctaBuilder: 'ظبط باقتك دلوقتي',
           ctaSamples: 'شوف النماذج',
           heroBaseLabel: 'الباقة الأساسية',
           heroVipLabel: 'باقة VIP',
           heroProjectLabel: 'ويب سايت المشاريع',
+          heroAppLabel: 'عمل برنامج',
           currency: 'جنيه',
           sampleBadge: 'فرح',
           sampleBasmala: 'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
@@ -834,13 +844,24 @@
           projectPriceLabel: 'سعر الباقة الواحدة',
           projectSingleNote: 'باقة واحدة لويب سايت المشاريع',
           orderProjectBtn: 'اطلب ويب سايت المشاريع',
+          appBadge1: 'عمل برنامج',
+          appBadge2: 'قسم مستقل للبرمجيات',
+          defaultAppTitle: 'عمل برنامج خاص',
+          appDesc: 'تنفيذ وبرمجة برنامج مخصص لفكرتك أو شغلك بشكل مستقل عن المواقع، بواجهة مرتبة وأداء سلس وتواصل مباشر على الواتساب.',
+          appFeat1: '✓ برمجة مخصصة حسب فكرة واحتياج البرنامج',
+          appFeat2: '✓ واجهة استخدام سهلة وواضحة',
+          appFeat3: '✓ تسليم ومتابعة مباشرة عبر الواتساب',
+          appFeat4: '✓ أول تعديل ببلاش وأي تعديل بعده بـ 50 جنيه',
+          appPriceLabel: 'سعر عمل البرنامج',
+          appSingleNote: 'باقة مستقلة لعمل برنامج',
+          orderAppBtn: 'اطلب عمل برنامج',
           orderPkgCaption: 'الباقة:',
           orderAddonsCaption: 'الإضافات:',
           orderPhoneCaption: 'التليفون:',
           orderDateCaption: 'الموعد:',
           orderNotesCaption: 'ملاحظات:',
           nowLabel: 'الآن',
-          footerTagline: 'دعوات لكل المناسبات ومواقع مشاريع',
+          footerTagline: 'دعوات لكل المناسبات ومواقع مشاريع وبرامج',
           footerRevision: 'أول تعديل ببلاش • أي تعديل بعده بـ 50 جنيه',
           modalOrderTitle: 'تأكيد طلبك من Seif Studio',
           modalOrderSubtitle: 'اكتب بياناتك لتسجيل الطلب على الموقع وفتح واتساب بالتفاصيل',
@@ -848,7 +869,7 @@
           phClientName: 'مثال: محمود حسن',
           labelClientPhone: 'رقم التليفون *',
           phClientPhone: 'مثال: 010xxxxxxxx',
-          labelServiceType: 'نوع المناسبة / المشروع',
+          labelServiceType: 'نوع المناسبة / الخدمة',
           optWedding: 'دعوة فرح',
           optEngagement: 'دعوة خطوبة',
           optKatb: 'دعوة كتب كتاب',
@@ -856,11 +877,12 @@
           optBaby: 'دعوة سبوع طفل',
           optOther: 'دعوة مناسبة أخرى',
           optProjects: 'ويب سايت مشاريع',
+          optApp: 'عمل برنامج',
           labelEventDate: 'تاريخ المناسبة / الموعد',
           phEventDate: 'مثال: 20 ديسمبر 2026',
           labelOrderNotes: 'تفاصيل إضافية أو ملاحظات',
-          phOrderNotes: 'الأسماء، نوع المناسبة، المكان أو القاعة، أو أي تفاصيل إضافية...',
-          modalPkgCaption: 'الباقة المختارة:',
+          phOrderNotes: 'الأسماء، نوع المناسبة أو البرنامج، المكان، أو أي تفاصيل إضافية...',
+          modalPkgCaption: 'الباقة / الخدمة المختارة:',
           modalAddonsCaption: 'الإضافات:',
           modalTotalCaption: 'الإجمالي:',
           submitOrderBtn: 'إرسال الطلب وفتح واتساب',
@@ -904,21 +926,23 @@
           waNotes: 'ملاحظات'
         },
         en: {
-          pageTitle: 'Seif Studio — All-Occasion Invitations & Project Websites',
+          pageTitle: 'Seif Studio — All-Occasion Invitations, Project Websites & Apps',
           toggleBoxText: 'عربي',
-          defaultTagline: 'All-Occasion Invitations & Web Studio',
+          defaultTagline: 'All-Occasion Invitations, Web & Apps Studio',
           navInvitations: 'Invitations',
           navBuilder: 'Build Package',
           navProjects: 'Project Websites',
+          navApps: 'Custom Program',
           orderNow: 'Order Now',
-          defaultBadge: 'Online Now • Designs for Every Occasion',
-          defaultHeroTitle: 'Wedding, Engagement, Katb Kitab, Birthday, Baby Shower & All Occasions.. plus Project Websites',
+          defaultBadge: 'Online Now • Invitations, Websites & Custom Programs',
+          defaultHeroTitle: 'Wedding, Engagement, Katb Kitab, Birthday, Baby Shower & All Occasions.. plus Project Websites & Programs',
           defaultHeroSubtitle: 'Pick a template for any occasion, customize your package from the Base Package or go full VIP, and order in seconds with instant WhatsApp & live updates.',
           ctaBuilder: 'Build Your Package',
           ctaSamples: 'View Samples',
           heroBaseLabel: 'Base Package',
           heroVipLabel: 'VIP Package',
           heroProjectLabel: 'Project Website',
+          heroAppLabel: 'Custom Program',
           currency: 'EGP',
           sampleBadge: 'Wedding',
           sampleBasmala: 'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
@@ -974,13 +998,24 @@
           projectPriceLabel: 'Single Package Price',
           projectSingleNote: 'One complete package for project websites',
           orderProjectBtn: 'Order Project Website',
+          appBadge1: 'Custom Program',
+          appBadge2: 'Standalone Software Service',
+          defaultAppTitle: 'Custom Program Build',
+          appDesc: 'Build a dedicated custom program tailored to your idea or workflow, separate from websites, with clean UI and direct WhatsApp follow-up.',
+          appFeat1: '✓ Custom build tailored to your program idea',
+          appFeat2: '✓ Clean and easy-to-use interface',
+          appFeat3: '✓ Direct delivery & follow-up via WhatsApp',
+          appFeat4: '✓ First revision free, extra revisions 50 EGP',
+          appPriceLabel: 'Program Build Price',
+          appSingleNote: 'Standalone package for building a program',
+          orderAppBtn: 'Order Custom Program',
           orderPkgCaption: 'Package:',
           orderAddonsCaption: 'Add-ons:',
           orderPhoneCaption: 'Phone:',
           orderDateCaption: 'Date:',
           orderNotesCaption: 'Notes:',
           nowLabel: 'Just now',
-          footerTagline: 'All-Occasion Invitations & Project Websites',
+          footerTagline: 'All-Occasion Invitations, Project Websites & Programs',
           footerRevision: 'First revision free • Extra revisions 50 EGP',
           modalOrderTitle: 'Confirm Your Order — Seif Studio',
           modalOrderSubtitle: 'Enter your details to log your order and open WhatsApp',
@@ -988,7 +1023,7 @@
           phClientName: 'e.g. Karim Hassan',
           labelClientPhone: 'Phone Number *',
           phClientPhone: 'e.g. 010xxxxxxxx',
-          labelServiceType: 'Event / Project Type',
+          labelServiceType: 'Event / Service Type',
           optWedding: 'Wedding Invitation',
           optEngagement: 'Engagement Invitation',
           optKatb: 'Katb Kitab Invitation',
@@ -996,11 +1031,12 @@
           optBaby: 'Baby Shower Invitation',
           optOther: 'Other Occasion Invitation',
           optProjects: 'Project Website',
+          optApp: 'Custom Program',
           labelEventDate: 'Event Date / Schedule',
           phEventDate: 'e.g. Dec 20, 2026',
           labelOrderNotes: 'Extra Details or Notes',
-          phOrderNotes: 'Names, occasion details, venue, or any additional notes...',
-          modalPkgCaption: 'Selected Package:',
+          phOrderNotes: 'Names, occasion or program details, venue, or any additional notes...',
+          modalPkgCaption: 'Selected Package / Service:',
           modalAddonsCaption: 'Add-ons:',
           modalTotalCaption: 'Total:',
           submitOrderBtn: 'Submit & Open WhatsApp',
@@ -1085,6 +1121,8 @@
           vipPrice: 800,
           projectWebsiteTitle: t.defaultProjectTitle,
           projectWebsitePrice: 2000,
+          appServiceTitle: t.defaultAppTitle,
+          appServicePrice: 3500,
           addons: [
             { id: 'countdown', name: t.addonLabels.countdown.name, desc: t.addonLabels.countdown.desc, price: 50 },
             { id: 'greetings', name: t.addonLabels.greetings.name, desc: t.addonLabels.greetings.desc, price: 50 },
@@ -1204,10 +1242,14 @@
           basePackageName: base.basePackageName,
           vipPackageName: base.vipPackageName,
           projectWebsiteTitle: base.projectWebsiteTitle,
+          appServiceTitle: base.appServiceTitle,
           basePrice: Number(parsed.basePrice !== undefined ? parsed.basePrice : base.basePrice),
           vipPrice: Number(parsed.vipPrice !== undefined ? parsed.vipPrice : base.vipPrice),
           projectWebsitePrice: Number(
             parsed.projectWebsitePrice !== undefined ? parsed.projectWebsitePrice : base.projectWebsitePrice
+          ),
+          appServicePrice: Number(
+            parsed.appServicePrice !== undefined ? parsed.appServicePrice : base.appServicePrice
           ),
           addons: mergedAddons,
           showcaseItems: mergedShowcase,
@@ -1296,6 +1338,7 @@
         document.getElementById('nav-invitations-link').textContent = t.navInvitations;
         document.getElementById('nav-builder-link').textContent = t.navBuilder;
         document.getElementById('nav-projects-link').textContent = t.navProjects;
+        document.getElementById('nav-apps-link').textContent = t.navApps;
         document.getElementById('nav-order-btn').textContent = t.orderNow;
 
         document.getElementById('hero-cta-builder').textContent = t.ctaBuilder;
@@ -1303,9 +1346,11 @@
         document.getElementById('hero-base-label').textContent = t.heroBaseLabel;
         document.getElementById('hero-vip-label').textContent = t.heroVipLabel;
         document.getElementById('hero-project-label').textContent = t.heroProjectLabel;
+        document.getElementById('hero-app-label').textContent = t.heroAppLabel;
         document.getElementById('currency-hero-1').textContent = t.currency;
         document.getElementById('currency-hero-2').textContent = t.currency;
         document.getElementById('currency-hero-3').textContent = t.currency;
+        document.getElementById('currency-hero-4').textContent = t.currency;
 
         document.getElementById('sample-card-badge').textContent = t.sampleBadge;
         document.getElementById('sample-card-basmala').textContent = t.sampleBasmala;
@@ -1357,6 +1402,18 @@
         document.getElementById('project-single-note').textContent = t.projectSingleNote;
         document.getElementById('order-project-website-btn').textContent = t.orderProjectBtn;
 
+        document.getElementById('app-badge-1').textContent = t.appBadge1;
+        document.getElementById('app-badge-2').textContent = t.appBadge2;
+        document.getElementById('app-pkg-desc').textContent = t.appDesc;
+        document.getElementById('app-feat-1').textContent = t.appFeat1;
+        document.getElementById('app-feat-2').textContent = t.appFeat2;
+        document.getElementById('app-feat-3').textContent = t.appFeat3;
+        document.getElementById('app-feat-4').textContent = t.appFeat4;
+        document.getElementById('app-price-label').textContent = t.appPriceLabel;
+        document.getElementById('currency-app').textContent = t.currency;
+        document.getElementById('app-single-note').textContent = t.appSingleNote;
+        document.getElementById('order-app-btn').textContent = t.orderAppBtn;
+
         document.getElementById('footer-tagline').textContent = t.footerTagline;
         document.getElementById('footer-revision').textContent = t.footerRevision;
 
@@ -1382,6 +1439,8 @@
         document.getElementById('opt-other').value = t.optOther;
         document.getElementById('opt-projects').textContent = t.optProjects;
         document.getElementById('opt-projects').value = t.optProjects;
+        document.getElementById('opt-app').textContent = t.optApp;
+        document.getElementById('opt-app').value = t.optApp;
 
         document.getElementById('label-event-date').textContent = t.labelEventDate;
         document.getElementById('order-event-date').placeholder = t.phEventDate;
@@ -1413,6 +1472,7 @@
         document.getElementById('hero-base-price').textContent = state.basePrice;
         document.getElementById('hero-vip-price').textContent = state.vipPrice;
         document.getElementById('hero-project-price').textContent = state.projectWebsitePrice;
+        document.getElementById('hero-app-price').textContent = state.appServicePrice;
 
         document.getElementById('builder-subtitle').innerHTML =
           `${escapeHtml(t.builderSubtitlePrefix)}<strong id="base-pkg-name-inline" class="text-[#182230]">${escapeHtml(state.basePackageName)}</strong>${escapeHtml(t.builderSubtitleSuffix)}`;
@@ -1430,6 +1490,9 @@
 
         document.getElementById('project-pkg-title').textContent = state.projectWebsiteTitle;
         document.getElementById('project-pkg-price').textContent = state.projectWebsitePrice;
+
+        document.getElementById('app-pkg-title').textContent = state.appServiceTitle;
+        document.getElementById('app-pkg-price').textContent = state.appServicePrice;
       }
 
       function getCurrentBuilderCalculation() {
@@ -1705,6 +1768,29 @@
         orderModal.classList.add('hidden');
       }
 
+      if (orderServiceSelect) {
+        orderServiceSelect.addEventListener('change', () => {
+          const val = orderServiceSelect.value;
+          if (val === t.optApp) {
+            draftOrder.packageLabel = state.appServiceTitle;
+            draftOrder.addonsLabel = t.appBadge2;
+            draftOrder.totalPrice = Number(state.appServicePrice) || 3500;
+          } else if (val === t.optProjects) {
+            draftOrder.packageLabel = state.projectWebsiteTitle;
+            draftOrder.addonsLabel = t.projectBadge2;
+            draftOrder.totalPrice = Number(state.projectWebsitePrice) || 2000;
+          } else {
+            const calc = getCurrentBuilderCalculation();
+            draftOrder.packageLabel = calc.packageLabel;
+            draftOrder.addonsLabel = calc.addonsLabel;
+            draftOrder.totalPrice = calc.totalPrice;
+          }
+          document.getElementById('modal-package-label').textContent = draftOrder.packageLabel;
+          document.getElementById('modal-addons-label').textContent = draftOrder.addonsLabel;
+          document.getElementById('modal-total-price').textContent = `${draftOrder.totalPrice} ${t.currency}`;
+        });
+      }
+
       document.getElementById('nav-order-btn').addEventListener('click', () => {
         const calc = getCurrentBuilderCalculation();
         openOrderModal({
@@ -1741,6 +1827,16 @@
           packageLabel: state.projectWebsiteTitle,
           addonsLabel: t.projectBadge2,
           totalPrice: Number(state.projectWebsitePrice) || 2000,
+          notes: ''
+        });
+      });
+
+      document.getElementById('order-app-btn').addEventListener('click', () => {
+        openOrderModal({
+          serviceType: t.optApp,
+          packageLabel: state.appServiceTitle,
+          addonsLabel: t.appBadge2,
+          totalPrice: Number(state.appServicePrice) || 3500,
           notes: ''
         });
       });
@@ -1899,6 +1995,7 @@
         document.getElementById('adm-addon-song').value = state.addons[2]?.price ?? 50;
         document.getElementById('adm-vip-price').value = state.vipPrice;
         document.getElementById('adm-project-price').value = state.projectWebsitePrice;
+        document.getElementById('adm-app-price').value = state.appServicePrice;
       }
 
       document.getElementById('admin-auth-cancel').addEventListener('click', () => {
@@ -1938,6 +2035,7 @@
 
         state.vipPrice = Math.max(0, parseInt(document.getElementById('adm-vip-price').value, 10) || 0);
         state.projectWebsitePrice = Math.max(0, parseInt(document.getElementById('adm-project-price').value, 10) || 0);
+        state.appServicePrice = Math.max(0, parseInt(document.getElementById('adm-app-price').value, 10) || 0);
 
         saveLocalState();
         renderAll();
