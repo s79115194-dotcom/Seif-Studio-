@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seif Studio — دعوات إلكترونية لكل المناسبات ومواقع مشاريع</title>
+  <title>Seif Studio — دعوات لكل المناسبات ومواقع مشاريع</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -306,7 +306,7 @@
                 <h3 id="builder-base-title" class="font-extrabold text-base sm:text-lg text-[#182230]">الباقة الأساسية</h3>
               </div>
               <p id="builder-base-desc" class="text-xs sm:text-sm text-[#526071]">
-                الدعوة الأساسية جاهزة ومرتبة لأي مناسبة؛ تقدر تطلبها على طول أو تزود عليها الإضافات اللي تناسبك.
+                الدعوة الأساسية جاهزة ومرتبة لأي مناسبة وتشمل معرض الصور عادي؛ تقدر تطلبها على طول أو تزود عليها الإضافات اللي تناسبك.
               </p>
             </div>
             <div class="shrink-0">
@@ -668,8 +668,8 @@
             <input type="number" id="adm-addon-countdown" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
           </div>
           <div>
-            <label class="block text-xs font-bold text-[#182230] mb-1">الصور</label>
-            <input type="number" id="adm-addon-photos" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
+            <label class="block text-xs font-bold text-[#182230] mb-1">رسائل التهاني</label>
+            <input type="number" id="adm-addon-greetings" min="0" dir="ltr" class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]" />
           </div>
           <div>
             <label class="block text-xs font-bold text-[#182230] mb-1">الأغنية</label>
@@ -755,11 +755,11 @@
     (function () {
       'use strict';
 
-      const STORAGE_KEY = 'seif_studio_state_v9';
+      const STORAGE_KEY = 'seif_studio_state_v10';
       const LANG_KEY = 'seif_studio_lang_v1';
       const ADMIN_PASSCODE = '26/1/2013';
       const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
-      const ALLOWED_ADDON_IDS = ['countdown', 'photos', 'song'];
+      const ALLOWED_ADDON_IDS = ['countdown', 'greetings', 'song'];
       const ALLOWED_CATEGORIES = ['wedding', 'engagement', 'katb-kitab', 'birthday', 'baby-shower', 'other-events'];
 
       const UI_COPY = {
@@ -807,7 +807,7 @@
           basePill: 'أساسية',
           defaultBaseName: 'الباقة الأساسية',
           defaultVipName: 'باقة VIP',
-          baseDesc: 'الدعوة الأساسية جاهزة ومرتبة لأي مناسبة؛ تقدر تطلبها على طول أو تزود عليها الإضافات اللي تناسبك.',
+          baseDesc: 'الدعوة الأساسية جاهزة ومرتبة لأي مناسبة وتشمل معرض الصور عادي؛ تقدر تطلبها على طول أو تزود عليها الإضافات اللي تناسبك.',
           baseMinNote: 'الحد الأدنى للباقة',
           addonsTitle: 'الإضافات الفردية (اختار اللي تحتاجه):',
           addonsCountSuffix: 'إضافات مختارة',
@@ -882,7 +882,7 @@
           toastFillItem: 'اكتب اسم النموذج والأسماء الأول',
           addonLabels: {
             countdown: { name: 'عداد الوقت', desc: 'عداد تنازلي لموعد المناسبة' },
-            photos: { name: 'الصور', desc: 'معرض صور منسق للمناسبة' },
+            greetings: { name: 'رسائل التهاني', desc: 'قسم لإرسال واستقبال تهاني المدعوين' },
             song: { name: 'الأغنية', desc: 'موسيقى أو أغنية خلفية قابلة للتشغيل' }
           },
           catLabels: {
@@ -947,7 +947,7 @@
           basePill: 'Base',
           defaultBaseName: 'Base Package',
           defaultVipName: 'VIP Package',
-          baseDesc: 'Clean and ready-to-use base invitation for any occasion; order it as is or add extra features.',
+          baseDesc: 'Clean and ready-to-use base invitation for any occasion including photos as standard; order it as is or add extra features.',
           baseMinNote: 'Minimum package price',
           addonsTitle: 'Individual Add-ons (choose what you need):',
           addonsCountSuffix: 'add-ons selected',
@@ -1022,7 +1022,7 @@
           toastFillItem: 'Please enter sample title and names',
           addonLabels: {
             countdown: { name: 'Countdown Timer', desc: 'Live countdown timer to your event' },
-            photos: { name: 'Photo Gallery', desc: 'Organized photo gallery for the occasion' },
+            greetings: { name: 'Guest Greetings', desc: 'Section for guests to send congratulation notes' },
             song: { name: 'Background Song', desc: 'Playable music or song track' }
           },
           catLabels: {
@@ -1087,7 +1087,7 @@
           projectWebsitePrice: 2000,
           addons: [
             { id: 'countdown', name: t.addonLabels.countdown.name, desc: t.addonLabels.countdown.desc, price: 50 },
-            { id: 'photos', name: t.addonLabels.photos.name, desc: t.addonLabels.photos.desc, price: 50 },
+            { id: 'greetings', name: t.addonLabels.greetings.name, desc: t.addonLabels.greetings.desc, price: 50 },
             { id: 'song', name: t.addonLabels.song.name, desc: t.addonLabels.song.desc, price: 50 }
           ],
           showcaseItems: [
@@ -1159,7 +1159,8 @@
 
         const rawAddons = Array.isArray(parsed.addons) ? parsed.addons : [];
         const mergedAddons = ALLOWED_ADDON_IDS.map((id, idx) => {
-          const found = rawAddons.find((a) => a && a.id === id);
+          const matchedSourceId = id === 'greetings' ? (rawAddons.some((a) => a && a.id === 'greetings') ? 'greetings' : 'photos') : id;
+          const found = rawAddons.find((a) => a && a.id === matchedSourceId);
           const fallback = base.addons[idx];
           return {
             id,
@@ -1894,7 +1895,7 @@
         document.getElementById('adm-base-name').value = state.basePackageName;
         document.getElementById('adm-base-price').value = state.basePrice;
         document.getElementById('adm-addon-countdown').value = state.addons[0]?.price ?? 50;
-        document.getElementById('adm-addon-photos').value = state.addons[1]?.price ?? 50;
+        document.getElementById('adm-addon-greetings').value = state.addons[1]?.price ?? 50;
         document.getElementById('adm-addon-song').value = state.addons[2]?.price ?? 50;
         document.getElementById('adm-vip-price').value = state.vipPrice;
         document.getElementById('adm-project-price').value = state.projectWebsitePrice;
@@ -1932,7 +1933,7 @@
         state.basePrice = Math.max(0, parseInt(document.getElementById('adm-base-price').value, 10) || 0);
 
         if (state.addons[0]) state.addons[0].price = Math.max(0, parseInt(document.getElementById('adm-addon-countdown').value, 10) || 0);
-        if (state.addons[1]) state.addons[1].price = Math.max(0, parseInt(document.getElementById('adm-addon-photos').value, 10) || 0);
+        if (state.addons[1]) state.addons[1].price = Math.max(0, parseInt(document.getElementById('adm-addon-greetings').value, 10) || 0);
         if (state.addons[2]) state.addons[2].price = Math.max(0, parseInt(document.getElementById('adm-addon-song').value, 10) || 0);
 
         state.vipPrice = Math.max(0, parseInt(document.getElementById('adm-vip-price').value, 10) || 0);
