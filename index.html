@@ -338,7 +338,7 @@
             </button>
 
             <p id="builder-order-hint" class="text-[11px] text-[#526071] text-center leading-relaxed">
-              لما تدوس "اطلب دلوقتي" هتكتب بياناتك وتفاصيل الطلب، والطلب هيتسجل على الموقع وعلى قاعدة البيانات ويفتحلك واتساب جاهز بكل التفاصيل.
+              لما تدوس "اطلب دلوقتي" هتكتب بياناتك وتفاصيل الطلب، والطلب هيتسجل على الموقع وعلى قاعدة البيانات وتقدر تكلم العميل على واتساب من لوحة التحكم.
             </p>
           </div>
         </div>
@@ -346,7 +346,7 @@
     </div>
   </section>
 
-  <!-- PROJECT WEBSITES SECTION (مستقل لوحده) -->
+  <!-- PROJECT WEBSITES SECTION -->
   <section id="projects-website" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-6">
     <div class="rounded-3xl soft-card p-6 sm:p-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
@@ -394,7 +394,7 @@
     </div>
   </section>
 
-  <!-- APPS / PROGRAMS SECTION (مستقل لوحده وسعره 3500 جنيه) -->
+  <!-- APPS / PROGRAMS SECTION -->
   <section id="apps-service" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 pb-10">
     <div class="rounded-3xl soft-card p-6 sm:p-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
@@ -458,7 +458,7 @@
       <div class="flex items-center justify-between border-b border-slate-200 pb-3">
         <div>
           <h3 id="modal-order-title" class="text-lg font-extrabold text-[#182230]">تأكيد طلبك من Seif Studio</h3>
-          <p id="modal-order-subtitle" class="text-xs text-[#526071]">اكتب بياناتك لتسجيل الطلب على الموقع وفتح واتساب بالتفاصيل</p>
+          <p id="modal-order-subtitle" class="text-xs text-[#526071]">اكتب بياناتك لتسجيل الطلب مباشرة على الموقع وقاعدة البيانات</p>
         </div>
         <button
           type="button"
@@ -555,7 +555,7 @@
             id="submit-order-btn"
             class="cursor-pointer py-3 px-4 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs sm:text-sm font-extrabold transition-colors"
           >
-            إرسال الطلب وفتح واتساب
+            تأكيد وتسجيل الطلب
           </button>
           <button
             type="button"
@@ -566,6 +566,13 @@
           </button>
         </div>
       </form>
+
+      <div id="order-success-panel" class="hidden rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-950 space-y-2.5">
+        <div class="text-sm font-extrabold">✓ تم تسجيل طلبك بنجاح برقم <span id="saved-order-code" class="font-cinzel"></span></div>
+        <p class="text-xs leading-relaxed text-emerald-900">وصل طلبك لإدارة الموقع وتم حفظه بنجاح. دي بيانات طلبك:</p>
+        <div id="order-summary-box" class="rounded-xl bg-white border border-emerald-200 p-3 text-xs space-y-1 text-[#182230]"></div>
+        <button type="button" id="order-done-btn" class="cursor-pointer px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-extrabold transition-colors">تمام</button>
+      </div>
     </div>
   </div>
 
@@ -832,7 +839,7 @@
           noAddons: 'بدون إضافات',
           withoutAddonsBaseOnly: 'بدون إضافات (الباقة الأساسية فقط)',
           totalLabel: 'الإجمالي:',
-          builderOrderHint: 'لما تدوس "اطلب دلوقتي" هتكتب بياناتك وتفاصيل الطلب، والطلب هيتسجل على الموقع وعلى قاعدة البيانات ويفتحلك واتساب جاهز بكل التفاصيل.',
+          builderOrderHint: 'لما تدوس "اطلب دلوقتي" هتكتب بياناتك وتفاصيل الطلب، والطلب هيتسجل على الموقع وعلى قاعدة البيانات وتقدر تكلم العميل على واتساب من لوحة التحكم.',
           projectBadge1: 'ويب سايت المشاريع',
           projectBadge2: 'باقة واحدة شاملة',
           defaultProjectTitle: 'ويب سايت المشاريع المتكامل',
@@ -864,7 +871,7 @@
           footerTagline: 'دعوات لكل المناسبات ومواقع مشاريع وبرامج',
           footerRevision: 'أول تعديل ببلاش • أي تعديل بعده بـ 50 جنيه',
           modalOrderTitle: 'تأكيد طلبك من Seif Studio',
-          modalOrderSubtitle: 'اكتب بياناتك لتسجيل الطلب على الموقع وفتح واتساب بالتفاصيل',
+          modalOrderSubtitle: 'اكتب بياناتك لتسجيل الطلب مباشرة على الموقع وقاعدة البيانات',
           labelClientName: 'الاسم بالكامل *',
           phClientName: 'مثال: محمود حسن',
           labelClientPhone: 'رقم التليفون *',
@@ -885,7 +892,7 @@
           modalPkgCaption: 'الباقة / الخدمة المختارة:',
           modalAddonsCaption: 'الإضافات:',
           modalTotalCaption: 'الإجمالي:',
-          submitOrderBtn: 'إرسال الطلب وفتح واتساب',
+          submitOrderBtn: 'تأكيد وتسجيل الطلب',
           cancelBtn: 'إلغاء',
           adminAuthTitle: 'دخول الأدمن',
           adminAuthSubtitle: 'اكتب الرقم السري لفتح لوحة التحكم',
@@ -893,7 +900,7 @@
           adminAuthError: 'الرقم السري غلط، جرب تاني.',
           adminLoginBtn: 'دخول',
           toastEnterNamePhone: 'اكتب الاسم ورقم التليفون الأول',
-          toastOrderSent: 'تم تسجيل الطلب وفتح واتساب',
+          toastOrderSent: 'تم تسجيل الطلب بنجاح ✓',
           toastVipApplied: 'تم التحويل إلى باقة VIP',
           toastAdminOpened: 'تم فتح لوحة الأدمن',
           toastSaved: 'تم حفظ التعديلات على الموقع و Firebase',
@@ -936,7 +943,7 @@
           orderNow: 'Order Now',
           defaultBadge: 'Online Now • Invitations, Websites & Custom Programs',
           defaultHeroTitle: 'Wedding, Engagement, Katb Kitab, Birthday, Baby Shower & All Occasions.. plus Project Websites & Programs',
-          defaultHeroSubtitle: 'Pick a template for any occasion, customize your package from the Base Package or go full VIP, and order in seconds with instant WhatsApp & live updates.',
+          defaultHeroSubtitle: 'Pick a template for any occasion, customize your package from the Base Package or go full VIP, and order in seconds with live order tracking.',
           ctaBuilder: 'Build Your Package',
           ctaSamples: 'View Samples',
           heroBaseLabel: 'Base Package',
@@ -986,7 +993,7 @@
           noAddons: 'No add-ons',
           withoutAddonsBaseOnly: 'No add-ons (Base Package only)',
           totalLabel: 'Total:',
-          builderOrderHint: 'Click "Order Now" to enter your details, log the order live, and open WhatsApp pre-filled.',
+          builderOrderHint: 'Click "Order Now" to submit your order directly to the dashboard and database, and message the client from the admin panel.',
           projectBadge1: 'Project Websites',
           projectBadge2: 'Single All-in-One Plan',
           defaultProjectTitle: 'Complete Project Website',
@@ -1018,7 +1025,7 @@
           footerTagline: 'All-Occasion Invitations, Project Websites & Programs',
           footerRevision: 'First revision free • Extra revisions 50 EGP',
           modalOrderTitle: 'Confirm Your Order — Seif Studio',
-          modalOrderSubtitle: 'Enter your details to log your order and open WhatsApp',
+          modalOrderSubtitle: 'Enter your details to submit your order directly to the system',
           labelClientName: 'Full Name *',
           phClientName: 'e.g. Karim Hassan',
           labelClientPhone: 'Phone Number *',
@@ -1039,7 +1046,7 @@
           modalPkgCaption: 'Selected Package / Service:',
           modalAddonsCaption: 'Add-ons:',
           modalTotalCaption: 'Total:',
-          submitOrderBtn: 'Submit & Open WhatsApp',
+          submitOrderBtn: 'Confirm & Submit Order',
           cancelBtn: 'Cancel',
           adminAuthTitle: 'Admin Login',
           adminAuthSubtitle: 'Enter passcode to open the dashboard',
@@ -1047,7 +1054,7 @@
           adminAuthError: 'Incorrect passcode, please try again.',
           adminLoginBtn: 'Login',
           toastEnterNamePhone: 'Please enter your name and phone number',
-          toastOrderSent: 'Order logged and WhatsApp opened',
+          toastOrderSent: 'Order submitted successfully ✓',
           toastVipApplied: 'Switched to VIP Package',
           toastAdminOpened: 'Admin dashboard opened',
           toastSaved: 'Changes saved to site & Firebase',
@@ -1331,6 +1338,35 @@
         const div = document.createElement('div');
         div.textContent = String(value || '');
         return div.innerHTML;
+      }
+
+      function sanitizePhoneDigits(raw) {
+        let digits = String(raw || '').replace(/[^\d]/g, '');
+        if (digits.startsWith('01') && digits.length === 11) {
+          digits = '2' + digits;
+        }
+        return digits;
+      }
+
+      function buildOrderWhatsAppMessage(ord) {
+        const lines = [
+          `${t.waHeader} ${state.brandName}:`,
+          `• ${t.waName}: ${ord.clientName}`,
+          `• ${t.waPhone}: ${ord.phone}`,
+          `• ${t.waType}: ${ord.serviceType}`,
+          `• ${t.waPkg}: ${ord.packageLabel}`,
+          `• ${t.waAddons}: ${ord.addonsLabel}`,
+          `• ${t.waTotal}: ${ord.totalPrice} ${t.currency}`
+        ];
+        if (ord.eventDate) lines.push(`• ${t.waDate}: ${ord.eventDate}`);
+        if (ord.notes) lines.push(`• ${t.waNotes}: ${ord.notes}`);
+        return lines.join('\n');
+      }
+
+      function buildClientWhatsAppUrl(ord) {
+        const targetPhone = sanitizePhoneDigits(ord.phone) || sanitizePhoneDigits(state.whatsappNumber);
+        const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
+        return targetPhone ? `https://wa.me/${targetPhone}?text=${msg}` : `https://wa.me/?text=${msg}`;
       }
 
       function applyLocalizedChrome() {
@@ -1693,30 +1729,42 @@
           return;
         }
 
-        admListEl.innerHTML = state.orders.map((ord) => `
-          <div class="rounded-xl bg-[#f6f7f9] p-3.5 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div class="space-y-0.5">
-              <div>
-                <span class="font-extrabold text-[#182230]">${escapeHtml(ord.clientName)}</span>
-                <span class="text-[#526071]"> (${escapeHtml(ord.phone)}) • ${escapeHtml(ord.serviceType)}</span>
+        admListEl.innerHTML = state.orders.map((ord) => {
+          const waHref = buildClientWhatsAppUrl(ord);
+          return `
+            <div class="rounded-xl bg-[#f6f7f9] p-3.5 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="space-y-0.5">
+                <div>
+                  <span class="font-extrabold text-[#182230]">${escapeHtml(ord.clientName)}</span>
+                  <span class="text-[#526071]"> (${escapeHtml(ord.phone)}) • ${escapeHtml(ord.serviceType)}</span>
+                </div>
+                <div class="text-[#526071]">
+                  <strong class="text-[#182230]">${escapeHtml(t.orderPkgCaption)}</strong> ${escapeHtml(ord.packageLabel)} — <strong class="text-[#182230]">${escapeHtml(t.orderAddonsCaption)}</strong> ${escapeHtml(ord.addonsLabel)}
+                </div>
+                ${ord.eventDate ? `<div class="text-[#526071]"><strong class="text-[#182230]">${escapeHtml(t.orderDateCaption)}</strong> ${escapeHtml(ord.eventDate)}</div>` : ''}
+                ${ord.notes ? `<div class="text-[#526071]"><strong class="text-[#182230]">${escapeHtml(t.orderNotesCaption)}</strong> ${escapeHtml(ord.notes)}</div>` : ''}
               </div>
-              <div class="text-[#526071]">
-                <strong class="text-[#182230]">${escapeHtml(t.orderPkgCaption)}</strong> ${escapeHtml(ord.packageLabel)} — <strong class="text-[#182230]">${escapeHtml(t.orderAddonsCaption)}</strong> ${escapeHtml(ord.addonsLabel)}
+              <div class="flex items-center gap-2 shrink-0">
+                <span class="font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} ${escapeHtml(t.currency)}</span>
+                <a
+                  href="${escapeHtml(waHref)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
+                >
+                  واتساب
+                </a>
+                <button
+                  type="button"
+                  data-delete-order="${escapeHtml(ord.id)}"
+                  class="delete-order-btn cursor-pointer px-2.5 py-1 rounded-lg bg-white hover:bg-rose-50 text-rose-600 border border-slate-200 font-bold"
+                >
+                  حذف
+                </button>
               </div>
-              ${ord.notes ? `<div class="text-[#526071]"><strong class="text-[#182230]">${escapeHtml(t.orderNotesCaption)}</strong> ${escapeHtml(ord.notes)}</div>` : ''}
             </div>
-            <div class="flex items-center gap-2 shrink-0">
-              <span class="font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} ${escapeHtml(t.currency)}</span>
-              <button
-                type="button"
-                data-delete-order="${escapeHtml(ord.id)}"
-                class="delete-order-btn cursor-pointer px-2.5 py-1 rounded-lg bg-white hover:bg-rose-50 text-rose-600 border border-slate-200 font-bold"
-              >
-                حذف
-              </button>
-            </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
 
         admListEl.querySelectorAll('.delete-order-btn').forEach((btn) => {
           btn.addEventListener('click', () => {
@@ -1742,6 +1790,7 @@
 
       const orderModal = document.getElementById('order-modal');
       const orderForm = document.getElementById('client-order-form');
+      const orderSuccessPanel = document.getElementById('order-success-panel');
       const orderServiceSelect = document.getElementById('order-service-type');
       const orderNotesInput = document.getElementById('order-notes');
 
@@ -1756,6 +1805,8 @@
 
         if (orderServiceSelect) orderServiceSelect.value = draftOrder.serviceType;
         if (orderNotesInput) orderNotesInput.value = draftOrder.notes;
+        if (orderSuccessPanel) orderSuccessPanel.classList.add('hidden');
+        if (orderForm) orderForm.classList.remove('hidden');
 
         document.getElementById('modal-package-label').textContent = draftOrder.packageLabel;
         document.getElementById('modal-addons-label').textContent = draftOrder.addonsLabel;
@@ -1766,6 +1817,8 @@
 
       function closeOrderModal() {
         orderModal.classList.add('hidden');
+        if (orderSuccessPanel) orderSuccessPanel.classList.add('hidden');
+        if (orderForm) orderForm.classList.remove('hidden');
       }
 
       if (orderServiceSelect) {
@@ -1843,8 +1896,9 @@
 
       document.getElementById('close-order-modal-btn').addEventListener('click', closeOrderModal);
       document.getElementById('cancel-order-modal-btn').addEventListener('click', closeOrderModal);
+      document.getElementById('order-done-btn').addEventListener('click', closeOrderModal);
 
-      orderForm.addEventListener('submit', (e) => {
+      orderForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const clientName = document.getElementById('order-client-name').value.trim();
@@ -1858,8 +1912,9 @@
           return;
         }
 
+        const orderCode = 'ORD-' + Date.now().toString().slice(-4);
         const newOrder = {
-          id: 'ORD-' + Date.now().toString().slice(-4),
+          id: orderCode,
           clientName,
           phone,
           serviceType,
@@ -1874,30 +1929,34 @@
         state.orders.unshift(newOrder);
         saveLocalState();
         renderAdminOrders();
-        syncStateToFirebase();
+        await syncStateToFirebase();
 
-        const targetWa = (state.whatsappNumber || '').replace(/[^\d]/g, '');
-        const messageLines = [
-          `${t.waHeader} ${state.brandName}:`,
-          `• ${t.waName}: ${clientName}`,
-          `• ${t.waPhone}: ${phone}`,
-          `• ${t.waType}: ${serviceType}`,
-          `• ${t.waPkg}: ${draftOrder.packageLabel}`,
-          `• ${t.waAddons}: ${draftOrder.addonsLabel}`,
-          `• ${t.waTotal}: ${draftOrder.totalPrice} ${t.currency}`
-        ];
-        if (eventDate) messageLines.push(`• ${t.waDate}: ${eventDate}`);
-        if (notes) messageLines.push(`• ${t.waNotes}: ${notes}`);
-
-        const waUrl = targetWa
-          ? `https://wa.me/${targetWa}?text=${encodeURIComponent(messageLines.join('\n'))}`
-          : `https://wa.me/?text=${encodeURIComponent(messageLines.join('\n'))}`;
+        document.getElementById('saved-order-code').textContent = orderCode;
+        const summaryBox = document.getElementById('order-summary-box');
+        summaryBox.innerHTML = '';
+        [
+          ['رقم الطلب', orderCode],
+          ['الاسم', clientName],
+          ['التليفون', phone],
+          ['النوع', serviceType],
+          ['الباقة', draftOrder.packageLabel],
+          ['الإضافات', draftOrder.addonsLabel],
+          ['الإجمالي', `${draftOrder.totalPrice} ${t.currency}`],
+          ['الموعد', eventDate],
+          ['ملاحظات', notes]
+        ].forEach(([labelText, valText]) => {
+          if (!valText) return;
+          const row = document.createElement('div');
+          const strong = document.createElement('b');
+          strong.textContent = labelText + ': ';
+          row.append(strong, document.createTextNode(String(valText)));
+          summaryBox.appendChild(row);
+        });
 
         orderForm.reset();
-        closeOrderModal();
+        orderForm.classList.add('hidden');
+        orderSuccessPanel.classList.remove('hidden');
         showToast(t.toastOrderSent);
-
-        window.open(waUrl, '_blank', 'noopener,noreferrer');
       });
 
       document.getElementById('apply-vip-btn').addEventListener('click', () => {
@@ -2002,10 +2061,11 @@
         adminAuthModal.classList.add('hidden');
       });
 
-      adminAuthForm.addEventListener('submit', (e) => {
+      adminAuthForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (adminPasscodeInput.value.trim() === ADMIN_PASSCODE) {
           adminAuthModal.classList.add('hidden');
+          await fetchStateFromFirebase();
           fillAdminInputs();
           renderAdminOrders();
           adminPanel.classList.remove('hidden');
