@@ -741,6 +741,34 @@
         <div id="adm-orders-list" class="space-y-2"></div>
       </div>
 
+      <div class="space-y-3 border-t border-slate-200 pt-4">
+        <h4 class="text-sm font-extrabold text-[#2563eb]">5. إدارة صلاحيات الأدمن</h4>
+        <p id="adm-access-status" class="text-xs text-[#526071]">حسابك الحالي مرتبط بلوحة التحكم.</p>
+        <div class="flex flex-col sm:flex-row gap-2.5">
+          <input
+            type="text"
+            id="adm-invite-name"
+            placeholder="اسم الشخص المضاف (اختياري)"
+            class="sm:w-1/3 rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]"
+          />
+          <input
+            type="text"
+            id="adm-invite-id"
+            dir="ltr"
+            placeholder="معرف الجهاز أو البريد المسموح له"
+            class="flex-1 rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] text-right focus:outline-none focus:border-[#2563eb]"
+          />
+          <button
+            type="button"
+            id="adm-add-member-btn"
+            class="cursor-pointer px-4 py-2 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-extrabold transition-colors shrink-0"
+          >
+            + إضافة شخص
+          </button>
+        </div>
+        <div id="adm-members-list" class="space-y-2"></div>
+      </div>
+
       <div class="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-4">
         <button
           type="button"
@@ -772,6 +800,7 @@
 
       const STORAGE_KEY = 'seif_studio_state_v11';
       const LANG_KEY = 'seif_studio_lang_v1';
+      const DEVICE_KEY = 'seif_studio_device_id_v1';
       const ADMIN_PASSCODE = '26/1/2013';
       const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
       const ALLOWED_ADDON_IDS = ['countdown', 'greetings', 'song'];
@@ -898,11 +927,16 @@
           adminAuthSubtitle: 'اكتب الرقم السري لفتح لوحة التحكم',
           phPasscode: 'الرقم السري',
           adminAuthError: 'الرقم السري غلط، جرب تاني.',
+          adminLockedError: 'صفحة الأدمن مقفولة على الحساب المصرح له فقط.',
           adminLoginBtn: 'دخول',
           toastEnterNamePhone: 'اكتب الاسم ورقم التليفون الأول',
           toastOrderSent: 'تم تسجيل الطلب بنجاح ✓',
           toastVipApplied: 'تم التحويل إلى باقة VIP',
           toastAdminOpened: 'تم فتح لوحة الأدمن',
+          toastAdminLocked: 'الدخول مقفول على الأدمن الأساسي فقط',
+          toastMemberAdded: 'تم إضافة الشخص بنجاح',
+          toastMemberRemoved: 'تم إزالة الشخص',
+          toastEnterMemberId: 'اكتب معرف أو بريد الشخص الأول',
           toastSaved: 'تم حفظ التعديلات على الموقع و Firebase',
           toastItemAdded: 'تمت إضافة النموذج وحفظه',
           toastOrdersCleared: 'تم مسح كل الطلبات',
@@ -1052,11 +1086,16 @@
           adminAuthSubtitle: 'Enter passcode to open the dashboard',
           phPasscode: 'Passcode',
           adminAuthError: 'Incorrect passcode, please try again.',
+          adminLockedError: 'Admin access is locked to authorized accounts only.',
           adminLoginBtn: 'Login',
           toastEnterNamePhone: 'Please enter your name and phone number',
           toastOrderSent: 'Order submitted successfully ✓',
           toastVipApplied: 'Switched to VIP Package',
           toastAdminOpened: 'Admin dashboard opened',
+          toastAdminLocked: 'Admin access is restricted to authorized users',
+          toastMemberAdded: 'Person added to admin access',
+          toastMemberRemoved: 'Person removed',
+          toastEnterMemberId: 'Enter an identifier or email first',
           toastSaved: 'Changes saved to site & Firebase',
           toastItemAdded: 'Sample added and saved',
           toastOrdersCleared: 'All orders cleared',
@@ -1087,6 +1126,21 @@
           waNotes: 'Notes'
         }
       };
+
+      function getOrCreateDeviceId() {
+        try {
+          let existing = localStorage.getItem(DEVICE_KEY);
+          if (!existing) {
+            existing = 'DEV-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+            localStorage.setItem(DEVICE_KEY, existing);
+          }
+          return existing;
+        } catch (err) {
+          return 'DEV-LOCAL';
+        }
+      }
+
+      const currentDeviceId = getOrCreateDeviceId();
 
       function loadSavedLang() {
         try {
@@ -1191,7 +1245,9 @@
               venue: currentLang === 'en' ? 'Crystal Hall — Heliopolis' : 'قاعة كريستال — مصر الجديدة'
             }
           ],
-          orders: []
+          orders: [],
+          adminOwnerId: '',
+          authorizedAdmins: []
         };
       }
 
@@ -1237,6 +1293,29 @@
               ? Object.values(parsed.orders).reverse()
               : []);
 
+        const ownerId = typeof parsed.adminOwnerId === 'string' ? parsed.adminOwnerId.trim() : '';
+        const rawAdmins = Array.isArray(parsed.authorizedAdmins)
+          ? parsed.authorizedAdmins
+          : (parsed.authorizedAdmins && typeof parsed.authorizedAdmins === 'object'
+              ? Object.values(parsed.authorizedAdmins)
+              : []);
+
+        const normalizedAdmins = rawAdmins
+          .filter((m) => m && typeof m.id === 'string' && m.id.trim())
+          .map((m) => ({
+            id: m.id.trim(),
+            name: typeof m.name === 'string' && m.name.trim() ? m.name.trim() : 'أدمن مضاف',
+            role: m.id.trim() === ownerId ? 'owner' : 'added'
+          }));
+
+        if (ownerId && !normalizedAdmins.some((m) => m.id === ownerId)) {
+          normalizedAdmins.unshift({
+            id: ownerId,
+            name: 'الأدمن الأساسي',
+            role: 'owner'
+          });
+        }
+
         return {
           ...base,
           ...parsed,
@@ -1260,7 +1339,9 @@
           ),
           addons: mergedAddons,
           showcaseItems: mergedShowcase,
-          orders: mergedOrders
+          orders: mergedOrders,
+          adminOwnerId: ownerId,
+          authorizedAdmins: normalizedAdmins
         };
       }
 
@@ -1348,18 +1429,24 @@
         return digits;
       }
 
+      function isUserAuthorizedAdmin() {
+        if (!state.adminOwnerId) return true;
+        if (state.adminOwnerId === currentDeviceId) return true;
+        return Array.isArray(state.authorizedAdmins) && state.authorizedAdmins.some((m) => m.id === currentDeviceId);
+      }
+
       function buildOrderWhatsAppMessage(ord) {
         const lines = [
           `${t.waHeader} ${state.brandName}:`,
-          `• ${t.waName}: ${ord.clientName}`,
-          `• ${t.waPhone}: ${ord.phone}`,
-          `• ${t.waType}: ${ord.serviceType}`,
-          `• ${t.waPkg}: ${ord.packageLabel}`,
-          `• ${t.waAddons}: ${ord.addonsLabel}`,
-          `• ${t.waTotal}: ${ord.totalPrice} ${t.currency}`
+          `${t.waName}: ${ord.clientName}`,
+          `${t.waPhone}: ${ord.phone}`,
+          `${t.waType}: ${ord.serviceType}`,
+          `${t.waPkg}: ${ord.packageLabel}`,
+          `${t.waAddons}: ${ord.addonsLabel}`,
+          `${t.waTotal}: ${ord.totalPrice} ${t.currency}`
         ];
-        if (ord.eventDate) lines.push(`• ${t.waDate}: ${ord.eventDate}`);
-        if (ord.notes) lines.push(`• ${t.waNotes}: ${ord.notes}`);
+        if (ord.eventDate) lines.push(`${t.waDate}: ${ord.eventDate}`);
+        if (ord.notes) lines.push(`${t.waNotes}: ${ord.notes}`);
         return lines.join('\n');
       }
 
@@ -1778,6 +1865,58 @@
         });
       }
 
+      function renderAdminMembers() {
+        const statusEl = document.getElementById('adm-access-status');
+        const listEl = document.getElementById('adm-members-list');
+        if (!statusEl || !listEl) return;
+
+        statusEl.textContent = `صفحة الأدمن مقفولة على الحساب المصرح له فقط. معرف جهازك الحالي: ${currentDeviceId}`;
+
+        const members = Array.isArray(state.authorizedAdmins) ? state.authorizedAdmins : [];
+        if (members.length === 0) {
+          listEl.innerHTML = '<div class="text-xs text-[#526071] bg-[#f6f7f9] rounded-xl p-3 border border-slate-200">لا يوجد أشخاص مضافون بعد.</div>';
+          return;
+        }
+
+        listEl.innerHTML = members.map((m) => {
+          const isOwner = m.id === state.adminOwnerId;
+          return `
+            <div class="rounded-xl bg-[#f6f7f9] p-3 border border-slate-200 text-xs flex items-center justify-between gap-2">
+              <div class="space-y-0.5">
+                <div class="font-extrabold text-[#182230]">
+                  ${escapeHtml(m.name)}
+                  <span class="mx-1.5 px-2 py-0.5 rounded-full text-[10px] ${isOwner ? 'bg-blue-100 text-[#2563eb]' : 'bg-white text-[#526071] border border-slate-200'}">
+                    ${isOwner ? 'أول دخول (مقفول)' : 'مضاف'}
+                  </span>
+                </div>
+                <div class="text-[11px] text-[#526071]" dir="ltr">${escapeHtml(m.id)}</div>
+              </div>
+              ${isOwner ? '' : `
+                <button
+                  type="button"
+                  data-remove-member="${escapeHtml(m.id)}"
+                  class="remove-member-btn cursor-pointer px-2.5 py-1 rounded-lg bg-white hover:bg-rose-50 text-rose-600 border border-slate-200 font-bold"
+                >
+                  إزالة
+                </button>
+              `}
+            </div>
+          `;
+        }).join('');
+
+        listEl.querySelectorAll('.remove-member-btn').forEach((btn) => {
+          btn.addEventListener('click', async () => {
+            const targetId = btn.getAttribute('data-remove-member');
+            if (!targetId || targetId === state.adminOwnerId) return;
+            state.authorizedAdmins = state.authorizedAdmins.filter((m) => m.id !== targetId);
+            saveLocalState();
+            renderAdminMembers();
+            await syncStateToFirebase();
+            showToast(t.toastMemberRemoved);
+          });
+        });
+      }
+
       document.getElementById('lang-toggle-btn').addEventListener('click', () => {
         currentLang = currentLang === 'ar' ? 'en' : 'ar';
         saveLang(currentLang);
@@ -1981,9 +2120,14 @@
       const adminPanel = document.getElementById('admin-panel');
       const brandTriggerLink = document.getElementById('brand-trigger-link');
 
-      function openAdminAuthPrompt() {
+      async function openAdminAuthPrompt() {
+        await fetchStateFromFirebase();
         adminAuthError.classList.add('hidden');
         adminPasscodeInput.value = '';
+        if (state.adminOwnerId && !isUserAuthorizedAdmin()) {
+          adminAuthError.textContent = t.adminLockedError;
+          adminAuthError.classList.remove('hidden');
+        }
         adminAuthModal.classList.remove('hidden');
         setTimeout(() => adminPasscodeInput.focus(), 60);
       }
@@ -2063,20 +2207,68 @@
 
       adminAuthForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (adminPasscodeInput.value.trim() === ADMIN_PASSCODE) {
-          adminAuthModal.classList.add('hidden');
-          await fetchStateFromFirebase();
-          fillAdminInputs();
-          renderAdminOrders();
-          adminPanel.classList.remove('hidden');
-          showToast(t.toastAdminOpened);
-        } else {
+        await fetchStateFromFirebase();
+
+        if (adminPasscodeInput.value.trim() !== ADMIN_PASSCODE) {
+          adminAuthError.textContent = t.adminAuthError;
           adminAuthError.classList.remove('hidden');
+          return;
         }
+
+        if (!state.adminOwnerId) {
+          state.adminOwnerId = currentDeviceId;
+          state.authorizedAdmins = [{
+            id: currentDeviceId,
+            name: 'الأدمن الأساسي',
+            role: 'owner'
+          }];
+          saveLocalState();
+          await syncStateToFirebase();
+        } else if (!isUserAuthorizedAdmin()) {
+          adminAuthError.textContent = t.adminLockedError;
+          adminAuthError.classList.remove('hidden');
+          showToast(t.toastAdminLocked);
+          return;
+        }
+
+        adminAuthModal.classList.add('hidden');
+        fillAdminInputs();
+        renderAdminOrders();
+        renderAdminMembers();
+        adminPanel.classList.remove('hidden');
+        showToast(t.toastAdminOpened);
       });
 
       document.getElementById('close-admin-panel-btn').addEventListener('click', () => {
         adminPanel.classList.add('hidden');
+      });
+
+      document.getElementById('adm-add-member-btn').addEventListener('click', async () => {
+        const nameInput = document.getElementById('adm-invite-name');
+        const idInput = document.getElementById('adm-invite-id');
+        const memberName = nameInput.value.trim() || 'أدمن مضاف';
+        const memberId = idInput.value.trim();
+
+        if (!memberId) {
+          showToast(t.toastEnterMemberId);
+          return;
+        }
+
+        const exists = state.authorizedAdmins.some((m) => m.id === memberId);
+        if (!exists) {
+          state.authorizedAdmins.push({
+            id: memberId,
+            name: memberName,
+            role: memberId === state.adminOwnerId ? 'owner' : 'added'
+          });
+          saveLocalState();
+          renderAdminMembers();
+          await syncStateToFirebase();
+        }
+
+        nameInput.value = '';
+        idInput.value = '';
+        showToast(t.toastMemberAdded);
       });
 
       document.getElementById('adm-save-btn').addEventListener('click', async () => {
@@ -2141,12 +2333,17 @@
       });
 
       document.getElementById('adm-reset-defaults-btn').addEventListener('click', async () => {
+        const preservedOwner = state.adminOwnerId;
+        const preservedAdmins = state.authorizedAdmins;
         state = buildDefaultState();
+        state.adminOwnerId = preservedOwner;
+        state.authorizedAdmins = preservedAdmins;
         selectedAddonIds = [];
         isVipMode = false;
         saveLocalState();
         fillAdminInputs();
         renderAll();
+        renderAdminMembers();
         await syncStateToFirebase();
         showToast(t.toastResetDone);
       });
@@ -2157,6 +2354,7 @@
         renderShowcase();
         renderBuilder();
         renderAdminOrders();
+        renderAdminMembers();
       }
 
       renderAll();
