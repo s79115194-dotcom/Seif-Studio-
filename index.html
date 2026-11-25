@@ -477,6 +477,7 @@
               type="text"
               id="order-client-name"
               required
+              maxlength="120"
               placeholder="مثال: محمود حسن"
               class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
             />
@@ -488,6 +489,7 @@
               type="tel"
               id="order-client-phone"
               required
+              maxlength="25"
               placeholder="مثال: 010xxxxxxxx"
               dir="ltr"
               class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
@@ -518,6 +520,7 @@
             <input
               type="text"
               id="order-client-address"
+              maxlength="180"
               placeholder="مثال: مدينة بدر أو القاهرة"
               class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
             />
@@ -529,6 +532,7 @@
           <input
             type="text"
             id="order-event-date"
+            maxlength="100"
             placeholder="مثال: 20 ديسمبر 2026"
             class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
           />
@@ -539,6 +543,7 @@
           <textarea
             id="order-notes"
             rows="2"
+            maxlength="600"
             placeholder="الأسماء، نوع المناسبة أو البرنامج، المكان، أو أي تفاصيل إضافية..."
             class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb] resize-none"
           ></textarea>
@@ -600,6 +605,7 @@
           id="admin-passcode-input"
           placeholder="الرقم السري"
           dir="ltr"
+          autocomplete="off"
           class="w-full text-center tracking-[0.2em] rounded-xl bg-[#f6f7f9] border border-slate-200 px-4 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
         />
         <p id="admin-auth-error" class="hidden text-xs font-bold text-rose-600">الرقم السري غلط، جرب تاني.</p>
@@ -808,13 +814,18 @@
     (function () {
       'use strict';
 
-      const STORAGE_KEY = 'seif_studio_state_v11';
-      const LANG_KEY = 'seif_studio_lang_v1';
-      const DEVICE_KEY = 'seif_studio_device_id_v1';
-      const ADMIN_PASSCODE = '26/1/2013';
-      const FIREBASE_DB_URL = 'https://seif-studio-5de07-default-rtdb.firebaseio.com';
-      const ALLOWED_ADDON_IDS = ['countdown', 'greetings', 'song'];
-      const ALLOWED_CATEGORIES = ['wedding', 'engagement', 'katb-kitab', 'birthday', 'baby-shower', 'other-events'];
+      const CONFIG = Object.freeze({
+        STORAGE_KEY: 'seif_studio_state_v11',
+        LANG_KEY: 'seif_studio_lang_v1',
+        DEVICE_KEY: 'seif_studio_device_id_v1',
+        LOCKOUT_KEY: 'seif_studio_auth_lock_v1',
+        ADMIN_PASSCODE: '26/1/2013',
+        FIREBASE_DB_URL: 'https://seif-studio-5de07-default-rtdb.firebaseio.com',
+        ALLOWED_ADDON_IDS: Object.freeze(['countdown', 'greetings', 'song']),
+        ALLOWED_CATEGORIES: Object.freeze(['wedding', 'engagement', 'katb-kitab', 'birthday', 'baby-shower', 'other-events']),
+        MAX_FAILED_ATTEMPTS: 5,
+        LOCK_DURATION_MS: 60 * 1000
+      });
 
       const UI_COPY = {
         ar: {
@@ -941,6 +952,7 @@
           phPasscode: 'الرقم السري',
           adminAuthError: 'الرقم السري غلط، جرب تاني.',
           adminLockedError: 'صفحة الأدمن مقفولة على الحساب المصرح له فقط.',
+          adminRateLimitError: 'تم تجاوز عدد المحاولات المسموحة، انتظر دقيقة ثم حاول مجدداً.',
           adminLoginBtn: 'دخول',
           toastEnterNamePhone: 'اكتب الاسم ورقم التليفون الأول',
           toastOrderSent: 'تم تسجيل الطلب بنجاح ✓',
@@ -1104,6 +1116,7 @@
           phPasscode: 'Passcode',
           adminAuthError: 'Incorrect passcode, please try again.',
           adminLockedError: 'Admin access is locked to authorized accounts only.',
+          adminRateLimitError: 'Too many failed attempts. Please wait one minute and try again.',
           adminLoginBtn: 'Login',
           toastEnterNamePhone: 'Please enter your name and phone number',
           toastOrderSent: 'Order submitted successfully ✓',
@@ -1145,34 +1158,84 @@
         }
       };
 
-      function getOrCreateDeviceId() {
-        try {
-          let existing = localStorage.getItem(DEVICE_KEY);
-          if (!existing) {
-            existing = 'DEV-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8).toUpperCase();
-            localStorage.setItem(DEVICE_KEY, existing);
+      const SecurityModule = Object.freeze({
+        getOrCreateDeviceId() {
+          try {
+            let existing = localStorage.getItem(CONFIG.DEVICE_KEY);
+            if (!existing) {
+              existing = 'DEV-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+              localStorage.setItem(CONFIG.DEVICE_KEY, existing);
+            }
+            return existing;
+          } catch (_) {
+            return 'DEV-LOCAL';
           }
-          return existing;
-        } catch (err) {
-          return 'DEV-LOCAL';
+        },
+        cleanText(value, maxLen) {
+          const stripped = String(value || '').replace(/[\u0000-\u001F\u007F]/g, '').trim();
+          return typeof maxLen === 'number' ? stripped.slice(0, maxLen) : stripped;
+        },
+        sanitizePhoneDigits(raw) {
+          let digits = String(raw || '').replace(/[^\d]/g, '').slice(0, 15);
+          if (digits.startsWith('01') && digits.length === 11) {
+            digits = '2' + digits;
+          }
+          return digits;
+        },
+        safeNonNegativeInt(val, fallback) {
+          const parsed = parseInt(val, 10);
+          if (!Number.isFinite(parsed) || parsed < 0) return fallback;
+          return parsed;
+        },
+        readLockState() {
+          try {
+            const raw = sessionStorage.getItem(CONFIG.LOCKOUT_KEY);
+            if (!raw) return { fails: 0, until: 0 };
+            const parsed = JSON.parse(raw);
+            return {
+              fails: Number(parsed && parsed.fails) || 0,
+              until: Number(parsed && parsed.until) || 0
+            };
+          } catch (_) {
+            return { fails: 0, until: 0 };
+          }
+        },
+        writeLockState(lockState) {
+          try {
+            sessionStorage.setItem(CONFIG.LOCKOUT_KEY, JSON.stringify(lockState));
+          } catch (_) {}
+        },
+        isTemporarilyLocked() {
+          const st = this.readLockState();
+          return Date.now() < st.until;
+        },
+        recordFailedAttempt() {
+          const st = this.readLockState();
+          const nextFails = (Date.now() > st.until ? 0 : st.fails) + 1;
+          const nextUntil = nextFails >= CONFIG.MAX_FAILED_ATTEMPTS ? Date.now() + CONFIG.LOCK_DURATION_MS : st.until;
+          this.writeLockState({ fails: nextFails, until: nextUntil });
+          return Date.now() < nextUntil;
+        },
+        clearFailedAttempts() {
+          this.writeLockState({ fails: 0, until: 0 });
         }
-      }
+      });
 
-      const currentDeviceId = getOrCreateDeviceId();
+      const currentDeviceId = SecurityModule.getOrCreateDeviceId();
 
       function loadSavedLang() {
         try {
-          const saved = localStorage.getItem(LANG_KEY);
+          const saved = localStorage.getItem(CONFIG.LANG_KEY);
           return saved === 'en' ? 'en' : 'ar';
-        } catch (err) {
+        } catch (_) {
           return 'ar';
         }
       }
 
       function saveLang(lang) {
         try {
-          localStorage.setItem(LANG_KEY, lang);
-        } catch (err) {}
+          localStorage.setItem(CONFIG.LANG_KEY, lang);
+        } catch (_) {}
       }
 
       let currentLang = loadSavedLang();
@@ -1277,7 +1340,7 @@
         if (!parsed || typeof parsed !== 'object') return base;
 
         const rawAddons = Array.isArray(parsed.addons) ? parsed.addons : [];
-        const mergedAddons = ALLOWED_ADDON_IDS.map((id, idx) => {
+        const mergedAddons = CONFIG.ALLOWED_ADDON_IDS.map((id, idx) => {
           const matchedSourceId = id === 'greetings' ? (rawAddons.some((a) => a && a.id === 'greetings') ? 'greetings' : 'photos') : id;
           const found = rawAddons.find((a) => a && a.id === matchedSourceId);
           const fallback = base.addons[idx];
@@ -1285,22 +1348,22 @@
             id,
             name: fallback.name,
             desc: fallback.desc,
-            price: Number(found && found.price !== undefined ? found.price : fallback.price)
+            price: SecurityModule.safeNonNegativeInt(found && found.price, fallback.price)
           };
         });
 
         const mergedShowcase = Array.isArray(parsed.showcaseItems) && parsed.showcaseItems.length > 0
           ? parsed.showcaseItems.map((item) => {
-              const safeCat = ALLOWED_CATEGORIES.includes(item.category) ? item.category : 'other-events';
+              const safeCat = CONFIG.ALLOWED_CATEGORIES.includes(item.category) ? item.category : 'other-events';
               const defItem = base.showcaseItems.find((d) => d.id === item.id);
               return {
-                ...item,
+                id: SecurityModule.cleanText(item.id, 60) || ('item-' + Date.now()),
                 category: safeCat,
                 categoryLabel: t.catLabels[safeCat] || item.categoryLabel,
-                title: defItem ? defItem.title : item.title,
-                couple: defItem ? defItem.couple : item.couple,
-                date: defItem ? defItem.date : item.date,
-                venue: defItem ? defItem.venue : item.venue
+                title: defItem ? defItem.title : SecurityModule.cleanText(item.title, 100),
+                couple: defItem ? defItem.couple : SecurityModule.cleanText(item.couple, 120),
+                date: defItem ? defItem.date : SecurityModule.cleanText(item.date, 100),
+                venue: defItem ? defItem.venue : SecurityModule.cleanText(item.venue, 120)
               };
             })
           : base.showcaseItems;
@@ -1311,7 +1374,7 @@
               ? Object.values(parsed.orders).reverse()
               : []);
 
-        const ownerId = typeof parsed.adminOwnerId === 'string' ? parsed.adminOwnerId.trim() : '';
+        const ownerId = SecurityModule.cleanText(parsed.adminOwnerId, 120);
         const rawAdmins = Array.isArray(parsed.authorizedAdmins)
           ? parsed.authorizedAdmins
           : (parsed.authorizedAdmins && typeof parsed.authorizedAdmins === 'object'
@@ -1319,12 +1382,15 @@
               : []);
 
         const normalizedAdmins = rawAdmins
-          .filter((m) => m && typeof m.id === 'string' && m.id.trim())
-          .map((m) => ({
-            id: m.id.trim(),
-            name: typeof m.name === 'string' && m.name.trim() ? m.name.trim() : 'أدمن مضاف',
-            role: m.id.trim() === ownerId ? 'owner' : 'added'
-          }));
+          .filter((m) => m && typeof m.id === 'string' && SecurityModule.cleanText(m.id, 120))
+          .map((m) => {
+            const cleanId = SecurityModule.cleanText(m.id, 120);
+            return {
+              id: cleanId,
+              name: SecurityModule.cleanText(m.name, 80) || 'أدمن مضاف',
+              role: cleanId === ownerId ? 'owner' : 'added'
+            };
+          });
 
         if (ownerId && !normalizedAdmins.some((m) => m.id === ownerId)) {
           normalizedAdmins.unshift({
@@ -1337,24 +1403,21 @@
         return {
           ...base,
           ...parsed,
-          brandName: (typeof parsed.brandName === 'string' && parsed.brandName.trim()) ? parsed.brandName.trim() : base.brandName,
+          brandName: SecurityModule.cleanText(parsed.brandName, 80) || base.brandName,
           brandTagline: base.brandTagline,
           heroBadge: base.heroBadge,
           heroTitle: base.heroTitle,
           heroSubtitle: base.heroSubtitle,
           revisionRule: base.revisionRule,
+          whatsappNumber: SecurityModule.cleanText(parsed.whatsappNumber, 25) || base.whatsappNumber,
           basePackageName: base.basePackageName,
           vipPackageName: base.vipPackageName,
           projectWebsiteTitle: base.projectWebsiteTitle,
           appServiceTitle: base.appServiceTitle,
-          basePrice: Number(parsed.basePrice !== undefined ? parsed.basePrice : base.basePrice),
-          vipPrice: Number(parsed.vipPrice !== undefined ? parsed.vipPrice : base.vipPrice),
-          projectWebsitePrice: Number(
-            parsed.projectWebsitePrice !== undefined ? parsed.projectWebsitePrice : base.projectWebsitePrice
-          ),
-          appServicePrice: Number(
-            parsed.appServicePrice !== undefined ? parsed.appServicePrice : base.appServicePrice
-          ),
+          basePrice: SecurityModule.safeNonNegativeInt(parsed.basePrice, base.basePrice),
+          vipPrice: SecurityModule.safeNonNegativeInt(parsed.vipPrice, base.vipPrice),
+          projectWebsitePrice: SecurityModule.safeNonNegativeInt(parsed.projectWebsitePrice, base.projectWebsitePrice),
+          appServicePrice: SecurityModule.safeNonNegativeInt(parsed.appServicePrice, base.appServicePrice),
           addons: mergedAddons,
           showcaseItems: mergedShowcase,
           orders: mergedOrders,
@@ -1365,44 +1428,44 @@
 
       function loadState() {
         try {
-          const raw = localStorage.getItem(STORAGE_KEY);
+          const raw = localStorage.getItem(CONFIG.STORAGE_KEY);
           if (!raw) return buildDefaultState();
           return normalizeState(JSON.parse(raw));
-        } catch (err) {
+        } catch (_) {
           return buildDefaultState();
         }
       }
 
       function saveLocalState() {
         try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-        } catch (err) {}
+          localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(state));
+        } catch (_) {}
       }
 
       async function syncStateToFirebase() {
         try {
-          const endpoint = `${FIREBASE_DB_URL}/studioState.json?t=${Date.now()}`;
+          const endpoint = `${CONFIG.FIREBASE_DB_URL}/studioState.json?t=${Date.now()}`;
           await fetch(endpoint, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(state)
           });
-        } catch (err) {}
+        } catch (_) {}
       }
 
       async function fetchStateFromFirebase() {
         try {
-          const endpoint = `${FIREBASE_DB_URL}/studioState.json?t=${Date.now()}`;
+          const endpoint = `${CONFIG.FIREBASE_DB_URL}/studioState.json?t=${Date.now()}`;
           const res = await fetch(endpoint, { cache: 'no-store' });
           if (!res.ok) return;
           const remoteData = await res.json();
           if (remoteData && typeof remoteData === 'object') {
             state = normalizeState(remoteData);
-            selectedAddonIds = selectedAddonIds.filter((id) => ALLOWED_ADDON_IDS.includes(id));
+            selectedAddonIds = selectedAddonIds.filter((id) => CONFIG.ALLOWED_ADDON_IDS.includes(id));
             saveLocalState();
             renderAll();
           }
-        } catch (err) {}
+        } catch (_) {}
       }
 
       let state = loadState();
@@ -1439,14 +1502,6 @@
         return div.innerHTML;
       }
 
-      function sanitizePhoneDigits(raw) {
-        let digits = String(raw || '').replace(/[^\d]/g, '');
-        if (digits.startsWith('01') && digits.length === 11) {
-          digits = '2' + digits;
-        }
-        return digits;
-      }
-
       function isUserAuthorizedAdmin() {
         if (!state.adminOwnerId) return true;
         if (state.adminOwnerId === currentDeviceId) return true;
@@ -1454,7 +1509,7 @@
       }
 
       function buildOrderWhatsAppMessage(ord) {
-        const orderCode = ord.id || 'ORD-0000';
+        const orderCode = ord.id || 'SS-0000';
         const lines = [
           `${t.waGreeting} ${ord.clientName} ${t.waFrom} ${state.brandName}`,
           `${t.waRegardingOrder} (${orderCode}):`,
@@ -1470,7 +1525,7 @@
       }
 
       function buildClientWhatsAppUrl(ord) {
-        const targetPhone = sanitizePhoneDigits(ord.phone) || sanitizePhoneDigits(state.whatsappNumber);
+        const targetPhone = SecurityModule.sanitizePhoneDigits(ord.phone) || SecurityModule.sanitizePhoneDigits(state.whatsappNumber);
         const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
         return targetPhone ? `https://wa.me/${targetPhone}?text=${msg}` : `https://wa.me/?text=${msg}`;
       }
@@ -1832,6 +1887,11 @@
         const admListEl = document.getElementById('adm-orders-list');
         if (!admListEl) return;
 
+        if (!isUserAuthorizedAdmin()) {
+          admListEl.innerHTML = '<div class="text-xs text-[#526071] bg-[#f6f7f9] rounded-xl p-3 border border-slate-200">غير مصرح بعرض الطلبات.</div>';
+          return;
+        }
+
         if (state.orders.length === 0) {
           admListEl.innerHTML = '<div class="text-xs text-[#526071] bg-[#f6f7f9] rounded-xl p-3 border border-slate-200">لا توجد طلبات حالياً.</div>';
           return;
@@ -1877,6 +1937,7 @@
 
         admListEl.querySelectorAll('.delete-order-btn').forEach((btn) => {
           btn.addEventListener('click', () => {
+            if (!isUserAuthorizedAdmin()) return;
             const orderId = btn.getAttribute('data-delete-order');
             state.orders = state.orders.filter((o) => o.id !== orderId);
             saveLocalState();
@@ -1928,6 +1989,7 @@
 
         listEl.querySelectorAll('.remove-member-btn').forEach((btn) => {
           btn.addEventListener('click', async () => {
+            if (!isUserAuthorizedAdmin()) return;
             const targetId = btn.getAttribute('data-remove-member');
             if (!targetId || targetId === state.adminOwnerId) return;
             state.authorizedAdmins = state.authorizedAdmins.filter((m) => m.id !== targetId);
@@ -1960,8 +2022,8 @@
           serviceType: payload.serviceType || t.optWedding,
           packageLabel: payload.packageLabel || state.basePackageName,
           addonsLabel: payload.addonsLabel || t.noAddons,
-          totalPrice: Number(payload.totalPrice) || state.basePrice,
-          notes: payload.notes || ''
+          totalPrice: SecurityModule.safeNonNegativeInt(payload.totalPrice, state.basePrice),
+          notes: SecurityModule.cleanText(payload.notes, 600)
         };
 
         if (orderServiceSelect) orderServiceSelect.value = draftOrder.serviceType;
@@ -2062,12 +2124,12 @@
       orderForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const clientName = document.getElementById('order-client-name').value.trim();
-        const phone = document.getElementById('order-client-phone').value.trim();
+        const clientName = SecurityModule.cleanText(document.getElementById('order-client-name').value, 120);
+        const phone = SecurityModule.cleanText(document.getElementById('order-client-phone').value, 25);
         const serviceType = orderServiceSelect ? orderServiceSelect.value : draftOrder.serviceType;
-        const address = document.getElementById('order-client-address').value.trim();
-        const eventDate = document.getElementById('order-event-date').value.trim();
-        const notes = orderNotesInput ? orderNotesInput.value.trim() : '';
+        const address = SecurityModule.cleanText(document.getElementById('order-client-address').value, 180);
+        const eventDate = SecurityModule.cleanText(document.getElementById('order-event-date').value, 100);
+        const notes = SecurityModule.cleanText(orderNotesInput ? orderNotesInput.value : '', 600);
 
         if (!clientName || !phone) {
           showToast(t.toastEnterNamePhone);
@@ -2149,7 +2211,10 @@
         await fetchStateFromFirebase();
         adminAuthError.classList.add('hidden');
         adminPasscodeInput.value = '';
-        if (state.adminOwnerId && !isUserAuthorizedAdmin()) {
+        if (SecurityModule.isTemporarilyLocked()) {
+          adminAuthError.textContent = t.adminRateLimitError;
+          adminAuthError.classList.remove('hidden');
+        } else if (state.adminOwnerId && !isUserAuthorizedAdmin()) {
           adminAuthError.textContent = t.adminLockedError;
           adminAuthError.classList.remove('hidden');
         }
@@ -2234,11 +2299,20 @@
         e.preventDefault();
         await fetchStateFromFirebase();
 
-        if (adminPasscodeInput.value.trim() !== ADMIN_PASSCODE) {
-          adminAuthError.textContent = t.adminAuthError;
+        if (SecurityModule.isTemporarilyLocked()) {
+          adminAuthError.textContent = t.adminRateLimitError;
           adminAuthError.classList.remove('hidden');
           return;
         }
+
+        if (adminPasscodeInput.value.trim() !== CONFIG.ADMIN_PASSCODE) {
+          const lockedNow = SecurityModule.recordFailedAttempt();
+          adminAuthError.textContent = lockedNow ? t.adminRateLimitError : t.adminAuthError;
+          adminAuthError.classList.remove('hidden');
+          return;
+        }
+
+        SecurityModule.clearFailedAttempts();
 
         if (!state.adminOwnerId) {
           state.adminOwnerId = currentDeviceId;
@@ -2269,10 +2343,11 @@
       });
 
       document.getElementById('adm-add-member-btn').addEventListener('click', async () => {
+        if (!isUserAuthorizedAdmin()) return;
         const nameInput = document.getElementById('adm-invite-name');
         const idInput = document.getElementById('adm-invite-id');
-        const memberName = nameInput.value.trim() || 'أدمن مضاف';
-        const memberId = idInput.value.trim();
+        const memberName = SecurityModule.cleanText(nameInput.value, 80) || 'أدمن مضاف';
+        const memberId = SecurityModule.cleanText(idInput.value, 120);
 
         if (!memberId) {
           showToast(t.toastEnterMemberId);
@@ -2297,22 +2372,23 @@
       });
 
       document.getElementById('adm-save-btn').addEventListener('click', async () => {
-        state.brandName = document.getElementById('adm-brand-name').value.trim() || DEFAULT_STATE.brandName;
-        state.whatsappNumber = document.getElementById('adm-whatsapp-number').value.trim();
-        state.heroTitle = document.getElementById('adm-hero-title').value.trim() || DEFAULT_STATE.heroTitle;
-        state.heroSubtitle = document.getElementById('adm-hero-subtitle').value.trim() || DEFAULT_STATE.heroSubtitle;
-        state.revisionRule = document.getElementById('adm-revision-rule').value.trim() || DEFAULT_STATE.revisionRule;
+        if (!isUserAuthorizedAdmin()) return;
+        state.brandName = SecurityModule.cleanText(document.getElementById('adm-brand-name').value, 80) || DEFAULT_STATE.brandName;
+        state.whatsappNumber = SecurityModule.cleanText(document.getElementById('adm-whatsapp-number').value, 25);
+        state.heroTitle = SecurityModule.cleanText(document.getElementById('adm-hero-title').value, 240) || DEFAULT_STATE.heroTitle;
+        state.heroSubtitle = SecurityModule.cleanText(document.getElementById('adm-hero-subtitle').value, 500) || DEFAULT_STATE.heroSubtitle;
+        state.revisionRule = SecurityModule.cleanText(document.getElementById('adm-revision-rule').value, 180) || DEFAULT_STATE.revisionRule;
 
-        state.basePackageName = document.getElementById('adm-base-name').value.trim() || DEFAULT_STATE.basePackageName;
-        state.basePrice = Math.max(0, parseInt(document.getElementById('adm-base-price').value, 10) || 0);
+        state.basePackageName = SecurityModule.cleanText(document.getElementById('adm-base-name').value, 80) || DEFAULT_STATE.basePackageName;
+        state.basePrice = SecurityModule.safeNonNegativeInt(document.getElementById('adm-base-price').value, state.basePrice);
 
-        if (state.addons[0]) state.addons[0].price = Math.max(0, parseInt(document.getElementById('adm-addon-countdown').value, 10) || 0);
-        if (state.addons[1]) state.addons[1].price = Math.max(0, parseInt(document.getElementById('adm-addon-greetings').value, 10) || 0);
-        if (state.addons[2]) state.addons[2].price = Math.max(0, parseInt(document.getElementById('adm-addon-song').value, 10) || 0);
+        if (state.addons[0]) state.addons[0].price = SecurityModule.safeNonNegativeInt(document.getElementById('adm-addon-countdown').value, state.addons[0].price);
+        if (state.addons[1]) state.addons[1].price = SecurityModule.safeNonNegativeInt(document.getElementById('adm-addon-greetings').value, state.addons[1].price);
+        if (state.addons[2]) state.addons[2].price = SecurityModule.safeNonNegativeInt(document.getElementById('adm-addon-song').value, state.addons[2].price);
 
-        state.vipPrice = Math.max(0, parseInt(document.getElementById('adm-vip-price').value, 10) || 0);
-        state.projectWebsitePrice = Math.max(0, parseInt(document.getElementById('adm-project-price').value, 10) || 0);
-        state.appServicePrice = Math.max(0, parseInt(document.getElementById('adm-app-price').value, 10) || 0);
+        state.vipPrice = SecurityModule.safeNonNegativeInt(document.getElementById('adm-vip-price').value, state.vipPrice);
+        state.projectWebsitePrice = SecurityModule.safeNonNegativeInt(document.getElementById('adm-project-price').value, state.projectWebsitePrice);
+        state.appServicePrice = SecurityModule.safeNonNegativeInt(document.getElementById('adm-app-price').value, state.appServicePrice);
 
         saveLocalState();
         renderAll();
@@ -2322,9 +2398,11 @@
       });
 
       document.getElementById('adm-add-showcase-btn').addEventListener('click', async () => {
-        const cat = document.getElementById('adm-new-item-category').value;
-        const title = document.getElementById('adm-new-item-title').value.trim();
-        const couple = document.getElementById('adm-new-item-couple').value.trim();
+        if (!isUserAuthorizedAdmin()) return;
+        const rawCat = document.getElementById('adm-new-item-category').value;
+        const cat = CONFIG.ALLOWED_CATEGORIES.includes(rawCat) ? rawCat : 'other-events';
+        const title = SecurityModule.cleanText(document.getElementById('adm-new-item-title').value, 100);
+        const couple = SecurityModule.cleanText(document.getElementById('adm-new-item-couple').value, 120);
 
         if (!title || !couple) {
           showToast(t.toastFillItem);
@@ -2350,6 +2428,7 @@
       });
 
       document.getElementById('adm-clear-orders-btn').addEventListener('click', async () => {
+        if (!isUserAuthorizedAdmin()) return;
         state.orders = [];
         saveLocalState();
         renderAdminOrders();
@@ -2358,6 +2437,7 @@
       });
 
       document.getElementById('adm-reset-defaults-btn').addEventListener('click', async () => {
+        if (!isUserAuthorizedAdmin()) return;
         const preservedOwner = state.adminOwnerId;
         const preservedAdmins = state.authorizedAdmins;
         state = buildDefaultState();
