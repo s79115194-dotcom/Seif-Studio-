@@ -514,14 +514,24 @@
           </div>
 
           <div>
-            <label for="order-event-date" id="label-event-date" class="block text-xs font-bold text-[#182230] mb-1">تاريخ المناسبة / الموعد</label>
+            <label for="order-client-address" id="label-client-address" class="block text-xs font-bold text-[#182230] mb-1">العنوان</label>
             <input
               type="text"
-              id="order-event-date"
-              placeholder="مثال: 20 ديسمبر 2026"
+              id="order-client-address"
+              placeholder="مثال: مدينة بدر أو القاهرة"
               class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
             />
           </div>
+        </div>
+
+        <div>
+          <label for="order-event-date" id="label-event-date" class="block text-xs font-bold text-[#182230] mb-1">تاريخ المناسبة / الموعد</label>
+          <input
+            type="text"
+            id="order-event-date"
+            placeholder="مثال: 20 ديسمبر 2026"
+            class="w-full rounded-xl bg-[#f6f7f9] border border-slate-200 px-3.5 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
+          />
         </div>
 
         <div>
@@ -893,6 +903,7 @@
           orderAppBtn: 'اطلب عمل برنامج',
           orderPkgCaption: 'الباقة:',
           orderAddonsCaption: 'الإضافات:',
+          orderAddressCaption: 'العنوان:',
           orderPhoneCaption: 'التليفون:',
           orderDateCaption: 'الموعد:',
           orderNotesCaption: 'ملاحظات:',
@@ -914,6 +925,8 @@
           optOther: 'دعوة مناسبة أخرى',
           optProjects: 'ويب سايت مشاريع',
           optApp: 'عمل برنامج',
+          labelClientAddress: 'العنوان',
+          phClientAddress: 'مثال: مدينة بدر أو القاهرة',
           labelEventDate: 'تاريخ المناسبة / الموعد',
           phEventDate: 'مثال: 20 ديسمبر 2026',
           labelOrderNotes: 'تفاصيل إضافية أو ملاحظات',
@@ -956,15 +969,16 @@
             'baby-shower': 'سبوع طفل',
             'other-events': 'مناسبات تانية'
           },
-          waHeader: 'طلب جديد من',
-          waName: 'الاسم',
-          waPhone: 'التليفون',
-          waType: 'النوع',
-          waPkg: 'الباقة',
+          waGreeting: 'أهلاً بك يا',
+          waFrom: 'من',
+          waRegardingOrder: 'بخصوص طلبك رقم',
+          waItem: 'الخدمة / الباقة',
           waAddons: 'الإضافات',
+          waAddress: 'العنوان',
           waTotal: 'الإجمالي',
           waDate: 'الموعد',
-          waNotes: 'ملاحظات'
+          waNotes: 'ملاحظات',
+          waClosing: 'يسعدنا تأكيد التفاصيل معك الآن'
         },
         en: {
           pageTitle: 'Seif Studio — All-Occasion Invitations, Project Websites & Apps',
@@ -1052,6 +1066,7 @@
           orderAppBtn: 'Order Custom Program',
           orderPkgCaption: 'Package:',
           orderAddonsCaption: 'Add-ons:',
+          orderAddressCaption: 'Address:',
           orderPhoneCaption: 'Phone:',
           orderDateCaption: 'Date:',
           orderNotesCaption: 'Notes:',
@@ -1073,6 +1088,8 @@
           optOther: 'Other Occasion Invitation',
           optProjects: 'Project Website',
           optApp: 'Custom Program',
+          labelClientAddress: 'Address',
+          phClientAddress: 'e.g. Badr City or Cairo',
           labelEventDate: 'Event Date / Schedule',
           phEventDate: 'e.g. Dec 20, 2026',
           labelOrderNotes: 'Extra Details or Notes',
@@ -1115,15 +1132,16 @@
             'baby-shower': 'Baby Shower',
             'other-events': 'More Events'
           },
-          waHeader: 'New order from',
-          waName: 'Name',
-          waPhone: 'Phone',
-          waType: 'Type',
-          waPkg: 'Package',
+          waGreeting: 'Welcome',
+          waFrom: 'from',
+          waRegardingOrder: 'regarding your order',
+          waItem: 'Service / Package',
           waAddons: 'Add-ons',
+          waAddress: 'Address',
           waTotal: 'Total',
           waDate: 'Date',
-          waNotes: 'Notes'
+          waNotes: 'Notes',
+          waClosing: 'We are pleased to confirm the details with you now'
         }
       };
 
@@ -1436,17 +1454,18 @@
       }
 
       function buildOrderWhatsAppMessage(ord) {
+        const orderCode = ord.id || 'ORD-0000';
         const lines = [
-          `${t.waHeader} ${state.brandName}:`,
-          `${t.waName}: ${ord.clientName}`,
-          `${t.waPhone}: ${ord.phone}`,
-          `${t.waType}: ${ord.serviceType}`,
-          `${t.waPkg}: ${ord.packageLabel}`,
-          `${t.waAddons}: ${ord.addonsLabel}`,
-          `${t.waTotal}: ${ord.totalPrice} ${t.currency}`
+          `${t.waGreeting} ${ord.clientName} ${t.waFrom} ${state.brandName}`,
+          `${t.waRegardingOrder} (${orderCode}):`,
+          `• ${t.waItem}: ${ord.packageLabel} (${ord.serviceType})`,
+          `• ${t.waAddons}: ${ord.addonsLabel}`,
+          `• ${t.waAddress}: ${ord.address || 'غير محدد'}`,
+          `• ${t.waTotal}: ${ord.totalPrice} ${t.currency}`
         ];
-        if (ord.eventDate) lines.push(`${t.waDate}: ${ord.eventDate}`);
-        if (ord.notes) lines.push(`${t.waNotes}: ${ord.notes}`);
+        if (ord.eventDate) lines.push(`• ${t.waDate}: ${ord.eventDate}`);
+        if (ord.notes) lines.push(`• ${t.waNotes}: ${ord.notes}`);
+        lines.push(t.waClosing);
         return lines.join('\n');
       }
 
@@ -1565,6 +1584,8 @@
         document.getElementById('opt-app').textContent = t.optApp;
         document.getElementById('opt-app').value = t.optApp;
 
+        document.getElementById('label-client-address').textContent = t.labelClientAddress;
+        document.getElementById('order-client-address').placeholder = t.phClientAddress;
         document.getElementById('label-event-date').textContent = t.labelEventDate;
         document.getElementById('order-event-date').placeholder = t.phEventDate;
         document.getElementById('label-order-notes').textContent = t.labelOrderNotes;
@@ -1828,6 +1849,7 @@
                 <div class="text-[#526071]">
                   <strong class="text-[#182230]">${escapeHtml(t.orderPkgCaption)}</strong> ${escapeHtml(ord.packageLabel)} — <strong class="text-[#182230]">${escapeHtml(t.orderAddonsCaption)}</strong> ${escapeHtml(ord.addonsLabel)}
                 </div>
+                ${ord.address ? `<div class="text-[#526071]"><strong class="text-[#182230]">${escapeHtml(t.orderAddressCaption)}</strong> ${escapeHtml(ord.address)}</div>` : ''}
                 ${ord.eventDate ? `<div class="text-[#526071]"><strong class="text-[#182230]">${escapeHtml(t.orderDateCaption)}</strong> ${escapeHtml(ord.eventDate)}</div>` : ''}
                 ${ord.notes ? `<div class="text-[#526071]"><strong class="text-[#182230]">${escapeHtml(t.orderNotesCaption)}</strong> ${escapeHtml(ord.notes)}</div>` : ''}
               </div>
@@ -2043,6 +2065,7 @@
         const clientName = document.getElementById('order-client-name').value.trim();
         const phone = document.getElementById('order-client-phone').value.trim();
         const serviceType = orderServiceSelect ? orderServiceSelect.value : draftOrder.serviceType;
+        const address = document.getElementById('order-client-address').value.trim();
         const eventDate = document.getElementById('order-event-date').value.trim();
         const notes = orderNotesInput ? orderNotesInput.value.trim() : '';
 
@@ -2051,12 +2074,13 @@
           return;
         }
 
-        const orderCode = 'ORD-' + Date.now().toString().slice(-4);
+        const orderCode = 'SS-' + Date.now().toString().slice(-4);
         const newOrder = {
           id: orderCode,
           clientName,
           phone,
           serviceType,
+          address,
           eventDate,
           packageLabel: draftOrder.packageLabel,
           addonsLabel: draftOrder.addonsLabel,
@@ -2080,6 +2104,7 @@
           ['النوع', serviceType],
           ['الباقة', draftOrder.packageLabel],
           ['الإضافات', draftOrder.addonsLabel],
+          ['العنوان', address],
           ['الإجمالي', `${draftOrder.totalPrice} ${t.currency}`],
           ['الموعد', eventDate],
           ['ملاحظات', notes]
