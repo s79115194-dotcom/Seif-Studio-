@@ -1513,12 +1513,20 @@
         return targetPhone ? `whatsapp://send?phone=${targetPhone}&text=${msg}` : `whatsapp://send?text=${msg}`;
       }
 
-      // Android only: intent link with no fixed app, so Android itself decides or asks (WhatsApp / WhatsApp Business).
-      function buildClientWhatsAppSystemIntentUrl(ord) {
+      // Which WhatsApp the green button opens on Android: 'regular' or 'business'. Saved in this browser/app only.
+      function getWaAppPref() {
+        try { return localStorage.getItem('seif_wa_app') === 'business' ? 'business' : 'regular'; } catch (_) { return 'regular'; }
+      }
+      function setWaAppPref(v) {
+        try { localStorage.setItem('seif_wa_app', v === 'business' ? 'business' : 'regular'); } catch (_) {}
+      }
+
+      // Android only: open WhatsApp Business (com.whatsapp.w4b) directly.
+      function buildClientWhatsAppBusinessIntentUrl(ord) {
         const targetPhone = buildClientWhatsAppPhone(ord);
         const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
         const phonePart = targetPhone ? `phone=${targetPhone}&` : '';
-        return `intent://send?${phonePart}text=${msg}#Intent;scheme=whatsapp;action=android.intent.action.VIEW;end`;
+        return `intent://send?${phonePart}text=${msg}#Intent;scheme=whatsapp;package=com.whatsapp.w4b;end`;
       }
 
       function copyTextSafe(text) {
@@ -1915,7 +1923,10 @@
           return;
         }
 
-        admListEl.innerHTML = state.orders.map((ord) => {
+        const waPref = getWaAppPref();
+        const waBtn = (v, label) => `<button type="button" data-wa-pref="${v}" class="wa-pref-btn cursor-pointer px-2.5 py-1 rounded-lg border font-bold ${waPref === v ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-[#182230] border-slate-200'}">${label}</button>`;
+        const waPrefBar = `<div class="rounded-xl bg-white p-3 border border-slate-200 text-xs flex items-center justify-between gap-2"><span class="font-bold text-[#182230]">زرار واتساب يفتح:</span><div class="flex items-center gap-2">${waBtn('regular', 'واتساب عادي')}${waBtn('business', 'واتساب بيزنس')}</div></div>`;
+        admListEl.innerHTML = waPrefBar + state.orders.map((ord) => {
           const waHref = buildClientWhatsAppUrl(ord);
           return `
             <div class="rounded-xl bg-[#f6f7f9] p-3.5 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -1937,7 +1948,7 @@
                   href="${escapeHtml(isMobileDevice() ? buildClientWhatsAppAppUrl(ord) : waHref)}"
                   ${isMobileDevice() ? '' : 'target="_blank" rel="noopener noreferrer"'}
                   data-wa-open="1"
-                  data-wa-intent="${escapeHtml(buildClientWhatsAppSystemIntentUrl(ord))}"
+                  data-wa-biz="${escapeHtml(buildClientWhatsAppBusinessIntentUrl(ord))}"
                   class="wa-order-link px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
                 >
                   واتساب
@@ -1961,28 +1972,22 @@
           `;
         }).join('');
 
+        admListEl.querySelectorAll('.wa-pref-btn').forEach((b) => {
+          b.addEventListener('click', () => {
+            setWaAppPref(b.getAttribute('data-wa-pref'));
+            renderAdminOrders();
+            showToast(getWaAppPref() === 'business' ? 'تم: الزرار هيفتح واتساب بيزنس' : 'تم: الزرار هيفتح واتساب العادي');
+          });
+        });
+
         admListEl.querySelectorAll('.wa-order-link').forEach((a) => {
-          let lastTry = 0;
           a.addEventListener('click', (ev) => {
             if (!/Android/i.test(navigator.userAgent || '')) return;
-            const now = Date.now();
-            // Second tap within 8s means the first one did nothing: use the plain whatsapp:// link.
-            if (lastTry && now - lastTry < 8000) {
-              lastTry = 0;
-              return; // default action: href = whatsapp://send?...
-            }
-            lastTry = now;
+            if (getWaAppPref() !== 'business') return; // regular: default action, the whatsapp:// link
             ev.preventDefault();
-            // First tap: let Android handle it, so it can ask "WhatsApp or WhatsApp Business".
-            try {
-              const fr = document.createElement('iframe');
-              fr.style.display = 'none';
-              fr.src = a.getAttribute('data-wa-intent');
-              document.body.appendChild(fr);
-              setTimeout(() => { try { document.body.removeChild(fr); } catch (_) {} }, 3000);
-            } catch (_) {}
+            window.location.href = a.getAttribute('data-wa-biz');
             setTimeout(() => {
-              if (!document.hidden) showToast('لو ماحصلش حاجة دوس واتساب تاني، أو "نسخ الرقم"');
+              if (!document.hidden) showToast('واتساب بيزنس مفتحش. جرب "نسخ الرقم" أو اختار واتساب عادي');
             }, 2500);
           });
         });
