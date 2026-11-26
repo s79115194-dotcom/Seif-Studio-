@@ -1513,12 +1513,12 @@
         return targetPhone ? `whatsapp://send?phone=${targetPhone}&text=${msg}` : `whatsapp://send?text=${msg}`;
       }
 
-      // Which WhatsApp the green button opens on Android: 'regular' or 'business'. Saved in this browser/app only.
+      // Which WhatsApp the green button opens on Android: defaults to 'business'. Saved in this browser/app only.
       function getWaAppPref() {
-        try { return localStorage.getItem('seif_wa_app') === 'business' ? 'business' : 'regular'; } catch (_) { return 'regular'; }
+        try { return localStorage.getItem('seif_wa_app') === 'regular' ? 'regular' : 'business'; } catch (_) { return 'business'; }
       }
       function setWaAppPref(v) {
-        try { localStorage.setItem('seif_wa_app', v === 'business' ? 'business' : 'regular'); } catch (_) {}
+        try { localStorage.setItem('seif_wa_app', v === 'regular' ? 'regular' : 'business'); } catch (_) {}
       }
 
       // Android only: open WhatsApp Business (com.whatsapp.w4b) directly.
@@ -1983,7 +1983,7 @@
         admListEl.querySelectorAll('.wa-order-link').forEach((a) => {
           a.addEventListener('click', (ev) => {
             if (!/Android/i.test(navigator.userAgent || '')) return;
-            if (getWaAppPref() !== 'business') return; // regular: default action, the whatsapp:// link
+            if (getWaAppPref() === 'regular') return;
             ev.preventDefault();
             window.location.href = a.getAttribute('data-wa-biz');
             setTimeout(() => {
