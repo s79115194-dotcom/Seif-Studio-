@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Seif Studio — دعوات لكل المناسبات ومواقع مشاريع وبرامج</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
@@ -596,7 +598,7 @@
     <div class="w-full max-w-sm bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 text-center space-y-4">
       <div>
         <h3 id="admin-auth-title" class="text-lg font-extrabold text-[#182230]">دخول الأدمن</h3>
-        <p id="admin-auth-subtitle" class="text-xs text-[#526071] mt-1">اكتب الرقم السري لفتح لوحة التحكم</p>
+        <p id="admin-auth-subtitle" class="text-xs text-[#526071] mt-1">سجّل الدخول بحساب جوجل لفتح لوحة التحكم</p>
       </div>
 
       <form id="admin-auth-form" class="space-y-3">
@@ -757,34 +759,6 @@
         <div id="adm-orders-list" class="space-y-2"></div>
       </div>
 
-      <div class="space-y-3 border-t border-slate-200 pt-4">
-        <h4 class="text-sm font-extrabold text-[#2563eb]">5. إدارة صلاحيات الأدمن</h4>
-        <p id="adm-access-status" class="text-xs text-[#526071]">حسابك الحالي مرتبط بلوحة التحكم.</p>
-        <div class="flex flex-col sm:flex-row gap-2.5">
-          <input
-            type="text"
-            id="adm-invite-name"
-            placeholder="اسم الشخص المضاف (اختياري)"
-            class="sm:w-1/3 rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]"
-          />
-          <input
-            type="text"
-            id="adm-invite-id"
-            dir="ltr"
-            placeholder="معرف الجهاز أو البريد المسموح له"
-            class="flex-1 rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] text-right focus:outline-none focus:border-[#2563eb]"
-          />
-          <button
-            type="button"
-            id="adm-add-member-btn"
-            class="cursor-pointer px-4 py-2 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-extrabold transition-colors shrink-0"
-          >
-            + إضافة شخص
-          </button>
-        </div>
-        <div id="adm-members-list" class="space-y-2"></div>
-      </div>
-
       <div class="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-4">
         <button
           type="button"
@@ -817,14 +791,17 @@
       const CONFIG = Object.freeze({
         STORAGE_KEY: 'seif_studio_state_v11',
         LANG_KEY: 'seif_studio_lang_v1',
-        DEVICE_KEY: 'seif_studio_device_id_v1',
-        LOCKOUT_KEY: 'seif_studio_auth_lock_v1',
-        ADMIN_PASSCODE: '26/1/2013',
         FIREBASE_DB_URL: 'https://seif-studio-5de07-default-rtdb.firebaseio.com',
         ALLOWED_ADDON_IDS: Object.freeze(['countdown', 'greetings', 'song']),
         ALLOWED_CATEGORIES: Object.freeze(['wedding', 'engagement', 'katb-kitab', 'birthday', 'baby-shower', 'other-events']),
-        MAX_FAILED_ATTEMPTS: 5,
-        LOCK_DURATION_MS: 60 * 1000
+        // Fill these two from Firebase console (see SETUP instructions). None of these are secrets.
+        ADMIN_EMAIL: 's79115194@gmail.com',
+        FIREBASE_WEB_CONFIG: Object.freeze({
+          apiKey: 'AIzaSyBeXxLjEyzhyBHC0PIxxzUjVeD0A2tozDM',
+          authDomain: 'seif-studio-5de07.firebaseapp.com',
+          projectId: 'seif-studio-5de07',
+          appId: '1:710990217659:web:a8dae20a40d78264d7c49e'
+        })
       });
 
       const UI_COPY = {
@@ -948,9 +925,9 @@
           submitOrderBtn: 'تأكيد وتسجيل الطلب',
           cancelBtn: 'إلغاء',
           adminAuthTitle: 'دخول الأدمن',
-          adminAuthSubtitle: 'اكتب الرقم السري لفتح لوحة التحكم',
+          adminAuthSubtitle: 'سجّل الدخول بحساب جوجل لفتح لوحة التحكم',
           phPasscode: 'الرقم السري',
-          adminAuthError: 'الرقم السري غلط، جرب تاني.',
+          adminAuthError: 'تعذر تسجيل الدخول، جرب تاني.',
           adminLockedError: 'صفحة الأدمن مقفولة على الحساب المصرح له فقط.',
           adminRateLimitError: 'تم تجاوز عدد المحاولات المسموحة، انتظر دقيقة ثم حاول مجدداً.',
           adminLoginBtn: 'دخول',
@@ -1112,9 +1089,9 @@
           submitOrderBtn: 'Confirm & Submit Order',
           cancelBtn: 'Cancel',
           adminAuthTitle: 'Admin Login',
-          adminAuthSubtitle: 'Enter passcode to open the dashboard',
+          adminAuthSubtitle: 'Sign in with Google to open the dashboard',
           phPasscode: 'Passcode',
-          adminAuthError: 'Incorrect passcode, please try again.',
+          adminAuthError: 'Sign-in failed, please try again.',
           adminLockedError: 'Admin access is locked to authorized accounts only.',
           adminRateLimitError: 'Too many failed attempts. Please wait one minute and try again.',
           adminLoginBtn: 'Login',
@@ -1159,18 +1136,6 @@
       };
 
       const SecurityModule = Object.freeze({
-        getOrCreateDeviceId() {
-          try {
-            let existing = localStorage.getItem(CONFIG.DEVICE_KEY);
-            if (!existing) {
-              existing = 'DEV-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8).toUpperCase();
-              localStorage.setItem(CONFIG.DEVICE_KEY, existing);
-            }
-            return existing;
-          } catch (_) {
-            return 'DEV-LOCAL';
-          }
-        },
         cleanText(value, maxLen) {
           const stripped = String(value || '').replace(/[\u0000-\u001F\u007F]/g, '').trim();
           return typeof maxLen === 'number' ? stripped.slice(0, maxLen) : stripped;
@@ -1186,42 +1151,24 @@
           const parsed = parseInt(val, 10);
           if (!Number.isFinite(parsed) || parsed < 0) return fallback;
           return parsed;
-        },
-        readLockState() {
-          try {
-            const raw = sessionStorage.getItem(CONFIG.LOCKOUT_KEY);
-            if (!raw) return { fails: 0, until: 0 };
-            const parsed = JSON.parse(raw);
-            return {
-              fails: Number(parsed && parsed.fails) || 0,
-              until: Number(parsed && parsed.until) || 0
-            };
-          } catch (_) {
-            return { fails: 0, until: 0 };
-          }
-        },
-        writeLockState(lockState) {
-          try {
-            sessionStorage.setItem(CONFIG.LOCKOUT_KEY, JSON.stringify(lockState));
-          } catch (_) {}
-        },
-        isTemporarilyLocked() {
-          const st = this.readLockState();
-          return Date.now() < st.until;
-        },
-        recordFailedAttempt() {
-          const st = this.readLockState();
-          const nextFails = (Date.now() > st.until ? 0 : st.fails) + 1;
-          const nextUntil = nextFails >= CONFIG.MAX_FAILED_ATTEMPTS ? Date.now() + CONFIG.LOCK_DURATION_MS : st.until;
-          this.writeLockState({ fails: nextFails, until: nextUntil });
-          return Date.now() < nextUntil;
-        },
-        clearFailedAttempts() {
-          this.writeLockState({ fails: 0, until: 0 });
         }
       });
 
-      const currentDeviceId = SecurityModule.getOrCreateDeviceId();
+      // Firebase Authentication (Google sign-in) for the admin.
+      let fbAuth = null;
+      try {
+        if (window.firebase && CONFIG.FIREBASE_WEB_CONFIG.apiKey.indexOf('REPLACE') !== 0) {
+          firebase.initializeApp(CONFIG.FIREBASE_WEB_CONFIG);
+          fbAuth = firebase.auth();
+        }
+      } catch (_) { fbAuth = null; }
+
+      async function getAdminToken() {
+        try {
+          if (!fbAuth || !fbAuth.currentUser) return '';
+          return await fbAuth.currentUser.getIdToken();
+        } catch (_) { return ''; }
+      }
 
       function loadSavedLang() {
         try {
@@ -1326,9 +1273,7 @@
               venue: currentLang === 'en' ? 'Crystal Hall — Heliopolis' : 'قاعة كريستال — مصر الجديدة'
             }
           ],
-          orders: [],
-          adminOwnerId: '',
-          authorizedAdmins: []
+          orders: []
         };
       }
 
@@ -1374,32 +1319,6 @@
               ? Object.values(parsed.orders).reverse()
               : []);
 
-        const ownerId = SecurityModule.cleanText(parsed.adminOwnerId, 120);
-        const rawAdmins = Array.isArray(parsed.authorizedAdmins)
-          ? parsed.authorizedAdmins
-          : (parsed.authorizedAdmins && typeof parsed.authorizedAdmins === 'object'
-              ? Object.values(parsed.authorizedAdmins)
-              : []);
-
-        const normalizedAdmins = rawAdmins
-          .filter((m) => m && typeof m.id === 'string' && SecurityModule.cleanText(m.id, 120))
-          .map((m) => {
-            const cleanId = SecurityModule.cleanText(m.id, 120);
-            return {
-              id: cleanId,
-              name: SecurityModule.cleanText(m.name, 80) || 'أدمن مضاف',
-              role: cleanId === ownerId ? 'owner' : 'added'
-            };
-          });
-
-        if (ownerId && !normalizedAdmins.some((m) => m.id === ownerId)) {
-          normalizedAdmins.unshift({
-            id: ownerId,
-            name: 'الأدمن الأساسي',
-            role: 'owner'
-          });
-        }
-
         return {
           ...base,
           ...parsed,
@@ -1420,9 +1339,7 @@
           appServicePrice: SecurityModule.safeNonNegativeInt(parsed.appServicePrice, base.appServicePrice),
           addons: mergedAddons,
           showcaseItems: mergedShowcase,
-          orders: mergedOrders,
-          adminOwnerId: ownerId,
-          authorizedAdmins: normalizedAdmins
+          orders: mergedOrders
         };
       }
 
@@ -1438,29 +1355,87 @@
 
       function saveLocalState() {
         try {
-          localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(state));
+          localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(publicPart(state)));
         } catch (_) {}
       }
 
+      function publicPart(st) {
+        const copy = { ...st };
+        delete copy.orders;
+        delete copy.adminOwnerId;
+        delete copy.authorizedAdmins;
+        return copy;
+      }
+
+      // Only a signed-in admin can write the site content. Rules on the server enforce this too.
       async function syncStateToFirebase() {
         try {
-          const endpoint = `${CONFIG.FIREBASE_DB_URL}/studioState.json?t=${Date.now()}`;
+          if (!isUserAuthorizedAdmin()) return;
+          const token = await getAdminToken();
+          if (!token) return;
+          const endpoint = `${CONFIG.FIREBASE_DB_URL}/studioPublic.json?auth=${encodeURIComponent(token)}`;
           await fetch(endpoint, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(state)
+            body: JSON.stringify(publicPart(state))
           });
+        } catch (_) {}
+      }
+
+      async function fetchOrdersAsAdmin() {
+        try {
+          if (!isUserAuthorizedAdmin()) return;
+          const token = await getAdminToken();
+          if (!token) return;
+          const res = await fetch(`${CONFIG.FIREBASE_DB_URL}/orders.json?auth=${encodeURIComponent(token)}`, { cache: 'no-store' });
+          if (!res.ok) return;
+          const data = await res.json();
+          const list = data && typeof data === 'object'
+            ? Object.keys(data).map((k) => ({ ...data[k], _key: k }))
+            : [];
+          list.sort((a, b) => (Number(b.createdTs) || 0) - (Number(a.createdTs) || 0));
+          state.orders = list;
+          renderAdminOrders();
+        } catch (_) {}
+      }
+
+      // One-time copy of the old single-node data into the new split layout (admin only, silent).
+      async function migrateOldDataIfNeeded(token) {
+        try {
+          const base = CONFIG.FIREBASE_DB_URL;
+          const pubRes = await fetch(`${base}/studioPublic.json?auth=${encodeURIComponent(token)}`, { cache: 'no-store' });
+          if (!pubRes.ok) return;
+          if ((await pubRes.json()) !== null) return;
+          const oldRes = await fetch(`${base}/studioState.json?auth=${encodeURIComponent(token)}`, { cache: 'no-store' });
+          if (!oldRes.ok) return;
+          const old = await oldRes.json();
+          if (!old || typeof old !== 'object') return;
+          const normalized = normalizeState(old);
+          await fetch(`${base}/studioPublic.json?auth=${encodeURIComponent(token)}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(publicPart(normalized))
+          });
+          for (const ord of normalized.orders) {
+            await fetch(`${base}/orders.json?auth=${encodeURIComponent(token)}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ...ord, createdTs: Number(ord.createdTs) || 0 })
+            });
+          }
         } catch (_) {}
       }
 
       async function fetchStateFromFirebase() {
         try {
-          const endpoint = `${CONFIG.FIREBASE_DB_URL}/studioState.json?t=${Date.now()}`;
+          const endpoint = `${CONFIG.FIREBASE_DB_URL}/studioPublic.json?t=${Date.now()}`;
           const res = await fetch(endpoint, { cache: 'no-store' });
           if (!res.ok) return;
           const remoteData = await res.json();
           if (remoteData && typeof remoteData === 'object') {
+            const keepOrders = isUserAuthorizedAdmin() ? state.orders : [];
             state = normalizeState(remoteData);
+            state.orders = keepOrders;
             selectedAddonIds = selectedAddonIds.filter((id) => CONFIG.ALLOWED_ADDON_IDS.includes(id));
             saveLocalState();
             renderAll();
@@ -1503,9 +1478,8 @@
       }
 
       function isUserAuthorizedAdmin() {
-        if (!state.adminOwnerId) return true;
-        if (state.adminOwnerId === currentDeviceId) return true;
-        return Array.isArray(state.authorizedAdmins) && state.authorizedAdmins.some((m) => m.id === currentDeviceId);
+        const u = fbAuth && fbAuth.currentUser;
+        return !!(u && u.emailVerified && u.email && u.email.toLowerCase() === CONFIG.ADMIN_EMAIL.toLowerCase());
       }
 
       function buildOrderWhatsAppMessage(ord) {
@@ -1939,67 +1913,18 @@
           btn.addEventListener('click', () => {
             if (!isUserAuthorizedAdmin()) return;
             const orderId = btn.getAttribute('data-delete-order');
+            const target = state.orders.find((o) => o.id === orderId);
             state.orders = state.orders.filter((o) => o.id !== orderId);
-            saveLocalState();
             renderAdminOrders();
-            syncStateToFirebase();
+            if (target && target._key) {
+              getAdminToken().then((tk) => fetch(`${CONFIG.FIREBASE_DB_URL}/orders/${encodeURIComponent(target._key)}.json?auth=${encodeURIComponent(tk)}`, { method: 'DELETE' })).catch(() => {});
+            }
             showToast(t.toastOrderDeleted);
           });
         });
       }
 
-      function renderAdminMembers() {
-        const statusEl = document.getElementById('adm-access-status');
-        const listEl = document.getElementById('adm-members-list');
-        if (!statusEl || !listEl) return;
-
-        statusEl.textContent = `صفحة الأدمن مقفولة على الحساب المصرح له فقط. معرف جهازك الحالي: ${currentDeviceId}`;
-
-        const members = Array.isArray(state.authorizedAdmins) ? state.authorizedAdmins : [];
-        if (members.length === 0) {
-          listEl.innerHTML = '<div class="text-xs text-[#526071] bg-[#f6f7f9] rounded-xl p-3 border border-slate-200">لا يوجد أشخاص مضافون بعد.</div>';
-          return;
-        }
-
-        listEl.innerHTML = members.map((m) => {
-          const isOwner = m.id === state.adminOwnerId;
-          return `
-            <div class="rounded-xl bg-[#f6f7f9] p-3 border border-slate-200 text-xs flex items-center justify-between gap-2">
-              <div class="space-y-0.5">
-                <div class="font-extrabold text-[#182230]">
-                  ${escapeHtml(m.name)}
-                  <span class="mx-1.5 px-2 py-0.5 rounded-full text-[10px] ${isOwner ? 'bg-blue-100 text-[#2563eb]' : 'bg-white text-[#526071] border border-slate-200'}">
-                    ${isOwner ? 'أول دخول (مقفول)' : 'مضاف'}
-                  </span>
-                </div>
-                <div class="text-[11px] text-[#526071]" dir="ltr">${escapeHtml(m.id)}</div>
-              </div>
-              ${isOwner ? '' : `
-                <button
-                  type="button"
-                  data-remove-member="${escapeHtml(m.id)}"
-                  class="remove-member-btn cursor-pointer px-2.5 py-1 rounded-lg bg-white hover:bg-rose-50 text-rose-600 border border-slate-200 font-bold"
-                >
-                  إزالة
-                </button>
-              `}
-            </div>
-          `;
-        }).join('');
-
-        listEl.querySelectorAll('.remove-member-btn').forEach((btn) => {
-          btn.addEventListener('click', async () => {
-            if (!isUserAuthorizedAdmin()) return;
-            const targetId = btn.getAttribute('data-remove-member');
-            if (!targetId || targetId === state.adminOwnerId) return;
-            state.authorizedAdmins = state.authorizedAdmins.filter((m) => m.id !== targetId);
-            saveLocalState();
-            renderAdminMembers();
-            await syncStateToFirebase();
-            showToast(t.toastMemberRemoved);
-          });
-        });
-      }
+      function renderAdminMembers() {}
 
       document.getElementById('lang-toggle-btn').addEventListener('click', () => {
         currentLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -2151,10 +2076,13 @@
           createdAt: t.nowLabel
         };
 
-        state.orders.unshift(newOrder);
-        saveLocalState();
-        renderAdminOrders();
-        await syncStateToFirebase();
+        try {
+          await fetch(`${CONFIG.FIREBASE_DB_URL}/orders.json`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...newOrder, createdTs: Date.now() })
+          });
+        } catch (_) {}
 
         document.getElementById('saved-order-code').textContent = orderCode;
         const summaryBox = document.getElementById('order-summary-box');
@@ -2211,15 +2139,8 @@
         await fetchStateFromFirebase();
         adminAuthError.classList.add('hidden');
         adminPasscodeInput.value = '';
-        if (SecurityModule.isTemporarilyLocked()) {
-          adminAuthError.textContent = t.adminRateLimitError;
-          adminAuthError.classList.remove('hidden');
-        } else if (state.adminOwnerId && !isUserAuthorizedAdmin()) {
-          adminAuthError.textContent = t.adminLockedError;
-          adminAuthError.classList.remove('hidden');
-        }
+        adminPasscodeInput.classList.add('hidden');
         adminAuthModal.classList.remove('hidden');
-        setTimeout(() => adminPasscodeInput.focus(), 60);
       }
 
       if (brandTriggerLink) {
@@ -2297,78 +2218,42 @@
 
       adminAuthForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        await fetchStateFromFirebase();
-
-        if (SecurityModule.isTemporarilyLocked()) {
-          adminAuthError.textContent = t.adminRateLimitError;
+        adminAuthError.classList.add('hidden');
+        if (!fbAuth) {
+          adminAuthError.textContent = t.adminAuthError;
           adminAuthError.classList.remove('hidden');
           return;
         }
-
-        if (adminPasscodeInput.value.trim() !== CONFIG.ADMIN_PASSCODE) {
-          const lockedNow = SecurityModule.recordFailedAttempt();
-          adminAuthError.textContent = lockedNow ? t.adminRateLimitError : t.adminAuthError;
+        try {
+          if (!isUserAuthorizedAdmin()) {
+            await fbAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+          }
+        } catch (_) {
+          adminAuthError.textContent = t.adminAuthError;
           adminAuthError.classList.remove('hidden');
           return;
         }
-
-        SecurityModule.clearFailedAttempts();
-
-        if (!state.adminOwnerId) {
-          state.adminOwnerId = currentDeviceId;
-          state.authorizedAdmins = [{
-            id: currentDeviceId,
-            name: 'الأدمن الأساسي',
-            role: 'owner'
-          }];
-          saveLocalState();
-          await syncStateToFirebase();
-        } else if (!isUserAuthorizedAdmin()) {
+        if (!isUserAuthorizedAdmin()) {
+          try { await fbAuth.signOut(); } catch (_) {}
           adminAuthError.textContent = t.adminLockedError;
           adminAuthError.classList.remove('hidden');
           showToast(t.toastAdminLocked);
           return;
         }
+        const token = await getAdminToken();
+        await migrateOldDataIfNeeded(token);
+        await fetchStateFromFirebase();
+        await fetchOrdersAsAdmin();
 
         adminAuthModal.classList.add('hidden');
         fillAdminInputs();
         renderAdminOrders();
-        renderAdminMembers();
         adminPanel.classList.remove('hidden');
         showToast(t.toastAdminOpened);
       });
 
       document.getElementById('close-admin-panel-btn').addEventListener('click', () => {
         adminPanel.classList.add('hidden');
-      });
-
-      document.getElementById('adm-add-member-btn').addEventListener('click', async () => {
-        if (!isUserAuthorizedAdmin()) return;
-        const nameInput = document.getElementById('adm-invite-name');
-        const idInput = document.getElementById('adm-invite-id');
-        const memberName = SecurityModule.cleanText(nameInput.value, 80) || 'أدمن مضاف';
-        const memberId = SecurityModule.cleanText(idInput.value, 120);
-
-        if (!memberId) {
-          showToast(t.toastEnterMemberId);
-          return;
-        }
-
-        const exists = state.authorizedAdmins.some((m) => m.id === memberId);
-        if (!exists) {
-          state.authorizedAdmins.push({
-            id: memberId,
-            name: memberName,
-            role: memberId === state.adminOwnerId ? 'owner' : 'added'
-          });
-          saveLocalState();
-          renderAdminMembers();
-          await syncStateToFirebase();
-        }
-
-        nameInput.value = '';
-        idInput.value = '';
-        showToast(t.toastMemberAdded);
       });
 
       document.getElementById('adm-save-btn').addEventListener('click', async () => {
@@ -2430,25 +2315,24 @@
       document.getElementById('adm-clear-orders-btn').addEventListener('click', async () => {
         if (!isUserAuthorizedAdmin()) return;
         state.orders = [];
-        saveLocalState();
         renderAdminOrders();
-        await syncStateToFirebase();
+        try {
+          const tk = await getAdminToken();
+          await fetch(`${CONFIG.FIREBASE_DB_URL}/orders.json?auth=${encodeURIComponent(tk)}`, { method: 'DELETE' });
+        } catch (_) {}
         showToast(t.toastOrdersCleared);
       });
 
       document.getElementById('adm-reset-defaults-btn').addEventListener('click', async () => {
         if (!isUserAuthorizedAdmin()) return;
-        const preservedOwner = state.adminOwnerId;
-        const preservedAdmins = state.authorizedAdmins;
+        const preservedOrders = state.orders;
         state = buildDefaultState();
-        state.adminOwnerId = preservedOwner;
-        state.authorizedAdmins = preservedAdmins;
+        state.orders = preservedOrders;
         selectedAddonIds = [];
         isVipMode = false;
         saveLocalState();
         fillAdminInputs();
         renderAll();
-        renderAdminMembers();
         await syncStateToFirebase();
         showToast(t.toastResetDone);
       });
