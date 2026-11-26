@@ -1513,6 +1513,14 @@
         return targetPhone ? `whatsapp://send?phone=${targetPhone}&text=${msg}` : `whatsapp://send?text=${msg}`;
       }
 
+      // Android only: open WhatsApp Business (com.whatsapp.w4b) directly.
+      function buildClientWhatsAppBusinessIntentUrl(ord) {
+        const targetPhone = buildClientWhatsAppPhone(ord);
+        const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
+        const phonePart = targetPhone ? `phone=${targetPhone}&` : '';
+        return `intent://send?${phonePart}text=${msg}#Intent;scheme=whatsapp;package=com.whatsapp.w4b;end`;
+      }
+
       function copyTextSafe(text) {
         const fallback = () => {
           try {
@@ -1929,6 +1937,7 @@
                   href="${escapeHtml(isMobileDevice() ? buildClientWhatsAppAppUrl(ord) : waHref)}"
                   ${isMobileDevice() ? '' : 'target="_blank" rel="noopener noreferrer"'}
                   data-wa-open="1"
+                  data-wa-biz="${escapeHtml(buildClientWhatsAppBusinessIntentUrl(ord))}"
                   class="wa-order-link px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
                 >
                   واتساب
@@ -1953,12 +1962,28 @@
         }).join('');
 
         admListEl.querySelectorAll('.wa-order-link').forEach((a) => {
-          a.addEventListener('click', () => {
+          a.addEventListener('click', (ev) => {
             if (!isMobileDevice()) return;
-            // If WhatsApp did not take over the screen, tell the admin how to continue by hand.
+            const isAndroid = /Android/i.test(navigator.userAgent || '');
+            if (isAndroid) {
+              // Try WhatsApp Business first (hidden frame, so a failure never replaces the page).
+              ev.preventDefault();
+              try {
+                const fr = document.createElement('iframe');
+                fr.style.display = 'none';
+                fr.src = a.getAttribute('data-wa-biz');
+                document.body.appendChild(fr);
+                setTimeout(() => { try { document.body.removeChild(fr); } catch (_) {} }, 3000);
+              } catch (_) {}
+              // If Business did not open, fall back to the normal WhatsApp app link.
+              setTimeout(() => {
+                if (!document.hidden) window.location.href = a.getAttribute('href');
+              }, 1500);
+            }
+            // If nothing opened, tell the admin how to continue by hand.
             setTimeout(() => {
               if (!document.hidden) showToast('لو واتساب ما فتحش، دوس "نسخ الرقم" وافتحه بنفسك');
-            }, 1800);
+            }, isAndroid ? 3500 : 1800);
           });
         });
 
