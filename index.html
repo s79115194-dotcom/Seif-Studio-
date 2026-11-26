@@ -1521,6 +1521,44 @@
         return `intent://send?${phonePart}text=${msg}#Intent;scheme=whatsapp;package=com.whatsapp.w4b;end`;
       }
 
+      function openWhatsAppChooser(regularUrl, businessUrl) {
+        const old = document.getElementById('wa-chooser');
+        if (old) old.remove();
+        const wrap = document.createElement('div');
+        wrap.id = 'wa-chooser';
+        wrap.className = 'fixed inset-0 z-[10001] flex items-end sm:items-center justify-center bg-black/40 p-4';
+        wrap.innerHTML = `
+          <div class="w-full max-w-xs bg-white rounded-2xl border border-slate-200 shadow-2xl p-4 space-y-2 text-center">
+            <div class="text-sm font-extrabold text-[#182230] pb-1">افتح بـ</div>
+            <button type="button" data-wa-choice="regular" class="w-full cursor-pointer py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold">واتساب</button>
+            <button type="button" data-wa-choice="business" class="w-full cursor-pointer py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-900 text-white text-xs font-extrabold">واتساب بيزنس</button>
+            <button type="button" data-wa-choice="cancel" class="w-full cursor-pointer py-2.5 rounded-xl bg-[#f1f4f8] hover:bg-slate-200 text-[#182230] border border-slate-200 text-xs font-bold">إلغاء</button>
+          </div>`;
+        const close = () => wrap.remove();
+        wrap.addEventListener('click', (e) => { if (e.target === wrap) close(); });
+        wrap.querySelectorAll('[data-wa-choice]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const choice = btn.getAttribute('data-wa-choice');
+            close();
+            if (choice === 'regular') {
+              window.location.href = regularUrl;
+            } else if (choice === 'business') {
+              try {
+                const fr = document.createElement('iframe');
+                fr.style.display = 'none';
+                fr.src = businessUrl;
+                document.body.appendChild(fr);
+                setTimeout(() => { try { document.body.removeChild(fr); } catch (_) {} }, 3000);
+              } catch (_) {}
+              setTimeout(() => {
+                if (!document.hidden) showToast('واتساب بيزنس ما فتحش، دوس "نسخ الرقم" وافتحه بنفسك');
+              }, 2500);
+            }
+          });
+        });
+        document.body.appendChild(wrap);
+      }
+
       function copyTextSafe(text) {
         const fallback = () => {
           try {
@@ -1963,27 +2001,10 @@
 
         admListEl.querySelectorAll('.wa-order-link').forEach((a) => {
           a.addEventListener('click', (ev) => {
-            if (!isMobileDevice()) return;
-            const isAndroid = /Android/i.test(navigator.userAgent || '');
-            if (isAndroid) {
-              // Try WhatsApp Business first (hidden frame, so a failure never replaces the page).
-              ev.preventDefault();
-              try {
-                const fr = document.createElement('iframe');
-                fr.style.display = 'none';
-                fr.src = a.getAttribute('data-wa-biz');
-                document.body.appendChild(fr);
-                setTimeout(() => { try { document.body.removeChild(fr); } catch (_) {} }, 3000);
-              } catch (_) {}
-              // If Business did not open, fall back to the normal WhatsApp app link.
-              setTimeout(() => {
-                if (!document.hidden) window.location.href = a.getAttribute('href');
-              }, 1500);
-            }
-            // If nothing opened, tell the admin how to continue by hand.
-            setTimeout(() => {
-              if (!document.hidden) showToast('لو واتساب ما فتحش، دوس "نسخ الرقم" وافتحه بنفسك');
-            }, isAndroid ? 3500 : 1800);
+            if (!/Android/i.test(navigator.userAgent || '')) return;
+            // Android: let the admin choose between regular WhatsApp and WhatsApp Business.
+            ev.preventDefault();
+            openWhatsAppChooser(a.getAttribute('href'), a.getAttribute('data-wa-biz'));
           });
         });
 
