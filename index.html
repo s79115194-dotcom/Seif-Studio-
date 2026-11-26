@@ -1498,6 +1498,42 @@
         return lines.join('\n');
       }
 
+      function isMobileDevice() {
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+      }
+
+      function buildClientWhatsAppPhone(ord) {
+        return SecurityModule.sanitizePhoneDigits(ord.phone) || SecurityModule.sanitizePhoneDigits(state.whatsappNumber);
+      }
+
+      // Direct WhatsApp app link (used on phones and inside app wrappers). Same phone cleanup and message as the wa.me link.
+      function buildClientWhatsAppAppUrl(ord) {
+        const targetPhone = buildClientWhatsAppPhone(ord);
+        const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
+        return targetPhone ? `whatsapp://send?phone=${targetPhone}&text=${msg}` : `whatsapp://send?text=${msg}`;
+      }
+
+      function copyTextSafe(text) {
+        const fallback = () => {
+          try {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            const ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            return ok;
+          } catch (_) { return false; }
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(text).then(() => true).catch(() => fallback());
+        }
+        return Promise.resolve(fallback());
+      }
+
       function buildClientWhatsAppUrl(ord) {
         const targetPhone = SecurityModule.sanitizePhoneDigits(ord.phone) || SecurityModule.sanitizePhoneDigits(state.whatsappNumber);
         const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
@@ -1890,13 +1926,20 @@
               <div class="flex items-center gap-2 shrink-0">
                 <span class="font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} ${escapeHtml(t.currency)}</span>
                 <a
-                  href="${escapeHtml(waHref)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
+                  href="${escapeHtml(isMobileDevice() ? buildClientWhatsAppAppUrl(ord) : waHref)}"
+                  ${isMobileDevice() ? '' : 'target="_blank" rel="noopener noreferrer"'}
+                  data-wa-open="1"
+                  class="wa-order-link px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
                 >
                   واتساب
                 </a>
+                <button
+                  type="button"
+                  data-copy-phone="${escapeHtml(buildClientWhatsAppPhone(ord))}"
+                  class="copy-phone-btn cursor-pointer px-2.5 py-1 rounded-lg bg-white hover:bg-slate-50 text-[#182230] border border-slate-200 font-bold"
+                >
+                  نسخ الرقم
+                </button>
                 <button
                   type="button"
                   data-delete-order="${escapeHtml(ord.id)}"
@@ -1908,6 +1951,25 @@
             </div>
           `;
         }).join('');
+
+        admListEl.querySelectorAll('.wa-order-link').forEach((a) => {
+          a.addEventListener('click', () => {
+            if (!isMobileDevice()) return;
+            // If WhatsApp did not take over the screen, tell the admin how to continue by hand.
+            setTimeout(() => {
+              if (!document.hidden) showToast('لو واتساب ما فتحش، دوس "نسخ الرقم" وافتحه بنفسك');
+            }, 1800);
+          });
+        });
+
+        admListEl.querySelectorAll('.copy-phone-btn').forEach((btn) => {
+          btn.addEventListener('click', async () => {
+            const phone = btn.getAttribute('data-copy-phone') || '';
+            if (!phone) { showToast('مفيش رقم للنسخ'); return; }
+            const ok = await copyTextSafe(phone);
+            showToast(ok ? 'تم نسخ الرقم: ' + phone : 'مقدرتش أنسخ، الرقم: ' + phone);
+          });
+        });
 
         admListEl.querySelectorAll('.delete-order-btn').forEach((btn) => {
           btn.addEventListener('click', () => {
