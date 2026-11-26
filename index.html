@@ -1498,6 +1498,14 @@
         return lines.join('\n');
       }
 
+      // Android: open the WhatsApp app directly; if it cannot, the browser falls back to the wa.me link.
+      function buildClientWhatsAppIntentUrl(ord, fallbackUrl) {
+        const targetPhone = SecurityModule.sanitizePhoneDigits(ord.phone) || SecurityModule.sanitizePhoneDigits(state.whatsappNumber);
+        const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
+        const phonePart = targetPhone ? `phone=${targetPhone}&` : '';
+        return `intent://send?${phonePart}text=${msg}#Intent;scheme=whatsapp;S.browser_fallback_url=${encodeURIComponent(fallbackUrl)};end`;
+      }
+
       function buildClientWhatsAppUrl(ord) {
         const targetPhone = SecurityModule.sanitizePhoneDigits(ord.phone) || SecurityModule.sanitizePhoneDigits(state.whatsappNumber);
         const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
@@ -1891,6 +1899,7 @@
                 <span class="font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} ${escapeHtml(t.currency)}</span>
                 <a
                   href="${escapeHtml(waHref)}"
+                  data-wa-intent="${escapeHtml(buildClientWhatsAppIntentUrl(ord, waHref))}"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
@@ -1908,6 +1917,15 @@
             </div>
           `;
         }).join('');
+
+        if (/Android/i.test(navigator.userAgent)) {
+          admListEl.querySelectorAll('a[data-wa-intent]').forEach((a) => {
+            a.addEventListener('click', (ev) => {
+              ev.preventDefault();
+              window.location.href = a.getAttribute('data-wa-intent');
+            });
+          });
+        }
 
         admListEl.querySelectorAll('.delete-order-btn').forEach((btn) => {
           btn.addEventListener('click', () => {
