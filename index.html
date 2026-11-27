@@ -87,7 +87,6 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#f6f7f9] text-[#182230] selection:bg-[#2563eb] selection:text-white">
 
-  <!-- TOP NAVIGATION BAR -->
   <header class="sticky top-0 z-40 bg-white border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-3">
       <div id="brand-trigger-link" role="button" tabindex="0" class="flex items-center gap-2.5 shrink-0 cursor-pointer select-none">
@@ -133,7 +132,6 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
   <section id="top" class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-8 pb-8">
     <div class="rounded-3xl soft-card p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       <div class="lg:col-span-7 space-y-4">
@@ -168,22 +166,25 @@
         </div>
 
         <div class="pt-3 flex flex-wrap items-center gap-2.5 text-xs text-[#182230]">
-          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold">
-            <span id="hero-base-label">الباقة الأساسية</span>: <span id="hero-base-price" class="text-[#2563eb]">500</span> <span id="currency-hero-1">جنيه</span>
+          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold inline-flex items-center gap-1.5">
+            <span><span id="hero-base-label">الباقة الأساسية</span>: <span id="hero-base-price" class="text-[#2563eb]">500</span> <span id="currency-hero-1">جنيه</span></span>
+            <button type="button" data-offer-kind="base" class="limited-offer-btn cursor-pointer px-2 py-0.5 rounded-md bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[10px] font-extrabold transition-colors">عرض لفترة محدودة</button>
           </span>
-          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold">
-            <span id="hero-vip-label">باقة VIP</span>: <span id="hero-vip-price" class="text-[#2563eb]">800</span> <span id="currency-hero-2">جنيه</span>
+          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold inline-flex items-center gap-1.5">
+            <span><span id="hero-vip-label">باقة VIP</span>: <span id="hero-vip-price" class="text-[#2563eb]">800</span> <span id="currency-hero-2">جنيه</span></span>
+            <button type="button" data-offer-kind="vip" class="limited-offer-btn cursor-pointer px-2 py-0.5 rounded-md bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[10px] font-extrabold transition-colors">عرض لفترة محدودة</button>
           </span>
-          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold">
-            <span id="hero-project-label">ويب سايت المشاريع</span>: <span id="hero-project-price" class="text-[#2563eb]">2000</span> <span id="currency-hero-3">جنيه</span>
+          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold inline-flex items-center gap-1.5">
+            <span><span id="hero-project-label">ويب سايت المشاريع</span>: <span id="hero-project-price" class="text-[#2563eb]">2000</span> <span id="currency-hero-3">جنيه</span></span>
+            <button type="button" data-offer-kind="project" class="limited-offer-btn cursor-pointer px-2 py-0.5 rounded-md bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[10px] font-extrabold transition-colors">عرض لفترة محدودة</button>
           </span>
-          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold">
-            <span id="hero-app-label">عمل برنامج</span>: <span id="hero-app-price" class="text-[#2563eb]">3500</span> <span id="currency-hero-4">جنيه</span>
+          <span class="px-3.5 py-1.5 rounded-xl bg-[#f1f4f8] border border-slate-200 font-bold inline-flex items-center gap-1.5">
+            <span><span id="hero-app-label">عمل برنامج</span>: <span id="hero-app-price" class="text-[#2563eb]">3500</span> <span id="currency-hero-4">جنيه</span></span>
+            <button type="button" data-offer-kind="app" class="limited-offer-btn cursor-pointer px-2 py-0.5 rounded-md bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[10px] font-extrabold transition-colors">عرض لفترة محدودة</button>
           </span>
         </div>
       </div>
 
-      <!-- Featured Sample Preview Card -->
       <div class="lg:col-span-5">
         <div class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-5 space-y-4">
           <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -214,7 +215,6 @@
     </div>
   </section>
 
-  <!-- DEDICATED SHOWCASE SECTIONS -->
   <section id="invitations-showcase" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
       <div>
@@ -237,7 +237,6 @@
     <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </section>
 
-  <!-- INTERACTIVE PACKAGE BUILDER -->
   <section id="package-builder" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
     <div class="rounded-3xl soft-card p-6 sm:p-8 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-200 pb-5">
@@ -266,13 +265,20 @@
                 الدعوة الأساسية جاهزة ومرتبة لأي مناسبة وتشمل معرض الصور عادي؛ تقدر تطلبها على طول أو تزود عليها الإضافات اللي تناسبك.
               </p>
             </div>
-            <div class="shrink-0">
+            <div class="shrink-0 text-start sm:text-end space-y-1.5">
               <div class="text-xl font-extrabold text-[#2563eb]"><span id="builder-base-price">500</span> <span id="currency-base-card">جنيه</span></div>
+              <button
+                type="button"
+                data-offer-kind="base"
+                class="limited-offer-btn cursor-pointer inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[11px] font-extrabold transition-colors"
+              >
+                عرض لفترة محدودة
+              </button>
               <div id="base-min-note" class="text-[11px] text-[#526071]">الحد الأدنى للباقة</div>
             </div>
           </div>
 
-          <div class="space-y-3">
+          <div id="addons-section" class="space-y-3">
             <div class="flex items-center justify-between">
               <h3 id="addons-section-title" class="font-extrabold text-sm sm:text-base text-[#182230]">الإضافات الفردية (اختار اللي تحتاجه):</h3>
               <span id="selected-addons-count" class="text-xs font-bold text-[#2563eb]">0 إضافات مختارة</span>
@@ -301,6 +307,13 @@
               >
                 التحويل إلى باقة VIP
               </button>
+              <button
+                type="button"
+                data-offer-kind="vip"
+                class="limited-offer-btn cursor-pointer px-3 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold transition-colors"
+              >
+                عرض لفترة محدودة
+              </button>
               <span id="vip-keep-note" class="text-xs text-[#526071]">أو كمل بالاختيارات الحالية</span>
             </div>
           </div>
@@ -323,8 +336,17 @@
               <div id="summary-addons-breakdown" class="space-y-1.5 text-[#526071]"></div>
             </div>
 
-            <div class="border-t border-slate-200 pt-3.5 flex items-baseline justify-between">
-              <span id="summary-total-label" class="font-extrabold text-sm text-[#182230]">الإجمالي:</span>
+            <div class="border-t border-slate-200 pt-3.5 flex items-baseline justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span id="summary-total-label" class="font-extrabold text-sm text-[#182230]">الإجمالي:</span>
+                <button
+                  type="button"
+                  data-offer-kind="current"
+                  class="limited-offer-btn cursor-pointer px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[11px] font-extrabold transition-colors"
+                >
+                  عرض لفترة محدودة
+                </button>
+              </div>
               <div>
                 <span id="summary-total-price" class="text-2xl sm:text-3xl font-extrabold text-[#2563eb]">500</span>
                 <span id="currency-total" class="text-xs font-bold text-[#526071] mx-1">جنيه</span>
@@ -348,7 +370,6 @@
     </div>
   </section>
 
-  <!-- PROJECT WEBSITES SECTION -->
   <section id="projects-website" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-6">
     <div class="rounded-3xl soft-card p-6 sm:p-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
@@ -382,6 +403,15 @@
             <div class="text-4xl font-extrabold text-[#2563eb]">
               <span id="project-pkg-price">2000</span> <span id="currency-project" class="text-base font-bold text-[#182230]">جنيه</span>
             </div>
+            <div>
+              <button
+                type="button"
+                data-offer-kind="project"
+                class="limited-offer-btn cursor-pointer inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold transition-colors"
+              >
+                عرض لفترة محدودة
+              </button>
+            </div>
             <p id="project-single-note" class="text-xs text-[#526071]">باقة واحدة لويب سايت المشاريع</p>
             <button
               type="button"
@@ -396,7 +426,6 @@
     </div>
   </section>
 
-  <!-- APPS / PROGRAMS SECTION -->
   <section id="apps-service" class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 pb-10">
     <div class="rounded-3xl soft-card p-6 sm:p-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
@@ -430,6 +459,15 @@
             <div class="text-4xl font-extrabold text-[#2563eb]">
               <span id="app-pkg-price">3500</span> <span id="currency-app" class="text-base font-bold text-[#182230]">جنيه</span>
             </div>
+            <div>
+              <button
+                type="button"
+                data-offer-kind="app"
+                class="limited-offer-btn cursor-pointer inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold transition-colors"
+              >
+                عرض لفترة محدودة
+              </button>
+            </div>
             <p id="app-single-note" class="text-xs text-[#526071]">باقة مستقلة لعمل برنامج</p>
             <button
               type="button"
@@ -444,7 +482,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="mt-auto border-t border-slate-200 bg-white py-6 px-4 text-center">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#526071]">
       <div>
@@ -454,7 +491,25 @@
     </div>
   </footer>
 
-  <!-- ORDER FORM MODAL -->
+  <div id="limited-offer-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="w-full max-w-sm bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 text-center space-y-4">
+      <span id="offer-modal-badge" class="inline-block px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-800 text-xs font-extrabold">
+        عرض لفترة محدودة
+      </span>
+      <h3 id="offer-modal-title" class="text-lg font-extrabold text-[#182230]">السعر ده عرض لفترة محدودة</h3>
+      <p id="offer-modal-desc" class="text-xs sm:text-sm text-[#526071] leading-relaxed">
+        السعر الظاهر متاح لفترة محدودة وقد يتغير بعد انتهاء العرض.
+      </p>
+      <button
+        type="button"
+        id="close-offer-modal-btn"
+        class="cursor-pointer w-full py-2.5 px-4 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-extrabold transition-colors"
+      >
+        تمام
+      </button>
+    </div>
+  </div>
+
   <div id="order-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="w-full max-w-lg bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 space-y-4 my-auto">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -585,15 +640,14 @@
       </form>
 
       <div id="order-success-panel" class="hidden rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-950 space-y-2.5">
-        <div class="text-sm font-extrabold">✓ تم تسجيل طلبك بنجاح برقم <span id="saved-order-code" class="font-cinzel"></span></div>
-        <p class="text-xs leading-relaxed text-emerald-900">وصل طلبك لإدارة الموقع وتم حفظه بنجاح. دي بيانات طلبك:</p>
+        <div id="order-success-heading" class="text-sm font-extrabold">✓ تم تسجيل طلبك بنجاح برقم <span id="saved-order-code" class="font-cinzel"></span></div>
+        <p id="order-success-desc" class="text-xs leading-relaxed text-emerald-900">وصل طلبك لإدارة الموقع وتم حفظه بنجاح. دي بيانات طلبك:</p>
         <div id="order-summary-box" class="rounded-xl bg-white border border-emerald-200 p-3 text-xs space-y-1 text-[#182230]"></div>
         <button type="button" id="order-done-btn" class="cursor-pointer px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-extrabold transition-colors">تمام</button>
       </div>
     </div>
   </div>
 
-  <!-- ADMIN PASSCODE MODAL -->
   <div id="admin-auth-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="w-full max-w-sm bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 text-center space-y-4">
       <div>
@@ -608,7 +662,7 @@
           placeholder="الرقم السري"
           dir="ltr"
           autocomplete="off"
-          class="w-full text-center tracking-[0.2em] rounded-xl bg-[#f6f7f9] border border-slate-200 px-4 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
+          class="hidden w-full text-center tracking-[0.2em] rounded-xl bg-[#f6f7f9] border border-slate-200 px-4 py-2.5 text-sm text-[#182230] focus:outline-none focus:border-[#2563eb]"
         />
         <p id="admin-auth-error" class="hidden text-xs font-bold text-rose-600">الرقم السري غلط، جرب تاني.</p>
 
@@ -632,7 +686,6 @@
     </div>
   </div>
 
-  <!-- ADMIN DASHBOARD -->
   <div id="admin-panel" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border border-slate-200 shadow-2xl p-5 sm:p-7 space-y-6 my-auto text-right">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3.5 sticky top-0 bg-white z-10">
@@ -679,7 +732,16 @@
       </div>
 
       <div class="space-y-3 border-t border-slate-200 pt-4">
-        <h4 class="text-sm font-extrabold text-[#2563eb]">2. أسعار الباقات والإضافات والمواقع والبرامج</h4>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h4 class="text-sm font-extrabold text-[#2563eb]">2. أسعار الباقات والإضافات والمواقع والبرامج</h4>
+          <button
+            type="button"
+            id="adm-toggle-addons-btn"
+            class="cursor-pointer px-3.5 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#2563eb] border border-blue-200 text-xs font-extrabold transition-colors"
+          >
+            الإضافات ظاهرة للعميل (اضغط لإخفائها)
+          </button>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-bold text-[#182230] mb-1">اسم الباقة الأساسية</label>
@@ -723,7 +785,7 @@
       </div>
 
       <div class="space-y-3 border-t border-slate-200 pt-4">
-        <h4 class="text-sm font-extrabold text-[#2563eb]">3. إضافة نموذج جديد لقسم الدعوات</h4>
+        <h4 class="text-sm font-extrabold text-[#2563eb]">3. إضافة وإدارة نماذج الدعوات</h4>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
           <select id="adm-new-item-category" class="rounded-xl bg-[#f6f7f9] border border-slate-200 px-3 py-2 text-xs text-[#182230] focus:outline-none focus:border-[#2563eb]">
             <option value="wedding">فرح</option>
@@ -743,6 +805,7 @@
         >
           + إضافة النموذج
         </button>
+        <div id="adm-showcase-list" class="space-y-2 pt-1"></div>
       </div>
 
       <div class="space-y-3 border-t border-slate-200 pt-4">
@@ -779,7 +842,6 @@
     </div>
   </div>
 
-  <!-- Toast Notification -->
   <div id="toast-banner" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[10000] pointer-events-none opacity-0 transition-all duration-300 translate-y-2">
     <div id="toast-message" class="bg-[#182230] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full shadow-lg whitespace-nowrap"></div>
   </div>
@@ -789,12 +851,11 @@
       'use strict';
 
       const CONFIG = Object.freeze({
-        STORAGE_KEY: 'seif_studio_state_v11',
+        STORAGE_KEY: 'seif_studio_state_v15',
         LANG_KEY: 'seif_studio_lang_v1',
         FIREBASE_DB_URL: 'https://seif-studio-5de07-default-rtdb.firebaseio.com',
-        ALLOWED_ADDON_IDS: Object.freeze(['countdown', 'greetings', 'song', 'rsvp']),
+        ALLOWED_ADDON_IDS: Object.freeze(['countdown', 'greetings', 'song']),
         ALLOWED_CATEGORIES: Object.freeze(['wedding', 'engagement', 'katb-kitab', 'birthday', 'baby-shower', 'other-events']),
-        // Fill these two from Firebase console (see SETUP instructions). None of these are secrets.
         ADMIN_EMAIL: 's79115194@gmail.com',
         FIREBASE_WEB_CONFIG: Object.freeze({
           apiKey: 'AIzaSyBeXxLjEyzhyBHC0PIxxzUjVeD0A2tozDM',
@@ -924,32 +985,49 @@
           modalTotalCaption: 'الإجمالي:',
           submitOrderBtn: 'تأكيد وتسجيل الطلب',
           cancelBtn: 'إلغاء',
+          successHeadingPrefix: '✓ تم تسجيل طلبك بنجاح برقم ',
+          successDesc: 'وصل طلبك لإدارة الموقع وتم حفظه بنجاح. دي بيانات طلبك:',
+          doneBtn: 'تمام',
+          sumOrderCode: 'رقم الطلب',
+          sumName: 'الاسم',
+          sumPhone: 'التليفون',
+          sumType: 'النوع',
+          sumPkg: 'الباقة',
+          sumAddons: 'الإضافات',
+          sumAddress: 'العنوان',
+          sumTotal: 'الإجمالي',
+          sumDate: 'الموعد',
+          sumNotes: 'ملاحظات',
           adminAuthTitle: 'دخول الأدمن',
           adminAuthSubtitle: 'سجّل الدخول بحساب جوجل لفتح لوحة التحكم',
           phPasscode: 'الرقم السري',
           adminAuthError: 'تعذر تسجيل الدخول، جرب تاني.',
           adminLockedError: 'صفحة الأدمن مقفولة على الحساب المصرح له فقط.',
-          adminRateLimitError: 'تم تجاوز عدد المحاولات المسموحة، انتظر دقيقة ثم حاول مجدداً.',
           adminLoginBtn: 'دخول',
           toastEnterNamePhone: 'اكتب الاسم ورقم التليفون الأول',
           toastOrderSent: 'تم تسجيل الطلب بنجاح ✓',
           toastVipApplied: 'تم التحويل إلى باقة VIP',
           toastAdminOpened: 'تم فتح لوحة الأدمن',
           toastAdminLocked: 'الدخول مقفول على الأدمن الأساسي فقط',
-          toastMemberAdded: 'تم إضافة الشخص بنجاح',
-          toastMemberRemoved: 'تم إزالة الشخص',
-          toastEnterMemberId: 'اكتب معرف أو بريد الشخص الأول',
           toastSaved: 'تم حفظ التعديلات على الموقع و Firebase',
           toastItemAdded: 'تمت إضافة النموذج وحفظه',
+          toastItemDeleted: 'تم حذف النموذج',
           toastOrdersCleared: 'تم مسح كل الطلبات',
           toastResetDone: 'تم الرجوع للوضع الافتراضي',
           toastOrderDeleted: 'تم حذف الطلب',
           toastFillItem: 'اكتب اسم النموذج والأسماء الأول',
+          limitedOfferBtn: 'عرض لفترة محدودة',
+          offerModalTitle: 'السعر ده عرض لفترة محدودة',
+          offerModalDesc: 'السعر الحالي الخاص بـ "{target}" هو عرض لفترة محدودة وقد يتغير بعد انتهاء العرض.',
+          offerModalClose: 'تمام',
+          addonsShownBtn: 'الإضافات ظاهرة للعميل (اضغط لإخفائها)',
+          addonsHiddenBtn: 'الإضافات مخفية عن العميل (اضغط لإظهارها)',
+          toastAddonsShown: 'الإضافات ظاهرة للعميل الآن',
+          toastAddonsHidden: 'تم إخفاء الإضافات عن العميل',
           addonLabels: {
             countdown: { name: 'عداد الوقت', desc: 'عداد تنازلي لموعد المناسبة' },
             greetings: { name: 'رسائل التهاني', desc: 'قسم لإرسال واستقبال تهاني المدعوين' },
-            song: { name: 'الأغنية', desc: 'موسيقى أو أغنية خلفية قابلة للتشغيل' },
-            rsvp: { name: 'تأكيد الحضور', desc: 'المدعوين يأكدوا حضورهم من الدعوة نفسها' }
+            song: { name: 'الأغنية', desc: 'موسيقى أو أغنية خلفية قابلة للتشغيل' }
           },
           catLabels: {
             wedding: 'فرح',
@@ -1089,32 +1167,49 @@
           modalTotalCaption: 'Total:',
           submitOrderBtn: 'Confirm & Submit Order',
           cancelBtn: 'Cancel',
+          successHeadingPrefix: '✓ Your order has been submitted with code ',
+          successDesc: 'Your order has been received and saved. Here are your order details:',
+          doneBtn: 'Done',
+          sumOrderCode: 'Order ID',
+          sumName: 'Name',
+          sumPhone: 'Phone',
+          sumType: 'Type',
+          sumPkg: 'Package',
+          sumAddons: 'Add-ons',
+          sumAddress: 'Address',
+          sumTotal: 'Total',
+          sumDate: 'Date',
+          sumNotes: 'Notes',
           adminAuthTitle: 'Admin Login',
           adminAuthSubtitle: 'Sign in with Google to open the dashboard',
           phPasscode: 'Passcode',
           adminAuthError: 'Sign-in failed, please try again.',
           adminLockedError: 'Admin access is locked to authorized accounts only.',
-          adminRateLimitError: 'Too many failed attempts. Please wait one minute and try again.',
           adminLoginBtn: 'Login',
           toastEnterNamePhone: 'Please enter your name and phone number',
           toastOrderSent: 'Order submitted successfully ✓',
           toastVipApplied: 'Switched to VIP Package',
           toastAdminOpened: 'Admin dashboard opened',
           toastAdminLocked: 'Admin access is restricted to authorized users',
-          toastMemberAdded: 'Person added to admin access',
-          toastMemberRemoved: 'Person removed',
-          toastEnterMemberId: 'Enter an identifier or email first',
           toastSaved: 'Changes saved to site & Firebase',
           toastItemAdded: 'Sample added and saved',
+          toastItemDeleted: 'Sample removed',
           toastOrdersCleared: 'All orders cleared',
           toastResetDone: 'Reset to default settings',
           toastOrderDeleted: 'Order deleted',
           toastFillItem: 'Please enter sample title and names',
+          limitedOfferBtn: 'Limited-Time Offer',
+          offerModalTitle: 'Limited-Time Offer Price',
+          offerModalDesc: 'The current price for "{target}" is a limited-time offer and may change when it ends.',
+          offerModalClose: 'Got it',
+          addonsShownBtn: 'Add-ons Visible to Client (Click to Hide)',
+          addonsHiddenBtn: 'Add-ons Hidden from Client (Click to Show)',
+          toastAddonsShown: 'Add-ons are now visible to clients',
+          toastAddonsHidden: 'Add-ons are now hidden from clients',
           addonLabels: {
             countdown: { name: 'Countdown Timer', desc: 'Live countdown timer to your event' },
             greetings: { name: 'Guest Greetings', desc: 'Section for guests to send congratulation notes' },
-            song: { name: 'Background Song', desc: 'Playable music or song track' },
-            rsvp: { name: 'RSVP Confirmation', desc: 'Guests confirm attendance right from the invitation' }
+            song: { name: 'Background Song', desc: 'Playable music or song track' }
           },
           catLabels: {
             wedding: 'Wedding',
@@ -1156,7 +1251,10 @@
         }
       });
 
-      // Firebase Authentication (Google sign-in) for the admin.
+      function formatPriceAmount(val, fallback) {
+        return String(SecurityModule.safeNonNegativeInt(val, fallback));
+      }
+
       let fbAuth = null;
       try {
         if (window.firebase && CONFIG.FIREBASE_WEB_CONFIG.apiKey.indexOf('REPLACE') !== 0) {
@@ -1214,11 +1312,11 @@
           projectWebsitePrice: 2000,
           appServiceTitle: t.defaultAppTitle,
           appServicePrice: 3500,
+          showAddonsToClient: true,
           addons: [
             { id: 'countdown', name: t.addonLabels.countdown.name, desc: t.addonLabels.countdown.desc, price: 50 },
             { id: 'greetings', name: t.addonLabels.greetings.name, desc: t.addonLabels.greetings.desc, price: 50 },
-            { id: 'song', name: t.addonLabels.song.name, desc: t.addonLabels.song.desc, price: 50 },
-            { id: 'rsvp', name: t.addonLabels.rsvp.name, desc: t.addonLabels.rsvp.desc, price: 50 }
+            { id: 'song', name: t.addonLabels.song.name, desc: t.addonLabels.song.desc, price: 50 }
           ],
           showcaseItems: [
             {
@@ -1283,6 +1381,14 @@
       applyDocumentDirection();
       let DEFAULT_STATE = buildDefaultState();
 
+      function pickCustomOrLocalized(savedVal, arDefault, enDefault, fallback, maxLen) {
+        const cleaned = SecurityModule.cleanText(savedVal, maxLen);
+        if (!cleaned || cleaned === arDefault || cleaned === enDefault) {
+          return fallback;
+        }
+        return cleaned;
+      }
+
       function normalizeState(parsed) {
         const base = buildDefaultState();
         if (!parsed || typeof parsed !== 'object') return base;
@@ -1300,18 +1406,19 @@
           };
         });
 
-        const mergedShowcase = Array.isArray(parsed.showcaseItems) && parsed.showcaseItems.length > 0
+        const mergedShowcase = Array.isArray(parsed.showcaseItems)
           ? parsed.showcaseItems.map((item) => {
               const safeCat = CONFIG.ALLOWED_CATEGORIES.includes(item.category) ? item.category : 'other-events';
               const defItem = base.showcaseItems.find((d) => d.id === item.id);
+              const isCustom = String(item.id || '').startsWith('custom-');
               return {
                 id: SecurityModule.cleanText(item.id, 60) || ('item-' + Date.now()),
                 category: safeCat,
                 categoryLabel: t.catLabels[safeCat] || item.categoryLabel,
-                title: defItem ? defItem.title : SecurityModule.cleanText(item.title, 100),
-                couple: defItem ? defItem.couple : SecurityModule.cleanText(item.couple, 120),
-                date: defItem ? defItem.date : SecurityModule.cleanText(item.date, 100),
-                venue: defItem ? defItem.venue : SecurityModule.cleanText(item.venue, 120)
+                title: (!isCustom && defItem) ? defItem.title : SecurityModule.cleanText(item.title, 100),
+                couple: (!isCustom && defItem) ? defItem.couple : SecurityModule.cleanText(item.couple, 120),
+                date: (!isCustom && defItem) ? defItem.date : (SecurityModule.cleanText(item.date, 100) || (currentLang === 'en' ? 'Date on request' : 'موعد حسب الطلب')),
+                venue: (!isCustom && defItem) ? defItem.venue : (SecurityModule.cleanText(item.venue, 120) || (currentLang === 'en' ? 'Venue on request' : 'مكان حسب الطلب'))
               };
             })
           : base.showcaseItems;
@@ -1326,20 +1433,21 @@
           ...base,
           ...parsed,
           brandName: SecurityModule.cleanText(parsed.brandName, 80) || base.brandName,
-          brandTagline: base.brandTagline,
-          heroBadge: base.heroBadge,
-          heroTitle: base.heroTitle,
-          heroSubtitle: base.heroSubtitle,
-          revisionRule: base.revisionRule,
+          brandTagline: pickCustomOrLocalized(parsed.brandTagline, UI_COPY.ar.defaultTagline, UI_COPY.en.defaultTagline, base.brandTagline, 140),
+          heroBadge: pickCustomOrLocalized(parsed.heroBadge, UI_COPY.ar.defaultBadge, UI_COPY.en.defaultBadge, base.heroBadge, 140),
+          heroTitle: pickCustomOrLocalized(parsed.heroTitle, UI_COPY.ar.defaultHeroTitle, UI_COPY.en.defaultHeroTitle, base.heroTitle, 240),
+          heroSubtitle: pickCustomOrLocalized(parsed.heroSubtitle, UI_COPY.ar.defaultHeroSubtitle, UI_COPY.en.defaultHeroSubtitle, base.heroSubtitle, 500),
+          revisionRule: pickCustomOrLocalized(parsed.revisionRule, UI_COPY.ar.defaultRevision, UI_COPY.en.defaultRevision, base.revisionRule, 180),
           whatsappNumber: SecurityModule.cleanText(parsed.whatsappNumber, 25) || base.whatsappNumber,
-          basePackageName: base.basePackageName,
-          vipPackageName: base.vipPackageName,
-          projectWebsiteTitle: base.projectWebsiteTitle,
-          appServiceTitle: base.appServiceTitle,
+          basePackageName: pickCustomOrLocalized(parsed.basePackageName, UI_COPY.ar.defaultBaseName, UI_COPY.en.defaultBaseName, base.basePackageName, 80),
+          vipPackageName: pickCustomOrLocalized(parsed.vipPackageName, UI_COPY.ar.defaultVipName, UI_COPY.en.defaultVipName, base.vipPackageName, 80),
+          projectWebsiteTitle: pickCustomOrLocalized(parsed.projectWebsiteTitle, UI_COPY.ar.defaultProjectTitle, UI_COPY.en.defaultProjectTitle, base.projectWebsiteTitle, 120),
+          appServiceTitle: pickCustomOrLocalized(parsed.appServiceTitle, UI_COPY.ar.defaultAppTitle, UI_COPY.en.defaultAppTitle, base.appServiceTitle, 120),
           basePrice: SecurityModule.safeNonNegativeInt(parsed.basePrice, base.basePrice),
           vipPrice: SecurityModule.safeNonNegativeInt(parsed.vipPrice, base.vipPrice),
           projectWebsitePrice: SecurityModule.safeNonNegativeInt(parsed.projectWebsitePrice, base.projectWebsitePrice),
           appServicePrice: SecurityModule.safeNonNegativeInt(parsed.appServicePrice, base.appServicePrice),
+          showAddonsToClient: typeof parsed.showAddonsToClient === 'boolean' ? parsed.showAddonsToClient : true,
           addons: mergedAddons,
           showcaseItems: mergedShowcase,
           orders: mergedOrders
@@ -1370,7 +1478,6 @@
         return copy;
       }
 
-      // Only a signed-in admin can write the site content. Rules on the server enforce this too.
       async function syncStateToFirebase() {
         try {
           if (!isUserAuthorizedAdmin()) return;
@@ -1402,7 +1509,6 @@
         } catch (_) {}
       }
 
-      // One-time copy of the old single-node data into the new split layout (admin only, silent).
       async function migrateOldDataIfNeeded(token) {
         try {
           const base = CONFIG.FIREBASE_DB_URL;
@@ -1429,6 +1535,12 @@
         } catch (_) {}
       }
 
+      function hasActiveFormEdit() {
+        const active = document.activeElement;
+        if (!active) return false;
+        return !!(active.closest('#admin-panel') || active.closest('#client-order-form'));
+      }
+
       async function fetchStateFromFirebase() {
         try {
           const endpoint = `${CONFIG.FIREBASE_DB_URL}/studioPublic.json?t=${Date.now()}`;
@@ -1437,11 +1549,22 @@
           const remoteData = await res.json();
           if (remoteData && typeof remoteData === 'object') {
             const keepOrders = isUserAuthorizedAdmin() ? state.orders : [];
+            const adminPanelOpen = !adminPanel.classList.contains('hidden');
             state = normalizeState(remoteData);
             state.orders = keepOrders;
-            selectedAddonIds = selectedAddonIds.filter((id) => CONFIG.ALLOWED_ADDON_IDS.includes(id));
+            selectedAddonIds = state.showAddonsToClient
+              ? selectedAddonIds.filter((id) => CONFIG.ALLOWED_ADDON_IDS.includes(id))
+              : [];
+            if (!state.showAddonsToClient) isVipMode = false;
             saveLocalState();
             renderAll();
+            if (!orderModal.classList.contains('hidden') && orderServiceSelect) {
+              applyServiceSelectionToDraft(orderServiceSelect.value);
+            }
+            if (adminPanelOpen && isUserAuthorizedAdmin() && !hasActiveFormEdit()) {
+              fillAdminInputs();
+              renderAdminOrders();
+            }
           }
         } catch (_) {}
       }
@@ -1492,8 +1615,8 @@
           `${t.waRegardingOrder} (${orderCode}):`,
           `• ${t.waItem}: ${ord.packageLabel} (${ord.serviceType})`,
           `• ${t.waAddons}: ${ord.addonsLabel}`,
-          `• ${t.waAddress}: ${ord.address || 'غير محدد'}`,
-          `• ${t.waTotal}: ${ord.totalPrice} ${t.currency}`
+          `• ${t.waAddress}: ${ord.address || (currentLang === 'en' ? 'Not specified' : 'غير محدد')}`,
+          `• ${t.waTotal}: ${formatPriceAmount(ord.totalPrice, state.basePrice)} ${t.currency}`
         ];
         if (ord.eventDate) lines.push(`• ${t.waDate}: ${ord.eventDate}`);
         if (ord.notes) lines.push(`• ${t.waNotes}: ${ord.notes}`);
@@ -1509,22 +1632,19 @@
         return SecurityModule.sanitizePhoneDigits(ord.phone) || SecurityModule.sanitizePhoneDigits(state.whatsappNumber);
       }
 
-      // Direct WhatsApp app link (used on phones and inside app wrappers). Same phone cleanup and message as the wa.me link.
       function buildClientWhatsAppAppUrl(ord) {
         const targetPhone = buildClientWhatsAppPhone(ord);
         const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
         return targetPhone ? `whatsapp://send?phone=${targetPhone}&text=${msg}` : `whatsapp://send?text=${msg}`;
       }
 
-      // Which WhatsApp the green button opens on Android: defaults to 'business'. Saved in this browser/app only.
       function getWaAppPref() {
-        try { return localStorage.getItem('seif_wa_app') === 'regular' ? 'regular' : 'business'; } catch (_) { return 'business'; }
+        try { return localStorage.getItem('seif_wa_app') === 'business' ? 'business' : 'regular'; } catch (_) { return 'regular'; }
       }
       function setWaAppPref(v) {
-        try { localStorage.setItem('seif_wa_app', v === 'regular' ? 'regular' : 'business'); } catch (_) {}
+        try { localStorage.setItem('seif_wa_app', v === 'business' ? 'business' : 'regular'); } catch (_) {}
       }
 
-      // Android only: open WhatsApp Business (com.whatsapp.w4b) directly.
       function buildClientWhatsAppBusinessIntentUrl(ord) {
         const targetPhone = buildClientWhatsAppPhone(ord);
         const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
@@ -1557,6 +1677,12 @@
         const targetPhone = SecurityModule.sanitizePhoneDigits(ord.phone) || SecurityModule.sanitizePhoneDigits(state.whatsappNumber);
         const msg = encodeURIComponent(buildOrderWhatsAppMessage(ord));
         return targetPhone ? `https://wa.me/${targetPhone}?text=${msg}` : `https://wa.me/?text=${msg}`;
+      }
+
+      function updateAdminAddonsToggleButton() {
+        const btn = document.getElementById('adm-toggle-addons-btn');
+        if (!btn) return;
+        btn.textContent = state.showAddonsToClient ? t.addonsShownBtn : t.addonsHiddenBtn;
       }
 
       function applyLocalizedChrome() {
@@ -1640,6 +1766,13 @@
         document.getElementById('app-single-note').textContent = t.appSingleNote;
         document.getElementById('order-app-btn').textContent = t.orderAppBtn;
 
+        document.querySelectorAll('.limited-offer-btn').forEach((btn) => {
+          btn.textContent = t.limitedOfferBtn;
+        });
+        document.getElementById('offer-modal-badge').textContent = t.limitedOfferBtn;
+        document.getElementById('close-offer-modal-btn').textContent = t.offerModalClose;
+        updateAdminAddonsToggleButton();
+
         document.getElementById('footer-tagline').textContent = t.footerTagline;
         document.getElementById('footer-revision').textContent = t.footerRevision;
 
@@ -1680,6 +1813,13 @@
         document.getElementById('submit-order-btn').textContent = t.submitOrderBtn;
         document.getElementById('cancel-order-modal-btn').textContent = t.cancelBtn;
 
+        const codeSpan = document.getElementById('saved-order-code');
+        const currentCode = codeSpan ? codeSpan.textContent : '';
+        document.getElementById('order-success-heading').innerHTML =
+          `${escapeHtml(t.successHeadingPrefix)}<span id="saved-order-code" class="font-cinzel">${escapeHtml(currentCode)}</span>`;
+        document.getElementById('order-success-desc').textContent = t.successDesc;
+        document.getElementById('order-done-btn').textContent = t.doneBtn;
+
         document.getElementById('admin-auth-title').textContent = t.adminAuthTitle;
         document.getElementById('admin-auth-subtitle').textContent = t.adminAuthSubtitle;
         document.getElementById('admin-passcode-input').placeholder = t.phPasscode;
@@ -1697,48 +1837,50 @@
         document.getElementById('revision-rule-text').textContent = state.revisionRule;
         document.getElementById('hero-revision-short').textContent = state.revisionRule;
 
-        document.getElementById('hero-base-price').textContent = state.basePrice;
-        document.getElementById('hero-vip-price').textContent = state.vipPrice;
-        document.getElementById('hero-project-price').textContent = state.projectWebsitePrice;
-        document.getElementById('hero-app-price').textContent = state.appServicePrice;
+        document.getElementById('hero-base-price').textContent = formatPriceAmount(state.basePrice, 500);
+        document.getElementById('hero-vip-price').textContent = formatPriceAmount(state.vipPrice, 800);
+        document.getElementById('hero-project-price').textContent = formatPriceAmount(state.projectWebsitePrice, 2000);
+        document.getElementById('hero-app-price').textContent = formatPriceAmount(state.appServicePrice, 3500);
 
         document.getElementById('builder-subtitle').innerHTML =
           `${escapeHtml(t.builderSubtitlePrefix)}<strong id="base-pkg-name-inline" class="text-[#182230]">${escapeHtml(state.basePackageName)}</strong>${escapeHtml(t.builderSubtitleSuffix)}`;
 
         document.getElementById('builder-base-title').textContent = state.basePackageName;
-        document.getElementById('builder-base-price').textContent = state.basePrice;
+        document.getElementById('builder-base-price').textContent = formatPriceAmount(state.basePrice, 500);
         document.getElementById('summary-base-label').textContent = state.basePackageName;
-        document.getElementById('summary-base-amount').textContent = state.basePrice;
+        document.getElementById('summary-base-amount').textContent = formatPriceAmount(state.basePrice, 500);
 
         document.getElementById('vip-banner-headline').innerHTML =
-          `${escapeHtml(t.vipHeadlinePart1)}<span id="vip-banner-name" class="text-[#2563eb]">${escapeHtml(state.vipPackageName)}</span>${escapeHtml(t.vipHeadlinePart2)}<span id="vip-banner-price" class="text-[#2563eb]">${escapeHtml(state.vipPrice)}</span> <span id="currency-vip-1">${escapeHtml(t.currency)}</span>`;
+          `${escapeHtml(t.vipHeadlinePart1)}<span id="vip-banner-name" class="text-[#2563eb]">${escapeHtml(state.vipPackageName)}</span>${escapeHtml(t.vipHeadlinePart2)}<span id="vip-banner-price" class="text-[#2563eb]">${escapeHtml(formatPriceAmount(state.vipPrice, 800))}</span> <span id="currency-vip-1">${escapeHtml(t.currency)}</span>`;
 
         document.getElementById('vip-banner-desc').innerHTML =
-          `<span id="vip-banner-name-2" class="font-bold text-[#182230]">${escapeHtml(state.vipPackageName)}</span>${escapeHtml(t.vipDescPart1)}<span id="vip-banner-price-2" class="font-bold text-[#182230]">${escapeHtml(state.vipPrice)}</span> <span id="currency-vip-2">${escapeHtml(t.currency)}</span>${escapeHtml(t.vipDescPart2)}`;
+          `<span id="vip-banner-name-2" class="font-bold text-[#182230]">${escapeHtml(state.vipPackageName)}</span>${escapeHtml(t.vipDescPart1)}<span id="vip-banner-price-2" class="font-bold text-[#182230]">${escapeHtml(formatPriceAmount(state.vipPrice, 800))}</span> <span id="currency-vip-2">${escapeHtml(t.currency)}</span>${escapeHtml(t.vipDescPart2)}`;
 
         document.getElementById('project-pkg-title').textContent = state.projectWebsiteTitle;
-        document.getElementById('project-pkg-price').textContent = state.projectWebsitePrice;
+        document.getElementById('project-pkg-price').textContent = formatPriceAmount(state.projectWebsitePrice, 2000);
 
         document.getElementById('app-pkg-title').textContent = state.appServiceTitle;
-        document.getElementById('app-pkg-price').textContent = state.appServicePrice;
+        document.getElementById('app-pkg-price').textContent = formatPriceAmount(state.appServicePrice, 3500);
       }
 
       function getCurrentBuilderCalculation() {
-        const selectedAddons = state.addons.filter((a) => selectedAddonIds.includes(a.id));
+        const selectedAddons = state.showAddonsToClient
+          ? state.addons.filter((a) => selectedAddonIds.includes(a.id))
+          : [];
 
-        if (isVipMode) {
+        if (isVipMode && state.showAddonsToClient) {
           return {
             packageLabel: state.vipPackageName,
             addonsLabel: selectedAddons.length > 0
               ? selectedAddons.map((a) => (t.addonLabels[a.id]?.name || a.name)).join(currentLang === 'en' ? ', ' : '، ')
               : state.vipPackageName,
-            totalPrice: Number(state.vipPrice) || 800,
+            totalPrice: SecurityModule.safeNonNegativeInt(state.vipPrice, 800),
             selectedAddons
           };
         }
 
-        const addonsSum = selectedAddons.reduce((acc, item) => acc + (Number(item.price) || 0), 0);
-        const totalPrice = (Number(state.basePrice) || 500) + addonsSum;
+        const addonsSum = selectedAddons.reduce((acc, item) => acc + SecurityModule.safeNonNegativeInt(item.price, 0), 0);
+        const totalPrice = SecurityModule.safeNonNegativeInt(state.basePrice, 500) + addonsSum;
 
         return {
           packageLabel: state.basePackageName,
@@ -1824,6 +1966,7 @@
       }
 
       function renderBuilder() {
+        const addonsSection = document.getElementById('addons-section');
         const addonsContainer = document.getElementById('addons-list');
         const countEl = document.getElementById('selected-addons-count');
         const vipBanner = document.getElementById('vip-suggestion-banner');
@@ -1831,12 +1974,22 @@
         const breakdownEl = document.getElementById('summary-addons-breakdown');
         const totalEl = document.getElementById('summary-total-price');
 
+        if (!state.showAddonsToClient) {
+          selectedAddonIds = [];
+          isVipMode = false;
+        }
+
+        if (addonsSection) {
+          addonsSection.classList.toggle('hidden', !state.showAddonsToClient);
+        }
+
         if (addonsContainer) {
           addonsContainer.innerHTML = state.addons.map((addon) => {
             const checked = selectedAddonIds.includes(addon.id);
             const locAddon = t.addonLabels[addon.id] || {};
             const addonName = locAddon.name || addon.name;
             const addonDesc = locAddon.desc || addon.desc;
+            const addonPrice = formatPriceAmount(addon.price, 50);
 
             return `
               <label class="cursor-pointer rounded-2xl border ${checked ? 'border-[#2563eb] bg-blue-50/50' : 'border-slate-200 bg-[#f6f7f9]'} p-3.5 flex items-start justify-between gap-2.5 transition-colors select-none">
@@ -1852,13 +2005,14 @@
                     <div class="text-[11px] text-[#526071] mt-0.5">${escapeHtml(addonDesc)}</div>
                   </div>
                 </div>
-                <span class="text-xs font-extrabold text-[#2563eb] shrink-0">+${escapeHtml(addon.price)} ${escapeHtml(t.currency)}</span>
+                <span class="text-xs font-extrabold text-[#2563eb] shrink-0">+${escapeHtml(addonPrice)} ${escapeHtml(t.currency)}</span>
               </label>
             `;
           }).join('');
 
           addonsContainer.querySelectorAll('.addon-checkbox').forEach((cb) => {
             cb.addEventListener('change', (e) => {
+              if (!state.showAddonsToClient) return;
               const id = e.target.getAttribute('data-addon-id');
               if (!id) return;
 
@@ -1879,7 +2033,7 @@
           countEl.textContent = `${selectedAddonIds.length} ${t.addonsCountSuffix}`;
         }
 
-        const allSelected = state.addons.length > 0 && selectedAddonIds.length === state.addons.length;
+        const allSelected = state.showAddonsToClient && state.addons.length > 0 && selectedAddonIds.length === state.addons.length;
         if (vipBanner) {
           vipBanner.classList.toggle('hidden', !allSelected);
         }
@@ -1891,16 +2045,17 @@
         }
 
         if (breakdownEl) {
-          if (calc.selectedAddons.length === 0) {
+          if (!state.showAddonsToClient || calc.selectedAddons.length === 0) {
             breakdownEl.innerHTML = `<div class="text-xs text-[#526071]">${escapeHtml(t.withoutAddonsBaseOnly)}</div>`;
           } else {
             breakdownEl.innerHTML = calc.selectedAddons.map((a) => {
               const locAddon = t.addonLabels[a.id] || {};
               const addonName = locAddon.name || a.name;
+              const addonPrice = formatPriceAmount(a.price, 50);
               return `
                 <div class="flex items-center justify-between text-xs text-[#526071]">
                   <span>+ ${escapeHtml(addonName)}</span>
-                  <span class="font-bold text-[#182230]">${escapeHtml(a.price)} ${escapeHtml(t.currency)}</span>
+                  <span class="font-bold text-[#182230]">${escapeHtml(addonPrice)} ${escapeHtml(t.currency)}</span>
                 </div>
               `;
             }).join('');
@@ -1908,8 +2063,55 @@
         }
 
         if (totalEl) {
-          totalEl.textContent = String(calc.totalPrice);
+          totalEl.textContent = formatPriceAmount(calc.totalPrice, 500);
         }
+      }
+
+      function renderAdminShowcase() {
+        const listEl = document.getElementById('adm-showcase-list');
+        if (!listEl) return;
+
+        if (!isUserAuthorizedAdmin()) {
+          listEl.innerHTML = '';
+          return;
+        }
+
+        if (!Array.isArray(state.showcaseItems) || state.showcaseItems.length === 0) {
+          listEl.innerHTML = '<div class="text-xs text-[#526071] bg-[#f6f7f9] rounded-xl p-3 border border-slate-200">لا توجد نماذج حالياً.</div>';
+          return;
+        }
+
+        listEl.innerHTML = state.showcaseItems.map((item) => {
+          const localizedCat = t.catLabels[item.category] || item.categoryLabel;
+          return `
+            <div class="rounded-xl bg-[#f6f7f9] px-3.5 py-2.5 border border-slate-200 text-xs flex items-center justify-between gap-2">
+              <div class="truncate">
+                <span class="font-extrabold text-[#182230]">${escapeHtml(item.title)}</span>
+                <span class="text-[#526071]"> — ${escapeHtml(item.couple)} (${escapeHtml(localizedCat)})</span>
+              </div>
+              <button
+                type="button"
+                data-delete-showcase="${escapeHtml(item.id)}"
+                class="delete-showcase-btn cursor-pointer px-2.5 py-1 rounded-lg bg-white hover:bg-rose-50 text-rose-600 border border-slate-200 font-bold shrink-0"
+              >
+                حذف
+              </button>
+            </div>
+          `;
+        }).join('');
+
+        listEl.querySelectorAll('.delete-showcase-btn').forEach((btn) => {
+          btn.addEventListener('click', async () => {
+            if (!isUserAuthorizedAdmin()) return;
+            const itemId = btn.getAttribute('data-delete-showcase');
+            state.showcaseItems = state.showcaseItems.filter((x) => x.id !== itemId);
+            saveLocalState();
+            renderShowcase();
+            renderAdminShowcase();
+            await syncStateToFirebase();
+            showToast(t.toastItemDeleted);
+          });
+        });
       }
 
       function renderAdminOrders() {
@@ -1946,7 +2148,7 @@
                 ${ord.notes ? `<div class="text-[#526071]"><strong class="text-[#182230]">${escapeHtml(t.orderNotesCaption)}</strong> ${escapeHtml(ord.notes)}</div>` : ''}
               </div>
               <div class="flex items-center gap-2 shrink-0">
-                <span class="font-extrabold text-[#2563eb]">${escapeHtml(ord.totalPrice)} ${escapeHtml(t.currency)}</span>
+                <span class="font-extrabold text-[#2563eb]">${escapeHtml(formatPriceAmount(ord.totalPrice, state.basePrice))} ${escapeHtml(t.currency)}</span>
                 <a
                   href="${escapeHtml(isMobileDevice() ? buildClientWhatsAppAppUrl(ord) : waHref)}"
                   ${isMobileDevice() ? '' : 'target="_blank" rel="noopener noreferrer"'}
@@ -1986,7 +2188,7 @@
         admListEl.querySelectorAll('.wa-order-link').forEach((a) => {
           a.addEventListener('click', (ev) => {
             if (!/Android/i.test(navigator.userAgent || '')) return;
-            if (getWaAppPref() === 'regular') return;
+            if (getWaAppPref() !== 'business') return;
             ev.preventDefault();
             window.location.href = a.getAttribute('data-wa-biz');
             setTimeout(() => {
@@ -2019,16 +2221,49 @@
         });
       }
 
-      function renderAdminMembers() {}
+      const offerModal = document.getElementById('limited-offer-modal');
+      function resolveOfferTargetLabel(kind) {
+        if (kind === 'base') return state.basePackageName;
+        if (kind === 'vip') return state.vipPackageName;
+        if (kind === 'project') return state.projectWebsiteTitle;
+        if (kind === 'app') return state.appServiceTitle;
+        if (kind === 'current') return getCurrentBuilderCalculation().packageLabel;
+        return state.basePackageName;
+      }
 
-      document.getElementById('lang-toggle-btn').addEventListener('click', () => {
-        currentLang = currentLang === 'ar' ? 'en' : 'ar';
-        saveLang(currentLang);
-        applyDocumentDirection();
-        DEFAULT_STATE = buildDefaultState();
-        state = normalizeState(state);
+      function openOfferModal(kind) {
+        const cleanTarget = resolveOfferTargetLabel(kind);
+        document.getElementById('offer-modal-badge').textContent = t.limitedOfferBtn;
+        document.getElementById('offer-modal-title').textContent = t.offerModalTitle;
+        document.getElementById('offer-modal-desc').textContent = t.offerModalDesc.replace('{target}', cleanTarget);
+        offerModal.classList.remove('hidden');
+      }
+
+      document.querySelectorAll('.limited-offer-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          openOfferModal(btn.getAttribute('data-offer-kind') || '');
+        });
+      });
+
+      document.getElementById('close-offer-modal-btn').addEventListener('click', () => {
+        offerModal.classList.add('hidden');
+      });
+
+      document.getElementById('adm-toggle-addons-btn').addEventListener('click', async () => {
+        if (!isUserAuthorizedAdmin()) return;
+        state.showAddonsToClient = !state.showAddonsToClient;
+        if (!state.showAddonsToClient) {
+          selectedAddonIds = [];
+          isVipMode = false;
+        }
+        updateAdminAddonsToggleButton();
         saveLocalState();
-        renderAll();
+        renderBuilder();
+        if (!orderModal.classList.contains('hidden') && orderServiceSelect) {
+          applyServiceSelectionToDraft(orderServiceSelect.value);
+        }
+        await syncStateToFirebase();
+        showToast(state.showAddonsToClient ? t.toastAddonsShown : t.toastAddonsHidden);
       });
 
       const orderModal = document.getElementById('order-modal');
@@ -2037,12 +2272,41 @@
       const orderServiceSelect = document.getElementById('order-service-type');
       const orderNotesInput = document.getElementById('order-notes');
 
+      function refreshModalOrderSummary() {
+        document.getElementById('modal-package-label').textContent = draftOrder.packageLabel;
+        document.getElementById('modal-addons-label').textContent = draftOrder.addonsLabel;
+        document.getElementById('modal-total-price').textContent = `${formatPriceAmount(draftOrder.totalPrice, state.basePrice)} ${t.currency}`;
+      }
+
+      function applyServiceSelectionToDraft(val) {
+        draftOrder.serviceType = val;
+        if (val === t.optApp) {
+          draftOrder.packageLabel = state.appServiceTitle;
+          draftOrder.addonsLabel = t.noAddons;
+          draftOrder.totalPrice = SecurityModule.safeNonNegativeInt(state.appServicePrice, 3500);
+        } else if (val === t.optProjects) {
+          draftOrder.packageLabel = state.projectWebsiteTitle;
+          draftOrder.addonsLabel = t.noAddons;
+          draftOrder.totalPrice = SecurityModule.safeNonNegativeInt(state.projectWebsitePrice, 2000);
+        } else {
+          const calc = getCurrentBuilderCalculation();
+          draftOrder.packageLabel = calc.packageLabel;
+          draftOrder.addonsLabel = calc.addonsLabel;
+          draftOrder.totalPrice = calc.totalPrice;
+        }
+        refreshModalOrderSummary();
+      }
+
       function openOrderModal(payload) {
+        const calc = getCurrentBuilderCalculation();
+        const isSpecialService = payload.serviceType === t.optApp || payload.serviceType === t.optProjects;
         draftOrder = {
           serviceType: payload.serviceType || t.optWedding,
-          packageLabel: payload.packageLabel || state.basePackageName,
-          addonsLabel: payload.addonsLabel || t.noAddons,
-          totalPrice: SecurityModule.safeNonNegativeInt(payload.totalPrice, state.basePrice),
+          packageLabel: isSpecialService ? payload.packageLabel : calc.packageLabel,
+          addonsLabel: isSpecialService ? t.noAddons : calc.addonsLabel,
+          totalPrice: isSpecialService
+            ? SecurityModule.safeNonNegativeInt(payload.totalPrice, state.basePrice)
+            : calc.totalPrice,
           notes: SecurityModule.cleanText(payload.notes, 600)
         };
 
@@ -2051,10 +2315,7 @@
         if (orderSuccessPanel) orderSuccessPanel.classList.add('hidden');
         if (orderForm) orderForm.classList.remove('hidden');
 
-        document.getElementById('modal-package-label').textContent = draftOrder.packageLabel;
-        document.getElementById('modal-addons-label').textContent = draftOrder.addonsLabel;
-        document.getElementById('modal-total-price').textContent = `${draftOrder.totalPrice} ${t.currency}`;
-
+        refreshModalOrderSummary();
         orderModal.classList.remove('hidden');
       }
 
@@ -2066,24 +2327,7 @@
 
       if (orderServiceSelect) {
         orderServiceSelect.addEventListener('change', () => {
-          const val = orderServiceSelect.value;
-          if (val === t.optApp) {
-            draftOrder.packageLabel = state.appServiceTitle;
-            draftOrder.addonsLabel = t.appBadge2;
-            draftOrder.totalPrice = Number(state.appServicePrice) || 3500;
-          } else if (val === t.optProjects) {
-            draftOrder.packageLabel = state.projectWebsiteTitle;
-            draftOrder.addonsLabel = t.projectBadge2;
-            draftOrder.totalPrice = Number(state.projectWebsitePrice) || 2000;
-          } else {
-            const calc = getCurrentBuilderCalculation();
-            draftOrder.packageLabel = calc.packageLabel;
-            draftOrder.addonsLabel = calc.addonsLabel;
-            draftOrder.totalPrice = calc.totalPrice;
-          }
-          document.getElementById('modal-package-label').textContent = draftOrder.packageLabel;
-          document.getElementById('modal-addons-label').textContent = draftOrder.addonsLabel;
-          document.getElementById('modal-total-price').textContent = `${draftOrder.totalPrice} ${t.currency}`;
+          applyServiceSelectionToDraft(orderServiceSelect.value);
         });
       }
 
@@ -2121,8 +2365,8 @@
         openOrderModal({
           serviceType: t.optProjects,
           packageLabel: state.projectWebsiteTitle,
-          addonsLabel: t.projectBadge2,
-          totalPrice: Number(state.projectWebsitePrice) || 2000,
+          addonsLabel: t.noAddons,
+          totalPrice: SecurityModule.safeNonNegativeInt(state.projectWebsitePrice, 2000),
           notes: ''
         });
       });
@@ -2131,8 +2375,8 @@
         openOrderModal({
           serviceType: t.optApp,
           packageLabel: state.appServiceTitle,
-          addonsLabel: t.appBadge2,
-          totalPrice: Number(state.appServicePrice) || 3500,
+          addonsLabel: t.noAddons,
+          totalPrice: SecurityModule.safeNonNegativeInt(state.appServicePrice, 3500),
           notes: ''
         });
       });
@@ -2157,6 +2401,7 @@
         }
 
         const orderCode = 'SS-' + Date.now().toString().slice(-4);
+        const safeTotal = SecurityModule.safeNonNegativeInt(draftOrder.totalPrice, state.basePrice);
         const newOrder = {
           id: orderCode,
           clientName,
@@ -2166,7 +2411,7 @@
           eventDate,
           packageLabel: draftOrder.packageLabel,
           addonsLabel: draftOrder.addonsLabel,
-          totalPrice: draftOrder.totalPrice,
+          totalPrice: safeTotal,
           notes,
           createdAt: t.nowLabel
         };
@@ -2183,16 +2428,16 @@
         const summaryBox = document.getElementById('order-summary-box');
         summaryBox.innerHTML = '';
         [
-          ['رقم الطلب', orderCode],
-          ['الاسم', clientName],
-          ['التليفون', phone],
-          ['النوع', serviceType],
-          ['الباقة', draftOrder.packageLabel],
-          ['الإضافات', draftOrder.addonsLabel],
-          ['العنوان', address],
-          ['الإجمالي', `${draftOrder.totalPrice} ${t.currency}`],
-          ['الموعد', eventDate],
-          ['ملاحظات', notes]
+          [t.sumOrderCode, orderCode],
+          [t.sumName, clientName],
+          [t.sumPhone, phone],
+          [t.sumType, serviceType],
+          [t.sumPkg, draftOrder.packageLabel],
+          [t.sumAddons, draftOrder.addonsLabel],
+          [t.sumAddress, address],
+          [t.sumTotal, `${safeTotal} ${t.currency}`],
+          [t.sumDate, eventDate],
+          [t.sumNotes, notes]
         ].forEach(([labelText, valText]) => {
           if (!valText) return;
           const row = document.createElement('div');
@@ -2209,9 +2454,10 @@
       });
 
       document.getElementById('apply-vip-btn').addEventListener('click', () => {
+        if (!state.showAddonsToClient) return;
         isVipMode = true;
         renderBuilder();
-        showToast(`${t.toastVipApplied} (${state.vipPrice} ${t.currency})`);
+        showToast(`${t.toastVipApplied} (${formatPriceAmount(state.vipPrice, 800)} ${t.currency})`);
       });
 
       document.querySelectorAll('.showcase-tab').forEach((tabBtn) => {
@@ -2234,13 +2480,12 @@
         await fetchStateFromFirebase();
         adminAuthError.classList.add('hidden');
         adminPasscodeInput.value = '';
-        adminPasscodeInput.classList.add('hidden');
         adminAuthModal.classList.remove('hidden');
       }
 
       if (brandTriggerLink) {
         let longPressTimer = null;
-        let longPressTriggered = false;
+        let skipNextClick = false;
         let quickTapCount = 0;
         let quickTapTimer = null;
 
@@ -2252,10 +2497,10 @@
         };
 
         const startLongPress = () => {
-          longPressTriggered = false;
+          skipNextClick = false;
           clearTimeout(longPressTimer);
           longPressTimer = setTimeout(() => {
-            longPressTriggered = true;
+            skipNextClick = true;
             triggerAdminAccess();
           }, 650);
         };
@@ -2272,9 +2517,9 @@
         brandTriggerLink.addEventListener('mouseleave', cancelLongPress);
 
         brandTriggerLink.addEventListener('click', (e) => {
-          if (longPressTriggered) {
+          if (skipNextClick) {
             e.preventDefault();
-            longPressTriggered = false;
+            skipNextClick = false;
             return;
           }
 
@@ -2286,6 +2531,13 @@
             quickTapTimer = setTimeout(() => {
               quickTapCount = 0;
             }, 900);
+          }
+        });
+
+        brandTriggerLink.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            triggerAdminAccess();
           }
         });
       }
@@ -2305,6 +2557,8 @@
         document.getElementById('adm-vip-price').value = state.vipPrice;
         document.getElementById('adm-project-price').value = state.projectWebsitePrice;
         document.getElementById('adm-app-price').value = state.appServicePrice;
+        updateAdminAddonsToggleButton();
+        renderAdminShowcase();
       }
 
       document.getElementById('admin-auth-cancel').addEventListener('click', () => {
@@ -2351,6 +2605,56 @@
         adminPanel.classList.add('hidden');
       });
 
+      [offerModal, orderModal, adminAuthModal].forEach((modalEl) => {
+        modalEl.addEventListener('click', (e) => {
+          if (e.target === modalEl) {
+            modalEl.classList.add('hidden');
+          }
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (!offerModal.classList.contains('hidden')) {
+          offerModal.classList.add('hidden');
+        } else if (!orderModal.classList.contains('hidden')) {
+          closeOrderModal();
+        } else if (!adminAuthModal.classList.contains('hidden')) {
+          adminAuthModal.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+        const prevServiceType = orderServiceSelect ? orderServiceSelect.value : '';
+
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        saveLang(currentLang);
+        applyDocumentDirection();
+        DEFAULT_STATE = buildDefaultState();
+        state = normalizeState(state);
+        saveLocalState();
+        renderAll();
+
+        if (orderServiceSelect) {
+          const serviceKeys = ['optWedding', 'optEngagement', 'optKatb', 'optBirthday', 'optBaby', 'optOther', 'optProjects', 'optApp'];
+          const matchedKey = serviceKeys.find((k) => UI_COPY.ar[k] === prevServiceType || UI_COPY.en[k] === prevServiceType);
+          const nextVal = matchedKey ? t[matchedKey] : t.optWedding;
+          orderServiceSelect.value = nextVal;
+          applyServiceSelectionToDraft(nextVal);
+        }
+
+        if (!offerModal.classList.contains('hidden')) {
+          document.getElementById('offer-modal-badge').textContent = t.limitedOfferBtn;
+          document.getElementById('offer-modal-title').textContent = t.offerModalTitle;
+          document.getElementById('offer-modal-close').textContent = t.offerModalClose;
+        }
+
+        if (!adminPanel.classList.contains('hidden') && isUserAuthorizedAdmin()) {
+          fillAdminInputs();
+          renderAdminOrders();
+        }
+      });
+
       document.getElementById('adm-save-btn').addEventListener('click', async () => {
         if (!isUserAuthorizedAdmin()) return;
         state.brandName = SecurityModule.cleanText(document.getElementById('adm-brand-name').value, 80) || DEFAULT_STATE.brandName;
@@ -2372,6 +2676,9 @@
 
         saveLocalState();
         renderAll();
+        if (!orderModal.classList.contains('hidden') && orderServiceSelect) {
+          applyServiceSelectionToDraft(orderServiceSelect.value);
+        }
         await syncStateToFirebase();
         adminPanel.classList.add('hidden');
         showToast(t.toastSaved);
@@ -2401,6 +2708,7 @@
 
         saveLocalState();
         renderShowcase();
+        renderAdminShowcase();
         await syncStateToFirebase();
         document.getElementById('adm-new-item-title').value = '';
         document.getElementById('adm-new-item-couple').value = '';
@@ -2423,11 +2731,15 @@
         const preservedOrders = state.orders;
         state = buildDefaultState();
         state.orders = preservedOrders;
+        state.showAddonsToClient = true;
         selectedAddonIds = [];
         isVipMode = false;
         saveLocalState();
         fillAdminInputs();
         renderAll();
+        if (!orderModal.classList.contains('hidden') && orderServiceSelect) {
+          applyServiceSelectionToDraft(orderServiceSelect.value);
+        }
         await syncStateToFirebase();
         showToast(t.toastResetDone);
       });
@@ -2437,8 +2749,8 @@
         renderStaticTexts();
         renderShowcase();
         renderBuilder();
+        renderAdminShowcase();
         renderAdminOrders();
-        renderAdminMembers();
       }
 
       renderAll();
