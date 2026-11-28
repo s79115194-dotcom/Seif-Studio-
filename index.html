@@ -278,6 +278,35 @@
             </div>
           </div>
 
+          <div id="vip-package-card" class="rounded-2xl bg-[#f6f7f9] border border-slate-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span id="vip-pill-badge" class="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563eb] text-[11px] font-bold">VIP</span>
+                <h3 id="builder-vip-title" class="font-extrabold text-base sm:text-lg text-[#182230]">باقة VIP</h3>
+              </div>
+              <p id="builder-vip-desc" class="text-xs sm:text-sm text-[#526071]">
+                باقة VIP كاملة: العد التنازلي، التهنئات، الأغنية وتأكيد الحضور (RSVP) كلهم داخلين فيها، من غير إضافات.
+              </p>
+            </div>
+            <div class="shrink-0 text-start sm:text-end space-y-1.5">
+              <div class="text-xl font-extrabold text-[#2563eb]"><span id="builder-vip-price">800</span> <span id="currency-vip-card">جنيه</span></div>
+              <button
+                type="button"
+                id="choose-vip-btn"
+                class="cursor-pointer inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[11px] font-extrabold transition-colors"
+              >
+                اختار باقة VIP
+              </button>
+              <button
+                type="button"
+                id="choose-base-btn"
+                class="hidden cursor-pointer inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-[#182230] border border-slate-200 text-[11px] font-extrabold transition-colors"
+              >
+                الرجوع للباقة الأساسية
+              </button>
+            </div>
+          </div>
+
           <div id="addons-section" class="space-y-3">
             <div class="flex items-center justify-between">
               <h3 id="addons-section-title" class="font-extrabold text-sm sm:text-base text-[#182230]">الإضافات الفردية (اختار اللي تحتاجه):</h3>
@@ -329,7 +358,7 @@
             </div>
 
             <div class="space-y-2 text-xs sm:text-sm">
-              <div class="flex items-center justify-between text-[#182230]">
+              <div id="summary-base-row" class="flex items-center justify-between text-[#182230]">
                 <span id="summary-base-label">الباقة الأساسية</span>
                 <span class="font-bold"><span id="summary-base-amount">500</span> <span id="currency-sum-base">جنيه</span></span>
               </div>
@@ -914,6 +943,11 @@
           defaultVipName: 'باقة VIP',
           baseDesc: 'الدعوة الأساسية جاهزة ومرتبة لأي مناسبة وتشمل معرض الصور عادي؛ تقدر تطلبها على طول أو تزود عليها الإضافات اللي تناسبك.',
           baseMinNote: 'الحد الأدنى للباقة',
+          vipCardPill: 'VIP',
+          vipCardDesc: 'باقة VIP كاملة: العد التنازلي، التهنئات، الأغنية وتأكيد الحضور (RSVP) كلهم داخلين فيها، من غير إضافات.',
+          vipCardChoose: 'اختار باقة VIP',
+          vipCardBack: 'الرجوع للباقة الأساسية',
+          vipIncludedNote: 'العد التنازلي والتهنئات والأغنية وتأكيد الحضور داخلين في الباقة.',
           addonsTitle: 'الإضافات الفردية (اختار اللي تحتاجه):',
           addonsCountSuffix: 'إضافات مختارة',
           vipBadge: 'ترشيح تلقائي — باقة VIP',
@@ -1096,6 +1130,11 @@
           defaultVipName: 'VIP Package',
           baseDesc: 'Clean and ready-to-use base invitation for any occasion including photos as standard; order it as is or add extra features.',
           baseMinNote: 'Minimum package price',
+          vipCardPill: 'VIP',
+          vipCardDesc: 'Complete VIP package: countdown, greetings, song and RSVP are all included, no add-ons needed.',
+          vipCardChoose: 'Choose VIP Package',
+          vipCardBack: 'Back to Base Package',
+          vipIncludedNote: 'Countdown, greetings, song and RSVP are included in this package.',
           addonsTitle: 'Individual Add-ons (choose what you need):',
           addonsCountSuffix: 'add-ons selected',
           vipBadge: 'Auto Suggestion — VIP Package',
@@ -1555,7 +1594,6 @@
             selectedAddonIds = state.showAddonsToClient
               ? selectedAddonIds.filter((id) => CONFIG.ALLOWED_ADDON_IDS.includes(id))
               : [];
-            if (!state.showAddonsToClient) isVipMode = false;
             saveLocalState();
             renderAll();
             if (!orderModal.classList.contains('hidden') && orderServiceSelect) {
@@ -1729,6 +1767,11 @@
         document.getElementById('builder-base-desc').textContent = t.baseDesc;
         document.getElementById('currency-base-card').textContent = t.currency;
         document.getElementById('base-min-note').textContent = t.baseMinNote;
+        document.getElementById('vip-pill-badge').textContent = t.vipCardPill;
+        document.getElementById('builder-vip-desc').textContent = t.vipCardDesc;
+        document.getElementById('choose-vip-btn').textContent = t.vipCardChoose;
+        document.getElementById('choose-base-btn').textContent = t.vipCardBack;
+        document.getElementById('currency-vip-card').textContent = t.currency;
         document.getElementById('addons-section-title').textContent = t.addonsTitle;
 
         document.getElementById('vip-badge-text').textContent = t.vipBadge;
@@ -1847,6 +1890,8 @@
 
         document.getElementById('builder-base-title').textContent = state.basePackageName;
         document.getElementById('builder-base-price').textContent = formatPriceAmount(state.basePrice, 500);
+        document.getElementById('builder-vip-title').textContent = state.vipPackageName;
+        document.getElementById('builder-vip-price').textContent = formatPriceAmount(state.vipPrice, 800);
         document.getElementById('summary-base-label').textContent = state.basePackageName;
         document.getElementById('summary-base-amount').textContent = formatPriceAmount(state.basePrice, 500);
 
@@ -1868,12 +1913,12 @@
           ? state.addons.filter((a) => selectedAddonIds.includes(a.id))
           : [];
 
-        if (isVipMode && state.showAddonsToClient) {
+        if (isVipMode) {
           return {
             packageLabel: state.vipPackageName,
             addonsLabel: selectedAddons.length > 0
               ? selectedAddons.map((a) => (t.addonLabels[a.id]?.name || a.name)).join(currentLang === 'en' ? ', ' : '، ')
-              : state.vipPackageName,
+              : t.vipIncludedNote,
             totalPrice: SecurityModule.safeNonNegativeInt(state.vipPrice, 800),
             selectedAddons
           };
@@ -1976,12 +2021,23 @@
 
         if (!state.showAddonsToClient) {
           selectedAddonIds = [];
-          isVipMode = false;
         }
 
         if (addonsSection) {
-          addonsSection.classList.toggle('hidden', !state.showAddonsToClient);
+          addonsSection.classList.toggle('hidden', !state.showAddonsToClient || isVipMode);
         }
+
+        const vipCard = document.getElementById('vip-package-card');
+        if (vipCard) {
+          vipCard.style.borderColor = isVipMode ? '#2563eb' : '';
+          vipCard.style.backgroundColor = isVipMode ? '#eff6ff' : '';
+        }
+        const chooseVipBtn = document.getElementById('choose-vip-btn');
+        if (chooseVipBtn) chooseVipBtn.classList.toggle('hidden', isVipMode);
+        const chooseBaseBtn = document.getElementById('choose-base-btn');
+        if (chooseBaseBtn) chooseBaseBtn.classList.toggle('hidden', !isVipMode);
+        const summaryBaseRow = document.getElementById('summary-base-row');
+        if (summaryBaseRow) summaryBaseRow.classList.toggle('hidden', isVipMode);
 
         if (addonsContainer) {
           addonsContainer.innerHTML = state.addons.map((addon) => {
@@ -2046,7 +2102,7 @@
 
         if (breakdownEl) {
           if (!state.showAddonsToClient || calc.selectedAddons.length === 0) {
-            breakdownEl.innerHTML = `<div class="text-xs text-[#526071]">${escapeHtml(t.withoutAddonsBaseOnly)}</div>`;
+            breakdownEl.innerHTML = `<div class="text-xs text-[#526071]">${escapeHtml(isVipMode ? t.vipIncludedNote : t.withoutAddonsBaseOnly)}</div>`;
           } else {
             breakdownEl.innerHTML = calc.selectedAddons.map((a) => {
               const locAddon = t.addonLabels[a.id] || {};
@@ -2458,6 +2514,19 @@
         isVipMode = true;
         renderBuilder();
         showToast(`${t.toastVipApplied} (${formatPriceAmount(state.vipPrice, 800)} ${t.currency})`);
+      });
+
+      document.getElementById('choose-vip-btn').addEventListener('click', () => {
+        isVipMode = true;
+        selectedAddonIds = [];
+        renderBuilder();
+        showToast(`${t.toastVipApplied} (${formatPriceAmount(state.vipPrice, 800)} ${t.currency})`);
+      });
+
+      document.getElementById('choose-base-btn').addEventListener('click', () => {
+        isVipMode = false;
+        selectedAddonIds = [];
+        renderBuilder();
       });
 
       document.querySelectorAll('.showcase-tab').forEach((tabBtn) => {
