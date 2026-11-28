@@ -892,7 +892,7 @@
         STORAGE_KEY: 'seif_studio_state_v15',
         LANG_KEY: 'seif_studio_lang_v1',
         FIREBASE_DB_URL: 'https://seif-studio-5de07-default-rtdb.firebaseio.com',
-        ALLOWED_ADDON_IDS: Object.freeze(['countdown', 'greetings', 'song']),
+        ALLOWED_ADDON_IDS: Object.freeze(['countdown', 'greetings', 'song', 'rsvp']),
         ALLOWED_CATEGORIES: Object.freeze(['wedding', 'engagement', 'katb-kitab', 'birthday', 'baby-shower', 'other-events']),
         ADMIN_EMAIL: 's79115194@gmail.com',
         FIREBASE_WEB_CONFIG: Object.freeze({
@@ -1070,7 +1070,8 @@
           addonLabels: {
             countdown: { name: 'عداد الوقت', desc: 'عداد تنازلي لموعد المناسبة' },
             greetings: { name: 'رسائل التهاني', desc: 'قسم لإرسال واستقبال تهاني المدعوين' },
-            song: { name: 'الأغنية', desc: 'موسيقى أو أغنية خلفية قابلة للتشغيل' }
+            song: { name: 'الأغنية', desc: 'موسيقى أو أغنية خلفية قابلة للتشغيل' },
+            rsvp: { name: 'تأكيد الحضور', desc: 'المدعوين يأكدوا حضورهم من الدعوة نفسها' }
           },
           catLabels: {
             wedding: 'فرح',
@@ -1257,7 +1258,8 @@
           addonLabels: {
             countdown: { name: 'Countdown Timer', desc: 'Live countdown timer to your event' },
             greetings: { name: 'Guest Greetings', desc: 'Section for guests to send congratulation notes' },
-            song: { name: 'Background Song', desc: 'Playable music or song track' }
+            song: { name: 'Background Song', desc: 'Playable music or song track' },
+            rsvp: { name: 'RSVP Confirmation', desc: 'Guests confirm attendance right from the invitation' }
           },
           catLabels: {
             wedding: 'Wedding',
@@ -1364,7 +1366,8 @@
           addons: [
             { id: 'countdown', name: t.addonLabels.countdown.name, desc: t.addonLabels.countdown.desc, price: 50 },
             { id: 'greetings', name: t.addonLabels.greetings.name, desc: t.addonLabels.greetings.desc, price: 50 },
-            { id: 'song', name: t.addonLabels.song.name, desc: t.addonLabels.song.desc, price: 50 }
+            { id: 'song', name: t.addonLabels.song.name, desc: t.addonLabels.song.desc, price: 50 },
+            { id: 'rsvp', name: t.addonLabels.rsvp.name, desc: t.addonLabels.rsvp.desc, price: 50 }
           ],
           showcaseItems: [
             {
