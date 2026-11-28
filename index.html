@@ -772,13 +772,22 @@
       <div class="space-y-3 border-t border-slate-200 pt-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <h4 class="text-sm font-extrabold text-[#2563eb]">2. أسعار الباقات والإضافات والمواقع والبرامج</h4>
-          <button
-            type="button"
-            id="adm-toggle-addons-btn"
-            class="cursor-pointer px-3.5 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#2563eb] border border-blue-200 text-xs font-extrabold transition-colors"
-          >
-            الإضافات ظاهرة للعميل (اضغط لإخفائها)
-          </button>
+          <div class="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              id="adm-toggle-addons-btn"
+              class="cursor-pointer px-3.5 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#2563eb] border border-blue-200 text-xs font-extrabold transition-colors"
+            >
+              الإضافات ظاهرة للعميل (اضغط لإخفائها)
+            </button>
+            <button
+              type="button"
+              id="adm-toggle-offers-btn"
+              class="cursor-pointer px-3.5 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#2563eb] border border-blue-200 text-xs font-extrabold transition-colors"
+            >
+              عرض لفترة محدودة ظاهر للعميل (اضغط لإخفائه)
+            </button>
+          </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
@@ -1067,6 +1076,10 @@
           addonsHiddenBtn: 'الإضافات مخفية عن العميل (اضغط لإظهارها)',
           toastAddonsShown: 'الإضافات ظاهرة للعميل الآن',
           toastAddonsHidden: 'تم إخفاء الإضافات عن العميل',
+          offersShownBtn: 'عرض لفترة محدودة ظاهر للعميل (اضغط لإخفائه)',
+          offersHiddenBtn: 'عرض لفترة محدودة مخفي عن العميل (اضغط لإظهاره)',
+          toastOffersShown: 'عرض لفترة محدودة ظاهر للعميل الآن',
+          toastOffersHidden: 'تم إخفاء عرض لفترة محدودة عن العميل',
           addonLabels: {
             countdown: { name: 'عداد الوقت', desc: 'عداد تنازلي لموعد المناسبة' },
             greetings: { name: 'رسائل التهاني', desc: 'قسم لإرسال واستقبال تهاني المدعوين' },
@@ -1255,6 +1268,10 @@
           addonsHiddenBtn: 'Add-ons Hidden from Client (Click to Show)',
           toastAddonsShown: 'Add-ons are now visible to clients',
           toastAddonsHidden: 'Add-ons are now hidden from clients',
+          offersShownBtn: 'Limited-Time Offer Visible to Client (Click to Hide)',
+          offersHiddenBtn: 'Limited-Time Offer Hidden from Client (Click to Show)',
+          toastOffersShown: 'Limited-time offer is now visible to clients',
+          toastOffersHidden: 'Limited-time offer is now hidden from clients',
           addonLabels: {
             countdown: { name: 'Countdown Timer', desc: 'Live countdown timer to your event' },
             greetings: { name: 'Guest Greetings', desc: 'Section for guests to send congratulation notes' },
@@ -1363,6 +1380,7 @@
           appServiceTitle: t.defaultAppTitle,
           appServicePrice: 3500,
           showAddonsToClient: true,
+          showLimitedOfferToClient: true,
           addons: [
             { id: 'countdown', name: t.addonLabels.countdown.name, desc: t.addonLabels.countdown.desc, price: 50 },
             { id: 'greetings', name: t.addonLabels.greetings.name, desc: t.addonLabels.greetings.desc, price: 50 },
@@ -1499,6 +1517,7 @@
           projectWebsitePrice: SecurityModule.safeNonNegativeInt(parsed.projectWebsitePrice, base.projectWebsitePrice),
           appServicePrice: SecurityModule.safeNonNegativeInt(parsed.appServicePrice, base.appServicePrice),
           showAddonsToClient: typeof parsed.showAddonsToClient === 'boolean' ? parsed.showAddonsToClient : true,
+          showLimitedOfferToClient: typeof parsed.showLimitedOfferToClient === 'boolean' ? parsed.showLimitedOfferToClient : true,
           addons: mergedAddons,
           showcaseItems: mergedShowcase,
           orders: mergedOrders
@@ -1735,6 +1754,19 @@
         btn.textContent = state.showAddonsToClient ? t.addonsShownBtn : t.addonsHiddenBtn;
       }
 
+      function updateAdminLimitedOfferToggleButton() {
+        const btn = document.getElementById('adm-toggle-offers-btn');
+        if (!btn) return;
+        btn.textContent = state.showLimitedOfferToClient ? t.offersShownBtn : t.offersHiddenBtn;
+      }
+
+      function applyLimitedOfferVisibility() {
+        const hideOffers = !state.showLimitedOfferToClient;
+        document.querySelectorAll('.limited-offer-btn').forEach((btn) => {
+          btn.classList.toggle('hidden', hideOffers);
+        });
+      }
+
       function applyLocalizedChrome() {
         document.getElementById('lang-toggle-box').textContent = t.toggleBoxText;
         document.getElementById('nav-invitations-link').textContent = t.navInvitations;
@@ -1827,6 +1859,7 @@
         document.getElementById('offer-modal-badge').textContent = t.limitedOfferBtn;
         document.getElementById('close-offer-modal-btn').textContent = t.offerModalClose;
         updateAdminAddonsToggleButton();
+        updateAdminLimitedOfferToggleButton();
 
         document.getElementById('footer-tagline').textContent = t.footerTagline;
         document.getElementById('footer-revision').textContent = t.footerRevision;
@@ -2334,6 +2367,16 @@
         showToast(state.showAddonsToClient ? t.toastAddonsShown : t.toastAddonsHidden);
       });
 
+      document.getElementById('adm-toggle-offers-btn').addEventListener('click', async () => {
+        if (!isUserAuthorizedAdmin()) return;
+        state.showLimitedOfferToClient = !state.showLimitedOfferToClient;
+        updateAdminLimitedOfferToggleButton();
+        saveLocalState();
+        applyLimitedOfferVisibility();
+        await syncStateToFirebase();
+        showToast(state.showLimitedOfferToClient ? t.toastOffersShown : t.toastOffersHidden);
+      });
+
       const orderModal = document.getElementById('order-modal');
       const orderForm = document.getElementById('client-order-form');
       const orderSuccessPanel = document.getElementById('order-success-panel');
@@ -2639,6 +2682,7 @@
         document.getElementById('adm-project-price').value = state.projectWebsitePrice;
         document.getElementById('adm-app-price').value = state.appServicePrice;
         updateAdminAddonsToggleButton();
+        updateAdminLimitedOfferToggleButton();
         renderAdminShowcase();
       }
 
@@ -2830,6 +2874,7 @@
         renderStaticTexts();
         renderShowcase();
         renderBuilder();
+        applyLimitedOfferVisibility();
         renderAdminShowcase();
         renderAdminOrders();
       }
